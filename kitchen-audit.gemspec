@@ -6,8 +6,9 @@ require 'kitchen/audit/version'
 Gem::Specification.new do |spec|
   spec.name          = "kitchen-audit"
   spec.version       = Kitchen::Audit::VERSION
+  spec.license       = "Apache 2.0"
   spec.authors       = ["Fletcher Nichol"]
-  spec.email         = ["fnichol@nichol.ca"]
+  spec.email         = ["fnichol@chef.io"]
 
   spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
   spec.description   = %q{TODO: Write a longer description or delete this line.}

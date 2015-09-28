@@ -34,3 +34,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kitchen-audit.
 
+## License
+
+Apache 2.0 (see [LICENSE][license])
+
+[license]: https://github.com/chef/kitchen-audit/blob/master/LICENSE
