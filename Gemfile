@@ -10,3 +10,5 @@ end
 group :test do
   gem "codeclimate-test-reporter", :require => nil
 end
+
+gem "vulcano", :git => "git@github.com:chef/vulcanosec.git"

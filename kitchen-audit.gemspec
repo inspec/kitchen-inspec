@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "kitchen/audit/version"
+require "kitchen/verifier/audit_version"
 require "English"
 
 Gem::Specification.new do |spec|
   spec.name          = "kitchen-audit"
-  spec.version       = Kitchen::Audit::VERSION
+  spec.version       = Kitchen::Verifier::AUDIT_VERSION
   spec.license       = "Apache 2.0"
   spec.authors       = ["Fletcher Nichol"]
   spec.email         = ["fnichol@chef.io"]
@@ -28,6 +28,9 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "test-kitchen", "~> 1.4"
+  spec.add_dependency "vulcano"
 
   spec.add_development_dependency "countloc", "~> 0.4"
   spec.add_development_dependency "bundler", "~> 1.10"
