@@ -11,9 +11,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Fletcher Nichol"]
   spec.email         = ["fnichol@chef.io"]
 
-  spec.summary       = "TODO: Write a short summary, because Rubygems requires one."
-  spec.description   = "TODO: Write a longer description or delete this line."
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "A Test Kitchen Verifier for Vulcano"
+  spec.description   = spec.summary
+  spec.homepage      = "http://github.com/chef/kitchen-audit"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
