@@ -94,7 +94,7 @@ module Kitchen
           "host" => opts[:hostname],
           "port" => opts[:port],
           "user" => opts[:username],
-          "key_file" => opts[:keys]
+          "key_files" => opts[:keys]
         }
       end
     end

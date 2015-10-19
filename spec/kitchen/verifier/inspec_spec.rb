@@ -120,7 +120,7 @@ describe Kitchen::Verifier::InSpec do
           "host" => "boogie",
           "port" => 123,
           "user" => "dance",
-          "key_file" => ["/backstage/pass"]
+          "key_files" => ["/backstage/pass"]
         )).
         and_return(runner)
 
