@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
+# Author:: Christoph Hartmann (<chartmann@chef.io>)
 #
 # Copyright (C) 2015, Chef Software Inc.
 #
@@ -16,21 +17,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "kitchen/verifier/audit_version"
+require "kitchen/verifier/inspec_version"
 require "kitchen/verifier/base"
 
 module Kitchen
 
   module Verifier
 
-    # Audit verifier for Kitchen.
+    # InSpec verifier for Kitchen.
     #
     # @author Fletcher Nichol <fnichol@chef.io>
-    class Audit < Kitchen::Verifier::Base
+    class InSpec < Kitchen::Verifier::Base
 
       kitchen_verifier_api_version 1
 
-      plugin_version Kitchen::Verifier::AUDIT_VERSION
+      plugin_version Kitchen::Verifier::INSPEC_VERSION
 
       # (see Base#call)
       def call(state)
@@ -88,13 +89,12 @@ module Kitchen
       # @api private
       def runner_options_for_ssh(config_data)
         opts = instance.transport.send(:connection_options, config_data).dup
-
         {
           "backend" => "ssh",
           "host" => opts[:hostname],
           "port" => opts[:port],
           "user" => opts[:username],
-          "key_file" => opts[:keys]
+          "key_files" => opts[:keys]
         }
       end
     end

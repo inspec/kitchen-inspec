@@ -12,3 +12,4 @@ group :test do
 end
 
 gem "vulcano", :git => "git@github.com:chef/vulcanosec.git"
+gem 'train', git: 'git@github.com:chef/train.git'
