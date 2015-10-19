@@ -22,7 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your .kitchen.yml include
+```
+verifier:
+  name: audit
+```
 
 ## Development
 
