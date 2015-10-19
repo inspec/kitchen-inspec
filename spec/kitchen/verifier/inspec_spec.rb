@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
+# Author:: Christoph Hartmann (<chartmann@chef.io>)
 #
 # Copyright (C) 2015, Chef Software Inc.
 #
@@ -20,10 +21,10 @@ require_relative "../../spec_helper"
 
 require "logger"
 
-require "kitchen/verifier/audit"
+require "kitchen/verifier/inspec"
 require "kitchen/transport/ssh"
 
-describe Kitchen::Verifier::Audit do
+describe Kitchen::Verifier::InSpec do
 
   let(:logged_output)     { StringIO.new }
   let(:logger)            { Logger.new(logged_output) }
@@ -72,16 +73,16 @@ describe Kitchen::Verifier::Audit do
   end
 
   let(:verifier) do
-    Kitchen::Verifier::Audit.new(config).finalize_config!(instance)
+    Kitchen::Verifier::InSpec.new(config).finalize_config!(instance)
   end
 
   it "verifier api_version is 1" do
     expect(verifier.diagnose_plugin[:api_version]).to eq(1)
   end
 
-  it "plugin_version is set to Kitchen::Verifier::AUDIT_VERSION" do
+  it "plugin_version is set to Kitchen::Verifier::INSPEC_VERSION" do
     expect(verifier.diagnose_plugin[:version]).
-      to eq(Kitchen::Verifier::AUDIT_VERSION)
+      to eq(Kitchen::Verifier::INSPEC_VERSION)
   end
 
   describe "configuration" do

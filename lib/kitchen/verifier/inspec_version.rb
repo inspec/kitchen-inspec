@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
+# Author:: Christoph Hartmann (<chartmann@chef.io>)
 #
 # Copyright (C) 2015, Chef Software Inc.
 #
@@ -20,7 +21,7 @@ module Kitchen
 
   module Verifier
 
-    # Version string for Audit Kitchen verifier
-    AUDIT_VERSION = "0.1.0"
+    # Version string for InSpec Kitchen verifier
+    INSPEC_VERSION = "0.1.0"
   end
 end
