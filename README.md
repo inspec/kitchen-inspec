@@ -1,6 +1,6 @@
-# Kitchen::Audit
+# Kitchen::InSpec
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/kitchen/audit`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/kitchen/inspec`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
 
@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'kitchen-audit'
+gem 'kitchen-inspec'
 ```
 
 And then execute:
@@ -18,14 +18,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install kitchen-audit
+    $ gem install kitchen-inspec
 
 ## Usage
 
 In your .kitchen.yml include
 ```
 verifier:
-  name: audit
+  name: inspec
 ```
 
 ## Development
@@ -36,10 +36,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kitchen-audit.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kitchen-inspec.
 
 ## License
 
 Apache 2.0 (see [LICENSE][license])
 
-[license]: https://github.com/chef/kitchen-audit/blob/master/LICENSE
+[license]: https://github.com/chef/kitchen-inspec/blob/master/LICENSE

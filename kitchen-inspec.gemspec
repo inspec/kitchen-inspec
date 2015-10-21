@@ -1,19 +1,19 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "kitchen/verifier/audit_version"
+require "kitchen/verifier/inspec_version"
 require "English"
 
 Gem::Specification.new do |spec|
-  spec.name          = "kitchen-audit"
-  spec.version       = Kitchen::Verifier::AUDIT_VERSION
+  spec.name          = "kitchen-inspec"
+  spec.version       = Kitchen::Verifier::INSPEC_VERSION
   spec.license       = "Apache 2.0"
   spec.authors       = ["Fletcher Nichol"]
   spec.email         = ["fnichol@chef.io"]
 
   spec.summary       = "A Test Kitchen Verifier for Vulcano"
   spec.description   = spec.summary
-  spec.homepage      = "http://github.com/chef/kitchen-audit"
+  spec.homepage      = "http://github.com/chef/kitchen-inspec"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
