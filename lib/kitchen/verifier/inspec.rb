@@ -94,7 +94,9 @@ module Kitchen
           "host" => opts[:hostname],
           "port" => opts[:port],
           "user" => opts[:username],
-          "key_files" => opts[:keys]
+          "key_files" => opts[:keys],
+          # pass-in sudo config from kitchen verifier
+          "sudo" => config[:sudo],
         }
       end
     end
