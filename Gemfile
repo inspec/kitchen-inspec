@@ -11,5 +11,5 @@ group :test do
   gem "codeclimate-test-reporter", :require => nil
 end
 
-gem "vulcano", :git => "git@github.com:chef/vulcanosec.git"
+gem "inspec", :git => "git@github.com:chef/inspec.git"
 gem 'train', git: 'git@github.com:chef/train.git'

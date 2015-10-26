@@ -27,7 +27,7 @@ module Kitchen
     # InSpec verifier for Kitchen.
     #
     # @author Fletcher Nichol <fnichol@chef.io>
-    class InSpec < Kitchen::Verifier::Base
+    class Inspec < Kitchen::Verifier::Base
 
       kitchen_verifier_api_version 1
 
@@ -46,7 +46,7 @@ module Kitchen
                          end
         tests = local_suite_files
 
-        runner = Vulcano::Runner.new(runner_options)
+        runner = ::Inspec::Runner.new(runner_options)
         runner.add_tests(tests)
         debug("Running specs from: #{tests.inspect}")
         runner.run
@@ -66,7 +66,7 @@ module Kitchen
 
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
-        require "vulcano"
+        require "inspec"
       end
 
       # Returns an Array of test suite filenames for the related suite currently
@@ -83,7 +83,7 @@ module Kitchen
         end
       end
 
-      # Returns a configuration Hash that can be passed to a `Vulcano::Runner`.
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
       #
       # @return [Hash] a configuration hash of string-based keys
       # @api private

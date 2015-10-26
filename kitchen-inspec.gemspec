@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Fletcher Nichol"]
   spec.email         = ["fnichol@chef.io"]
 
-  spec.summary       = "A Test Kitchen Verifier for Vulcano"
+  spec.summary       = "A Test Kitchen Verifier for InSpec"
   spec.description   = spec.summary
   spec.homepage      = "http://github.com/chef/kitchen-inspec"
 
@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "test-kitchen", "~> 1.4"
-  spec.add_dependency "vulcano"
+  spec.add_dependency "inspec"
 
   spec.add_development_dependency "countloc", "~> 0.4"
   spec.add_development_dependency "bundler", "~> 1.10"

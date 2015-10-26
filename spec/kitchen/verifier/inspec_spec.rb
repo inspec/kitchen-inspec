@@ -24,7 +24,7 @@ require "logger"
 require "kitchen/verifier/inspec"
 require "kitchen/transport/ssh"
 
-describe Kitchen::Verifier::InSpec do
+describe Kitchen::Verifier::Inspec do
 
   let(:logged_output)     { StringIO.new }
   let(:logger)            { Logger.new(logged_output) }
@@ -73,7 +73,7 @@ describe Kitchen::Verifier::InSpec do
   end
 
   let(:verifier) do
-    Kitchen::Verifier::InSpec.new(config).finalize_config!(instance)
+    Kitchen::Verifier::Inspec.new(config).finalize_config!(instance)
   end
 
   it "verifier api_version is 1" do
@@ -105,7 +105,7 @@ describe Kitchen::Verifier::InSpec do
     end
 
     let(:runner) do
-      instance_double("Vulcano::Runner")
+      instance_double("Inspec::Runner")
     end
 
     before do
@@ -113,8 +113,8 @@ describe Kitchen::Verifier::InSpec do
       allow(runner).to receive(:run)
     end
 
-    it "constructs a Vulcano::Runner using transport config data and state" do
-      expect(Vulcano::Runner).to receive(:new).
+    it "constructs a Inspec::Runner using transport config data and state" do
+      expect(Inspec::Runner).to receive(:new).
         with(hash_including(
           "backend" => "ssh",
           "host" => "boogie",
@@ -129,7 +129,7 @@ describe Kitchen::Verifier::InSpec do
 
     it "adds *spec.rb test files to runner" do
       create_test_files
-      allow(Vulcano::Runner).to receive(:new).and_return(runner)
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_tests).with([
         File.join(config[:test_base_path], "germany", "another_spec.rb"),
         File.join(config[:test_base_path], "germany", "base_spec.rb")
@@ -139,7 +139,7 @@ describe Kitchen::Verifier::InSpec do
     end
 
     it "calls #run on the runner" do
-      allow(Vulcano::Runner).to receive(:new).and_return(runner)
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:run)
 
       verifier.call(Hash.new)
