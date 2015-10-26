@@ -88,16 +88,29 @@ module Kitchen
       # @return [Hash] a configuration hash of string-based keys
       # @api private
       def runner_options_for_ssh(config_data)
-        opts = instance.transport.send(:connection_options, config_data).dup
-        {
+        kitchen = instance.transport.send(:connection_options, config_data).dup
+
+        opts = {
           "backend" => "ssh",
-          "host" => opts[:hostname],
-          "port" => opts[:port],
-          "user" => opts[:username],
-          "key_files" => opts[:keys],
+          "logger" => logger,
           # pass-in sudo config from kitchen verifier
           "sudo" => config[:sudo],
+          "host" => kitchen[:hostname],
+          "port" => kitchen[:port],
+          "user" => kitchen[:username],
+          "keepalive" => kitchen[:keepalive],
+          "keepalive_interval" => kitchen[:keepalive_interval],
+          "connection_timeout" => kitchen[:timeout],
+          "connection_retries" => kitchen[:connection_retries],
+          "connection_retry_sleep" => kitchen[:connection_retry_sleep],
+          "max_wait_until_ready" => kitchen[:max_wait_until_ready],
+          "compression" => kitchen[:compression],
+          "compression_level" => kitchen[:compression_level]
         }
+        opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
+        opts["password"] = kitchen[:password] unless kitchen[:password].nil?
+
+        opts
       end
     end
   end

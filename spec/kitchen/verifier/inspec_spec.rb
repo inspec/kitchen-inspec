@@ -96,7 +96,15 @@ describe Kitchen::Verifier::Inspec do
         :hostname => "boogie",
         :port => "I shouldn't be used",
         :username => "dance",
-        :ssh_key => "/backstage/pass"
+        :ssh_key => "/backstage/pass",
+        :keepalive => "keepalive",
+        :keepalive_interval => "forever",
+        :connection_timeout => "nope",
+        :connection_retries => "thousand",
+        :connection_retry_sleep => "sleepy",
+        :max_wait_until_ready => 42,
+        :compression => "maxyo",
+        :compression_level => "pico"
       }
     end
 
@@ -114,12 +122,24 @@ describe Kitchen::Verifier::Inspec do
     end
 
     it "constructs a Inspec::Runner using transport config data and state" do
+      config[:sudo] = "jellybeans"
+
       expect(Inspec::Runner).to receive(:new).
         with(hash_including(
           "backend" => "ssh",
+          "logger" => logger,
+          "sudo" => "jellybeans",
           "host" => "boogie",
           "port" => 123,
           "user" => "dance",
+          "keepalive" => "keepalive",
+          "keepalive_interval" => "forever",
+          "connection_timeout" => "nope",
+          "connection_retries" => "thousand",
+          "connection_retry_sleep" => "sleepy",
+          "max_wait_until_ready" => 42,
+          "compression" => "maxyo",
+          "compression_level" => "pico",
           "key_files" => ["/backstage/pass"]
         )).
         and_return(runner)

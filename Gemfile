@@ -12,4 +12,4 @@ group :test do
 end
 
 gem "inspec", :git => "git@github.com:chef/inspec.git"
-gem 'train', git: 'git@github.com:chef/train.git'
+gem "train", :git => "git@github.com:chef/train.git"
