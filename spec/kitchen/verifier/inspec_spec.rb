@@ -23,6 +23,7 @@ require "logger"
 
 require "kitchen/verifier/inspec"
 require "kitchen/transport/ssh"
+require "kitchen/transport/winrm"
 
 describe Kitchen::Verifier::Inspec do
 
@@ -64,6 +65,8 @@ describe Kitchen::Verifier::Inspec do
   end
 
   before do
+    allow(transport).to receive(:instance).and_return(instance)
+
     @root = Dir.mktmpdir
     config[:test_base_path] = @root
   end
@@ -167,7 +170,47 @@ describe Kitchen::Verifier::Inspec do
   end
 
   context "with an winrm transport" do
-    # coming soon
+
+    let(:transport_config) do
+      {
+        :username => "dance",
+        :password => "party",
+        :connection_retries => "thousand",
+        :connection_retry_sleep => "sleepy",
+        :max_wait_until_ready => 42
+      }
+    end
+
+    let(:transport) do
+      Kitchen::Transport::Winrm.new(transport_config)
+    end
+
+    let(:runner) do
+      instance_double("Inspec::Runner")
+    end
+
+    before do
+      allow(runner).to receive(:add_tests)
+      allow(runner).to receive(:run)
+    end
+
+    it "constructs a Inspec::Runner using transport config data and state" do
+      expect(Inspec::Runner).to receive(:new).
+        with(hash_including(
+          "backend" => "winrm",
+          "logger" => logger,
+          "host" => "win.dows",
+          "port" => 123,
+          "user" => "dance",
+          "password" => "party",
+          "connection_retries" => "thousand",
+          "connection_retry_sleep" => "sleepy",
+          "max_wait_until_ready" => 42
+        )).
+        and_return(runner)
+
+      verifier.call(:hostname => "win.dows", :port => 123)
+    end
   end
 
   context "with an unsupported transport" do

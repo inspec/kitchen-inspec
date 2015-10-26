@@ -20,6 +20,8 @@
 require "kitchen/verifier/inspec_version"
 require "kitchen/verifier/base"
 
+require "uri"
+
 module Kitchen
 
   module Verifier
@@ -40,6 +42,8 @@ module Kitchen
         runner_options = case (name = instance.transport.name.downcase)
                          when "ssh"
                            runner_options_for_ssh(transport_data)
+                         when "winrm"
+                           runner_options_for_winrm(transport_data)
                          else
                            raise Kitchen::UserError, "Verifier #{name}",
                              " does not support the #{name} Transport"
@@ -109,6 +113,28 @@ module Kitchen
         }
         opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
         opts["password"] = kitchen[:password] unless kitchen[:password].nil?
+
+        opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_winrm(config_data)
+        kitchen = instance.transport.send(:connection_options, config_data).dup
+
+        opts = {
+          "backend" => "winrm",
+          "logger" => logger,
+          "host" => URI(kitchen[:endpoint]).hostname,
+          "port" => URI(kitchen[:endpoint]).port,
+          "user" => kitchen[:user],
+          "password" => kitchen[:pass],
+          "connection_retries" => kitchen[:connection_retries],
+          "connection_retry_sleep" => kitchen[:connection_retry_sleep],
+          "max_wait_until_ready" => kitchen[:max_wait_until_ready]
+        }
 
         opts
       end
