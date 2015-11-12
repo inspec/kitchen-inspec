@@ -45,8 +45,7 @@ module Kitchen
                          when "winrm"
                            runner_options_for_winrm(transport_data)
                          else
-                           raise Kitchen::UserError, "Verifier #{name}",
-                             " does not support the #{name} Transport"
+                           runner_options_default(transport_data)
                          end
         tests = local_suite_files
 
@@ -137,6 +136,14 @@ module Kitchen
         }
 
         opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_default(config_data)
+        opts = {}
       end
     end
   end
