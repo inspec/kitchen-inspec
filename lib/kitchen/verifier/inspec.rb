@@ -53,7 +53,8 @@ module Kitchen
         runner = ::Inspec::Runner.new(runner_options)
         runner.add_tests(tests)
         debug("Running specs from: #{tests.inspect}")
-        runner.run
+        exit_code = runner.run
+        raise ActionFailed, "Inspec Runner returns #{exit_code}" unless exit_code == 0
       end
 
       private
