@@ -134,7 +134,7 @@ describe Kitchen::Verifier::Inspec do
 
     before do
       allow(runner).to receive(:add_tests)
-      allow(runner).to receive(:run)
+      allow(runner).to receive(:run).and_return 0
     end
 
     it "constructs a Inspec::Runner using transport config data and state" do
@@ -207,7 +207,7 @@ describe Kitchen::Verifier::Inspec do
 
     before do
       allow(runner).to receive(:add_tests)
-      allow(runner).to receive(:run)
+      allow(runner).to receive(:run).and_return 0
     end
 
     it "constructs a Inspec::Runner using transport config data and state" do
