@@ -10,3 +10,7 @@ end
 group :test do
   gem "codeclimate-test-reporter", :require => nil
 end
+
+group :tools do
+  gem 'github_changelog_generator', '~> 1'
+end
