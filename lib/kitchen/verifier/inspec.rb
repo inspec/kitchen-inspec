@@ -86,13 +86,13 @@ module Kitchen
 
       # Returns an Array of test suite filenames for the related suite currently
       # residing on the local workstation. Any special provisioner-specific
-      # directories (such as a Chef roles/ directory) are excluded.
+      # directories (such as a Chef roles / directory) are excluded.
       #
       # @return [Array<String>] array of suite files
       # @api private
       def local_suite_files
         base = File.join(config[:test_base_path], config[:suite_name])
-        glob = File.join(base, '**/*_spec.rb')
+        glob = File.join(base, '**/*.rb')
         Dir.glob(glob).reject do |f|
           chef_data_dir?(base, f) || File.directory?(f)
         end
