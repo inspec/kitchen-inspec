@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# encoding: utf-8
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
@@ -17,64 +17,64 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require_relative "../../spec_helper"
+require_relative '../../spec_helper'
 
-require "logger"
+require 'logger'
 
-require "kitchen/verifier/inspec"
-require "kitchen/transport/ssh"
-require "kitchen/transport/winrm"
+require 'kitchen/verifier/inspec'
+require 'kitchen/transport/ssh'
+require 'kitchen/transport/winrm'
 
 describe Kitchen::Verifier::Inspec do
 
   let(:logged_output)     { StringIO.new }
   let(:logger)            { Logger.new(logged_output) }
-  let(:config)            { Hash.new }
-  let(:transport_config)  { Hash.new }
+  let(:config)            { {} }
+  let(:transport_config)  { {} }
 
   let(:platform) do
-    instance_double("Kitchen::Platform", :os_type => nil, :shell_type => nil)
+    instance_double('Kitchen::Platform', os_type: nil, shell_type: nil)
   end
 
   let(:suite) do
-    instance_double("Kitchen::Suite", :name => "germany")
+    instance_double('Kitchen::Suite', name: 'germany')
   end
 
   let(:transport) do
     instance_double(
-      "Kitchen::Transport::Dummy",
-      :name => "wickedsauce",
-      :diagnose => transport_config
+      'Kitchen::Transport::Dummy',
+      name: 'wickedsauce',
+      diagnose: transport_config,
     )
   end
 
   let(:instance) do
     instance_double(
-      "Kitchen::Instance",
-      :name => "coolbeans",
-      :logger => logger,
-      :platform => platform,
-      :suite => suite,
-      :transport => transport,
-      :to_str => "instance"
+      'Kitchen::Instance',
+      name: 'coolbeans',
+      logger: logger,
+      platform: platform,
+      suite: suite,
+      transport: transport,
+      to_str: 'instance',
     )
   end
 
   let(:test_files) do
-    %w(
+    %w{
       inspec/base_spec.rb
       inspec/another_spec.rb
       inspec/supporting.rb
       inspec/other.json
-    )
+    }
   end
 
   let(:helper_files) do
-    %w(
+    %w{
       inspec/spec_helper.rb
       inspec/support/custom.rb
       inspec/support/more_custom.rb
-    )
+    }
   end
 
   before do
@@ -92,35 +92,35 @@ describe Kitchen::Verifier::Inspec do
     Kitchen::Verifier::Inspec.new(config).finalize_config!(instance)
   end
 
-  it "verifier api_version is 1" do
+  it 'verifier api_version is 1' do
     expect(verifier.diagnose_plugin[:api_version]).to eq(1)
   end
 
-  it "plugin_version is set to Kitchen::Verifier::INSPEC_VERSION" do
-    expect(verifier.diagnose_plugin[:version]).
-      to eq(Kitchen::Verifier::INSPEC_VERSION)
+  it 'plugin_version is set to Kitchen::Verifier::INSPEC_VERSION' do
+    expect(verifier.diagnose_plugin[:version])
+      .to eq(Kitchen::Verifier::INSPEC_VERSION)
   end
 
-  describe "configuration" do
+  describe 'configuration' do
     # nothing yet, woah!
   end
 
-  context "with an ssh transport" do
+  context 'with an ssh transport' do
 
     let(:transport_config) do
       {
-        :hostname => "boogie",
-        :port => "I shouldn't be used",
-        :username => "dance",
-        :ssh_key => "/backstage/pass",
-        :keepalive => "keepalive",
-        :keepalive_interval => "forever",
-        :connection_timeout => "nope",
-        :connection_retries => "thousand",
-        :connection_retry_sleep => "sleepy",
-        :max_wait_until_ready => 42,
-        :compression => "maxyo",
-        :compression_level => "pico"
+        hostname: 'boogie',
+        port: "I shouldn't be used",
+        username: 'dance',
+        ssh_key: '/backstage/pass',
+        keepalive: 'keepalive',
+        keepalive_interval: 'forever',
+        connection_timeout: 'nope',
+        connection_retries: 'thousand',
+        connection_retry_sleep: 'sleepy',
+        max_wait_until_ready: 42,
+        compression: 'maxyo',
+        compression_level: 'pico',
       }
     end
 
@@ -129,7 +129,7 @@ describe Kitchen::Verifier::Inspec do
     end
 
     let(:runner) do
-      instance_double("Inspec::Runner")
+      instance_double('Inspec::Runner')
     end
 
     before do
@@ -137,63 +137,65 @@ describe Kitchen::Verifier::Inspec do
       allow(runner).to receive(:run).and_return 0
     end
 
-    it "constructs a Inspec::Runner using transport config data and state" do
-      config[:sudo] = "jellybeans"
+    it 'constructs a Inspec::Runner using transport config data and state' do
+      config[:sudo] = 'jellybeans'
 
-      expect(Inspec::Runner).to receive(:new).
-        with(hash_including(
-          "backend" => "ssh",
-          "logger" => logger,
-          "sudo" => "jellybeans",
-          "host" => "boogie",
-          "port" => 123,
-          "user" => "dance",
-          "keepalive" => "keepalive",
-          "keepalive_interval" => "forever",
-          "connection_timeout" => "nope",
-          "connection_retries" => "thousand",
-          "connection_retry_sleep" => "sleepy",
-          "max_wait_until_ready" => 42,
-          "compression" => "maxyo",
-          "compression_level" => "pico",
-          "key_files" => ["/backstage/pass"]
-        )).
-        and_return(runner)
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            'backend' => 'ssh',
+            'logger' => logger,
+            'sudo' => 'jellybeans',
+            'host' => 'boogie',
+            'port' => 123,
+            'user' => 'dance',
+            'keepalive' => 'keepalive',
+            'keepalive_interval' => 'forever',
+            'connection_timeout' => 'nope',
+            'connection_retries' => 'thousand',
+            'connection_retry_sleep' => 'sleepy',
+            'max_wait_until_ready' => 42,
+            'compression' => 'maxyo',
+            'compression_level' => 'pico',
+            'key_files' => ['/backstage/pass'],
+          ),
+        )
+        .and_return(runner)
 
-      verifier.call(:port => 123)
+      verifier.call(port: 123)
     end
 
-    it "adds *spec.rb test files to runner" do
+    it 'adds *spec.rb test files to runner' do
       create_test_files
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_tests).with(array_including([
-        File.join(config[:test_base_path], "germany", "inspec", "another_spec.rb"),
-        File.join(config[:test_base_path], "germany", "inspec", "base_spec.rb"),
-        File.join(config[:test_base_path], "helpers", "inspec", "spec_helper.rb"),
-        File.join(config[:test_base_path], "helpers", "inspec", "support", "custom.rb"),
-        File.join(config[:test_base_path], "helpers", "inspec", "support", "more_custom.rb")
+        File.join(config[:test_base_path], 'germany', 'inspec', 'another_spec.rb'),
+        File.join(config[:test_base_path], 'germany', 'inspec', 'base_spec.rb'),
+        File.join(config[:test_base_path], 'helpers', 'inspec', 'spec_helper.rb'),
+        File.join(config[:test_base_path], 'helpers', 'inspec', 'support', 'custom.rb'),
+        File.join(config[:test_base_path], 'helpers', 'inspec', 'support', 'more_custom.rb'),
       ]))
 
-      verifier.call(Hash.new)
+      verifier.call({})
     end
 
-    it "calls #run on the runner" do
+    it 'calls #run on the runner' do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:run)
 
-      verifier.call(Hash.new)
+      verifier.call({})
     end
   end
 
-  context "with an winrm transport" do
+  context 'with an winrm transport' do
 
     let(:transport_config) do
       {
-        :username => "dance",
-        :password => "party",
-        :connection_retries => "thousand",
-        :connection_retry_sleep => "sleepy",
-        :max_wait_until_ready => 42
+        username: 'dance',
+        password: 'party',
+        connection_retries: 'thousand',
+        connection_retry_sleep: 'sleepy',
+        max_wait_until_ready: 42,
       }
     end
 
@@ -202,7 +204,7 @@ describe Kitchen::Verifier::Inspec do
     end
 
     let(:runner) do
-      instance_double("Inspec::Runner")
+      instance_double('Inspec::Runner')
     end
 
     before do
@@ -210,40 +212,42 @@ describe Kitchen::Verifier::Inspec do
       allow(runner).to receive(:run).and_return 0
     end
 
-    it "constructs a Inspec::Runner using transport config data and state" do
-      expect(Inspec::Runner).to receive(:new).
-        with(hash_including(
-          "backend" => "winrm",
-          "logger" => logger,
-          "host" => "win.dows",
-          "port" => 123,
-          "user" => "dance",
-          "password" => "party",
-          "connection_retries" => "thousand",
-          "connection_retry_sleep" => "sleepy",
-          "max_wait_until_ready" => 42
-        )).
-        and_return(runner)
+    it 'constructs a Inspec::Runner using transport config data and state' do
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            'backend' => 'winrm',
+            'logger' => logger,
+            'host' => 'win.dows',
+            'port' => 123,
+            'user' => 'dance',
+            'password' => 'party',
+            'connection_retries' => 'thousand',
+            'connection_retry_sleep' => 'sleepy',
+            'max_wait_until_ready' => 42,
+          ),
+        )
+        .and_return(runner)
 
-      verifier.call(:hostname => "win.dows", :port => 123)
+      verifier.call(hostname: 'win.dows', port: 123)
     end
   end
 
-  context "with an unsupported transport" do
+  context 'with an unsupported transport' do
 
-    it "#call raises a UserError" do
-      expect { verifier.call(Hash.new) }.to raise_error(Kitchen::UserError)
+    it '#call raises a UserError' do
+      expect { verifier.call({}) }.to raise_error(Kitchen::UserError)
     end
   end
 
   def create_file(file, content)
     FileUtils.mkdir_p(File.dirname(file))
-    File.open(file, "wb") { |f| f.write(content) }
+    File.open(file, 'wb') { |f| f.write(content) }
   end
 
   def create_test_files
-    base = File.join(config[:test_base_path], "germany")
-    hbase = File.join(config[:test_base_path], "helpers")
+    base = File.join(config[:test_base_path], 'germany')
+    hbase = File.join(config[:test_base_path], 'helpers')
 
     test_files.map { |f| File.join(base, f) }.each do |file|
       create_file(file, 'hello')

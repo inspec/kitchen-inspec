@@ -1,14 +1,15 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
-require "bundler/setup"
-require "kitchen/inspec"
+require 'bundler/setup'
+require 'kitchen/inspec'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
 
 # (If you use this, don't forget to add pry to your Gemfile!)
-# require "pry"
+# require 'pry'
 # Pry.start
 
-require "irb"
+require 'irb'
 IRB.start

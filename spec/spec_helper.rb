@@ -1,10 +1,10 @@
-# -*- encoding: utf-8 -*-
+# encoding: utf-8
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 #
 # Copyright (C) 2015, Chef Software Inc.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apache License, Version 2.0 (the 'License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
@@ -16,18 +16,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if ENV["CODECLIMATE_REPO_TOKEN"]
-  require "codeclimate-test-reporter"
+if ENV['CODECLIMATE_REPO_TOKEN']
+  require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
-elsif ENV["COVERAGE"]
-  require "simplecov"
-  SimpleCov.profiles.define "gem" do
-    command_name "Specs"
+elsif ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.profiles.define 'gem' do
+    command_name 'Specs'
 
-    add_filter ".gem/"
-    add_filter "/spec/"
+    add_filter '.gem/'
+    add_filter '/spec/'
 
-    add_group "Libraries", "/lib/"
+    add_group 'Libraries', '/lib/'
   end
-  SimpleCov.start "gem"
+  SimpleCov.start 'gem'
 end
