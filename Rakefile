@@ -1,26 +1,24 @@
 # -*- encoding: utf-8 -*-
 
 require "bundler/gem_tasks"
-
 require "rspec/core/rake_task"
+require 'rubocop/rake_task'
+
+# Specs
 RSpec::Core::RakeTask.new(:spec)
 
 desc "Run all test suites"
 task :test => [:spec]
 
-task :default => :spec
-
-require "cane/rake_task"
-desc "Run cane to check quality metrics"
-Cane::RakeTask.new do |cane|
-  cane.canefile = "./.cane"
+# Rubocop
+desc 'Run Rubocop lint checks'
+task :rubocop do
+  RuboCop::RakeTask.new
 end
 
-require "finstyle"
-require "rubocop/rake_task"
-RuboCop::RakeTask.new(:style) do |task|
-  task.options << "--display-cop-names"
-end
+# lint the project
+desc 'Run robocop linter'
+task lint: [:rubocop]
 
 desc "Display LOC stats"
 task :stats do
@@ -31,7 +29,7 @@ task :stats do
 end
 
 desc "Run all quality tasks"
-task :quality => [:cane, :style, :stats]
+task :quality => [:lint, :stats]
 
 task :default => [:test, :quality]
 

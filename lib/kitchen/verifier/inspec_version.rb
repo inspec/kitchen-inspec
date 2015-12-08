@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# encoding: utf-8
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
@@ -18,10 +18,8 @@
 # limitations under the License.
 
 module Kitchen
-
   module Verifier
-
     # Version string for InSpec Kitchen verifier
-    INSPEC_VERSION = "0.9.0"
+    INSPEC_VERSION = '0.9.0'
   end
 end
