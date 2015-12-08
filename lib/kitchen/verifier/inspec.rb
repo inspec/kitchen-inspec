@@ -41,7 +41,11 @@ module Kitchen
                          when 'winrm'
                            runner_options_for_winrm(transport_data)
                          else
-                           fail Kitchen::UserError, "Verifier #{name}", " does not support the #{name} Transport"
+                           fail(
+                             Kitchen::UserError,
+                             "Verifier #{name}",
+                             " does not support the #{name} Transport",
+                           )
                          end
         tests = helper_files + local_suite_files
 
@@ -49,7 +53,8 @@ module Kitchen
         runner.add_tests(tests)
         debug("Running specs from: #{tests.inspect}")
         exit_code = runner.run
-        fail ActionFailed, "Inspec Runner returns #{exit_code}" unless exit_code == 0
+        return if exit_code == 0
+        fail ActionFailed, "Inspec Runner returns #{exit_code}"
       end
 
       private

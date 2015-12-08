@@ -169,11 +169,26 @@ describe Kitchen::Verifier::Inspec do
       create_test_files
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_tests).with(array_including([
-        File.join(config[:test_base_path], 'germany', 'inspec', 'another_spec.rb'),
-        File.join(config[:test_base_path], 'germany', 'inspec', 'base_spec.rb'),
-        File.join(config[:test_base_path], 'helpers', 'inspec', 'spec_helper.rb'),
-        File.join(config[:test_base_path], 'helpers', 'inspec', 'support', 'custom.rb'),
-        File.join(config[:test_base_path], 'helpers', 'inspec', 'support', 'more_custom.rb'),
+        File.join(
+          config[:test_base_path],
+          'germany', 'inspec', 'another_spec.rb'
+        ),
+        File.join(
+          config[:test_base_path],
+          'germany', 'inspec', 'base_spec.rb'
+        ),
+        File.join(
+          config[:test_base_path],
+          'helpers', 'inspec', 'spec_helper.rb'
+        ),
+        File.join(
+          config[:test_base_path],
+          'helpers', 'inspec', 'support', 'custom.rb'
+        ),
+        File.join(
+          config[:test_base_path],
+          'helpers', 'inspec', 'support', 'more_custom.rb'
+        ),
       ]))
 
       verifier.call({})
