@@ -39,5 +39,4 @@ Gem::Specification.new do |spec|
   # may introduce new and undesireable style choices which would be immediately
   # enforced in CI
   spec.add_development_dependency 'finstyle',  '1.5.0'
-  spec.add_development_dependency 'cane',      '2.6.2'
 end
