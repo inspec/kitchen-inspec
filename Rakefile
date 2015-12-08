@@ -37,7 +37,7 @@ task :stats do
 end
 
 desc "Run all quality tasks"
-task :quality => [:cane, :style, :stats]
+task :quality => [:cane, :lint, :stats]
 
 task :default => [:test, :quality]
 
