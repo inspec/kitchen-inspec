@@ -1,6 +1,6 @@
 # Kitchen::InSpec - A Test Kitchen Verifier for InSpec
 
-This is the kitchen driver for [InSpec](https://github.com/chef/inspec). Please find an [example here](https://github.com/chef/inspec/tree/master/examples/test-kitchen)
+This is the kitchen driver for [InSpec](https://github.com/chef/inspec). Please find an [example here](https://github.com/chef/inspec/tree/master/examples/kitchen-chef).
 
 ## Installation
 
