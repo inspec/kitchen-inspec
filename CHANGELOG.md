@@ -1,18 +1,28 @@
 # Change Log
 
-## [Unreleased](https://github.com/chef/kitchen-inspec/tree/HEAD)
-
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.9.0...HEAD)
+## [0.9.6](https://github.com/chef/kitchen-inspec/tree/0.9.6) (2015-12-11)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.9.0...0.9.6)
 
 **Implemented enhancements:**
 
+- add changelog [\#18](https://github.com/chef/kitchen-inspec/pull/18) ([chris-rock](https://github.com/chris-rock))
 - support test suite helpers [\#12](https://github.com/chef/kitchen-inspec/pull/12) ([schisamo](https://github.com/schisamo))
 - Fix typo in README [\#8](https://github.com/chef/kitchen-inspec/pull/8) ([englishm](https://github.com/englishm))
 - Gem [\#7](https://github.com/chef/kitchen-inspec/pull/7) ([chris-rock](https://github.com/chris-rock))
 
 **Fixed bugs:**
 
+- tests fail with inspec 0.9.5 [\#19](https://github.com/chef/kitchen-inspec/issues/19)
+- Fix tests and activate linting for CI [\#20](https://github.com/chef/kitchen-inspec/pull/20) ([srenatus](https://github.com/srenatus))
 - raise ActionFailed when inspec returns other than 0. [\#13](https://github.com/chef/kitchen-inspec/pull/13) ([sawanoboly](https://github.com/sawanoboly))
+
+**Closed issues:**
+
+- ReadMe 'example here' dead link / 404 [\#21](https://github.com/chef/kitchen-inspec/issues/21)
+
+**Merged pull requests:**
+
+- fix readme [\#22](https://github.com/chef/kitchen-inspec/pull/22) ([srenatus](https://github.com/srenatus))
 
 ## [v0.9.0](https://github.com/chef/kitchen-inspec/tree/v0.9.0) (2015-11-03)
 **Implemented enhancements:**
