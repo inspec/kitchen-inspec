@@ -1,6 +1,10 @@
 # Kitchen::InSpec - A Test Kitchen Verifier for InSpec
 
-This is the kitchen driver for [InSpec](https://github.com/chef/inspec). Please find an [example here](https://github.com/chef/inspec/tree/master/examples/kitchen-chef).
+This is the kitchen driver for [InSpec](https://github.com/chef/inspec). To see the project in action, we have the following test-kitchen examples available:
+
+ - [Chef and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-chef)
+ - [Puppet and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-puppet)
+ - [Ansible and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-ansible)
 
 ## Installation
 
