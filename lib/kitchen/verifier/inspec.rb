@@ -47,6 +47,8 @@ module Kitchen
                              " does not support the #{name} Transport",
                            )
                          end
+        runner_options['format'] = config[:format] unless config[:format].nil?
+
         tests = helper_files + local_suite_files
 
         runner = ::Inspec::Runner.new(runner_options)

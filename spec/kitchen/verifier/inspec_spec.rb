@@ -165,6 +165,20 @@ describe Kitchen::Verifier::Inspec do
       verifier.call(port: 123)
     end
 
+    it 'constructs an Inspec::Runner with a specified inspec output format' do
+      config[:format] = 'documentation'
+
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            'format' => 'documentation',
+          ),
+        )
+        .and_return(runner)
+
+      verifier.call(port: 123)
+    end
+
     it 'adds *spec.rb test files to runner' do
       create_test_files
       allow(Inspec::Runner).to receive(:new).and_return(runner)
