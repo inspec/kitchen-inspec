@@ -14,3 +14,7 @@ end
 group :tools do
   gem 'github_changelog_generator', '~> 1'
 end
+
+group :development do
+  gem 'test-kitchen', '~> 1.4', :require => nil
+end
