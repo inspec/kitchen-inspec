@@ -1,7 +1,21 @@
 # Change Log
 
-## [0.9.6](https://github.com/chef/kitchen-inspec/tree/0.9.6) (2015-12-11)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.9.0...0.9.6)
+## [0.10.0](https://github.com/chef/kitchen-inspec/tree/0.10.0) (2016-01-07)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.9.6...0.10.0)
+
+**Fixed bugs:**
+
+- kitchen test destroys the instance with failing tests [\#16](https://github.com/chef/kitchen-inspec/issues/16)
+- Pending messages are "inherited"/"propagated" down with several suites [\#15](https://github.com/chef/kitchen-inspec/issues/15)
+
+**Merged pull requests:**
+
+- Make test-kitchen a dev dependency [\#28](https://github.com/chef/kitchen-inspec/pull/28) ([jaym](https://github.com/jaym))
+- Specify inspec output format from kitchen.yml [\#27](https://github.com/chef/kitchen-inspec/pull/27) ([cheesesashimi](https://github.com/cheesesashimi))
+- remove gem push restriction [\#24](https://github.com/chef/kitchen-inspec/pull/24) ([arlimus](https://github.com/arlimus))
+
+## [v0.9.6](https://github.com/chef/kitchen-inspec/tree/v0.9.6) (2015-12-11)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.9.0...v0.9.6)
 
 **Implemented enhancements:**
 
