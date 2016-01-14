@@ -15,6 +15,9 @@ group :tools do
   gem 'github_changelog_generator', '~> 1'
 end
 
-group :development do
+group :integration do
+  gem 'berkshelf', '~> 4.0'
   gem 'test-kitchen', '~> 1.4', :require => nil
+  gem 'kitchen-dokken'
+  gem 'kitchen-inspec', path: '.'
 end
