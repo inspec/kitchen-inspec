@@ -96,6 +96,8 @@ module Kitchen
           runner_options_for_ssh(transport_data)
         elsif transport.is_a?(Kitchen::Transport::Winrm)
           runner_options_for_winrm(transport_data)
+        elsif transport.is_a?(Kitchen::Transport::Dokken)
+          runner_options_for_docker(transport_data)
         else
           fail Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
         end.tap do |runner_options|
@@ -147,6 +149,26 @@ module Kitchen
           'port' => URI(kitchen[:endpoint]).port,
           'user' => kitchen[:user],
           'password' => kitchen[:pass],
+          'connection_retries' => kitchen[:connection_retries],
+          'connection_retry_sleep' => kitchen[:connection_retry_sleep],
+          'max_wait_until_ready' => kitchen[:max_wait_until_ready],
+        }
+
+        opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_docker(config_data)
+        kitchen = instance.transport.send(:connection_options, config_data).dup
+
+        opts = {
+          'backend' => 'docker',
+          'logger' => logger,
+          'host' => kitchen[:data_container][:Id],
+          'connection_timeout' => kitchen[:timeout],
           'connection_retries' => kitchen[:connection_retries],
           'connection_retry_sleep' => kitchen[:connection_retry_sleep],
           'max_wait_until_ready' => kitchen[:max_wait_until_ready],
