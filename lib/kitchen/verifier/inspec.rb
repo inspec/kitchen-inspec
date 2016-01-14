@@ -35,20 +35,9 @@ module Kitchen
 
       # (see Base#call)
       def call(state)
-        transport_data = instance.transport.diagnose.merge(state)
-
-        runner_options = if instance.transport.is_a?(Kitchen::Transport::Ssh)
-                           runner_options_for_ssh(transport_data)
-                         elsif instance.transport.is_a?(Kitchen::Transport::Winrm)
-                           runner_options_for_winrm(transport_data)
-                         else
-                           raise Kitchen::UserError.new("Verifier #{name} does not support the #{instance.transport.name} Transport")
-                         end
-        runner_options['format'] = config[:format] unless config[:format].nil?
-
         tests = helper_files + local_suite_files
 
-        runner = ::Inspec::Runner.new(runner_options)
+        runner = ::Inspec::Runner.new(runner_options(instance.transport, state))
         runner.add_tests(tests)
         debug("Running specs from: #{tests.inspect}")
         exit_code = runner.run
@@ -94,6 +83,23 @@ module Kitchen
         glob = File.join(base, '**/*_spec.rb')
         Dir.glob(glob).reject do |f|
           chef_data_dir?(base, f) || File.directory?(f)
+        end
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options(transport, state = {})
+        transport_data = transport.diagnose.merge(state)
+        if transport.is_a?(Kitchen::Transport::Ssh)
+          runner_options_for_ssh(transport_data)
+        elsif transport.is_a?(Kitchen::Transport::Winrm)
+          runner_options_for_winrm(transport_data)
+        else
+          fail Kitchen::UserError.new, "Verifier #{name} does not support the #{transport.name} Transport"
+        end.tap do |runner_options|
+          runner_options['format'] = config[:format] unless config[:format].nil?
         end
       end
 
