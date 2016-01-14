@@ -17,6 +17,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'kitchen/transport/ssh'
+require 'kitchen/transport/winrm'
 require 'kitchen/verifier/inspec_version'
 require 'kitchen/verifier/base'
 
@@ -35,17 +37,12 @@ module Kitchen
       def call(state)
         transport_data = instance.transport.diagnose.merge(state)
 
-        runner_options = case (name = instance.transport.name.downcase)
-                         when 'ssh'
+        runner_options = if instance.transport.is_a?(Kitchen::Transport::Ssh)
                            runner_options_for_ssh(transport_data)
-                         when 'winrm'
+                         elsif instance.transport.is_a?(Kitchen::Transport::Winrm)
                            runner_options_for_winrm(transport_data)
                          else
-                           fail(
-                             Kitchen::UserError,
-                             "Verifier #{name}",
-                             " does not support the #{name} Transport",
-                           )
+                           raise Kitchen::UserError.new("Verifier #{name} does not support the #{instance.transport.name} Transport")
                          end
         runner_options['format'] = config[:format] unless config[:format].nil?
 
