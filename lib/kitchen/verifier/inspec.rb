@@ -97,7 +97,7 @@ module Kitchen
         elsif transport.is_a?(Kitchen::Transport::Winrm)
           runner_options_for_winrm(transport_data)
         else
-          fail Kitchen::UserError.new, "Verifier #{name} does not support the #{transport.name} Transport"
+          fail Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
         end.tap do |runner_options|
           runner_options['format'] = config[:format] unless config[:format].nil?
         end
