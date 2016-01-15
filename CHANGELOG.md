@@ -1,7 +1,19 @@
 # Change Log
 
-## [0.10.0](https://github.com/chef/kitchen-inspec/tree/0.10.0) (2016-01-07)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.9.6...0.10.0)
+## [0.10.1](https://github.com/chef/kitchen-inspec/tree/0.10.1) (2016-01-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.0...0.10.1)
+
+**Closed issues:**
+
+- Inspec does not gracefully allow transports other than winrm and ssh. [\#31](https://github.com/chef/kitchen-inspec/issues/31)
+- Specify inspec output formats in .kitchen.yml [\#26](https://github.com/chef/kitchen-inspec/issues/26)
+
+**Merged pull requests:**
+
+- Allow transports which are subclasses of the core ones. [\#32](https://github.com/chef/kitchen-inspec/pull/32) ([coderanger](https://github.com/coderanger))
+
+## [v0.10.0](https://github.com/chef/kitchen-inspec/tree/v0.10.0) (2016-01-07)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.9.6...v0.10.0)
 
 **Fixed bugs:**
 
@@ -10,6 +22,7 @@
 
 **Merged pull requests:**
 
+- Preparing the 0.10.0 release [\#29](https://github.com/chef/kitchen-inspec/pull/29) ([tyler-ball](https://github.com/tyler-ball))
 - Make test-kitchen a dev dependency [\#28](https://github.com/chef/kitchen-inspec/pull/28) ([jaym](https://github.com/jaym))
 - Specify inspec output format from kitchen.yml [\#27](https://github.com/chef/kitchen-inspec/pull/27) ([cheesesashimi](https://github.com/cheesesashimi))
 - remove gem push restriction [\#24](https://github.com/chef/kitchen-inspec/pull/24) ([arlimus](https://github.com/arlimus))
@@ -36,6 +49,7 @@
 
 **Merged pull requests:**
 
+- 0.9.6 [\#23](https://github.com/chef/kitchen-inspec/pull/23) ([arlimus](https://github.com/arlimus))
 - fix readme [\#22](https://github.com/chef/kitchen-inspec/pull/22) ([srenatus](https://github.com/srenatus))
 
 ## [v0.9.0](https://github.com/chef/kitchen-inspec/tree/v0.9.0) (2015-11-03)
