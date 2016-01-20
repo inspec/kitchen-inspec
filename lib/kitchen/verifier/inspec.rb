@@ -96,7 +96,8 @@ module Kitchen
           runner_options_for_ssh(transport_data)
         elsif transport.is_a?(Kitchen::Transport::Winrm)
           runner_options_for_winrm(transport_data)
-        elsif transport.is_a?(Kitchen::Transport::Dokken)
+        # optional transport which is not in core test-kitchen
+        elsif defined?(Kitchen::Transport::Dokken) && transport.is_a?(Kitchen::Transport::Dokken)
           runner_options_for_docker(transport_data)
         else
           fail Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
