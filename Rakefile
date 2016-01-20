@@ -118,3 +118,11 @@ task :bump_version, [:version] do |_, args|
   kitchen_inspec_version(v)
   Rake::Task['changelog'].invoke
 end
+
+namespace :test do
+  task :integration do
+    concurrency = ENV['CONCURRENCY'] || 1
+    path = File.join(File.dirname(__FILE__), 'test', 'integration')
+    sh('sh', '-c', "cd #{path} && bundle exec kitchen test -c #{concurrency} -t .")
+  end
+end
