@@ -8,16 +8,21 @@ group :guard do
 end
 
 group :test do
+  gem 'bundler', '~> 1.5'
+  gem 'minitest', '~> 5.5'
+  gem 'rake', '~> 10'
+  gem 'rubocop', '~> 0.32'
+  gem 'concurrent-ruby', '~> 0.9'
   gem 'codeclimate-test-reporter', :require => nil
-end
-
-group :tools do
-  gem 'github_changelog_generator', '~> 1'
+  gem 'test-kitchen', '~> 1.4', :require => nil
 end
 
 group :integration do
-  gem 'berkshelf', '~> 4.0'
-  gem 'test-kitchen', '~> 1.4', :require => nil
+  gem 'berkshelf'
   gem 'kitchen-dokken'
-  gem 'kitchen-inspec', path: '.'
+end
+
+group :tools do
+  gem 'pry', '~> 0.10'
+  gem 'github_changelog_generator', '~> 1'
 end

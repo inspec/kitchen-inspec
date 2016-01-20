@@ -8,14 +8,7 @@ dist: trusty
 services:
   - docker
 
-rvm:
-  - 2.2
-  - 2.1
-  - 2.0.0
-  - 1.9.3
-  - ruby-head
-
-bundler_args: --without guard integration
+bundler_args: --without integration guard tools
 
 before_install:
   - gem update --system 2.4.5
@@ -33,5 +26,9 @@ matrix:
       gemfile: Gemfile
     - rvm: ruby-head
       gemfile: Gemfile
+    - rvm: 2.2
+      gemfile: Gemfile
+      bundler_args: --without guard tools
+      script: bundle exec rake test:integration
   allow_failures:
     - rvm: ruby-head
