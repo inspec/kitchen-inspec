@@ -22,8 +22,6 @@ matrix:
       gemfile: Gemfile
     - rvm: 2.1
       gemfile: Gemfile
-    - rvm: 2.2
-      gemfile: Gemfile
     - rvm: ruby-head
       gemfile: Gemfile
     - rvm: 2.2
