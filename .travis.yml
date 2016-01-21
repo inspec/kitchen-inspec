@@ -1,17 +1,32 @@
+---
+sudo: required
 language: ruby
+cache: bundler
 
-rvm:
-  - 2.2
-  - 2.1
-  - 2.0.0
-  - 1.9.3
-  - ruby-head
+# necessary for docker to work
+dist: trusty
+services:
+  - docker
 
-before_install: gem install bundler -v 1.10.6
-bundler_args: --without guard
+bundler_args: --without integration guard tools
 
-sudo: false
+before_install:
+  - gem update --system 2.4.5
+  - gem --version
 
 matrix:
+  include:
+    - rvm: 1.9.3
+      gemfile: Gemfile
+    - rvm: 2.0
+      gemfile: Gemfile
+    - rvm: 2.1
+      gemfile: Gemfile
+    - rvm: ruby-head
+      gemfile: Gemfile
+    - rvm: 2.2
+      gemfile: Gemfile
+      bundler_args: --without guard tools
+      script: bundle exec rake test:integration
   allow_failures:
     - rvm: ruby-head
