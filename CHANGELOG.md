@@ -1,7 +1,19 @@
 # Change Log
 
-## [0.10.1](https://github.com/chef/kitchen-inspec/tree/0.10.1) (2016-01-15)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.0...0.10.1)
+## [0.11.0](https://github.com/chef/kitchen-inspec/tree/0.11.0) (2016-02-02)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.1...0.11.0)
+
+**Implemented enhancements:**
+
+- Add integration test with test-kitchen [\#33](https://github.com/chef/kitchen-inspec/pull/33) ([chris-rock](https://github.com/chris-rock))
+
+**Closed issues:**
+
+- Failures should be tagged with the instance they failed against [\#30](https://github.com/chef/kitchen-inspec/issues/30)
+- kitchen verify has exit status 0 with failed examples [\#9](https://github.com/chef/kitchen-inspec/issues/9)
+
+## [v0.10.1](https://github.com/chef/kitchen-inspec/tree/v0.10.1) (2016-01-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.0...v0.10.1)
 
 **Closed issues:**
 
@@ -10,6 +22,7 @@
 
 **Merged pull requests:**
 
+- 0.10.1 [\#34](https://github.com/chef/kitchen-inspec/pull/34) ([chris-rock](https://github.com/chris-rock))
 - Allow transports which are subclasses of the core ones. [\#32](https://github.com/chef/kitchen-inspec/pull/32) ([coderanger](https://github.com/coderanger))
 
 ## [v0.10.0](https://github.com/chef/kitchen-inspec/tree/v0.10.0) (2016-01-07)
