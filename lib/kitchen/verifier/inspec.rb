@@ -23,6 +23,7 @@ require 'kitchen/verifier/inspec_version'
 require 'kitchen/verifier/base'
 
 require 'uri'
+require 'pathname'
 
 module Kitchen
   module Verifier
@@ -76,12 +77,30 @@ module Kitchen
       # residing on the local workstation. Any special provisioner-specific
       # directories (such as a Chef roles/ directory) are excluded.
       #
+      # we support the base directories
+      # - test/integration
+      # - test/integration/inspec (prefered if used with other test environments)
+      #
       # @return [Array<String>] array of suite files
       # @api private
       def local_suite_files
         base = File.join(config[:test_base_path], config[:suite_name])
-        glob = File.join(base, '**/*_spec.rb')
-        Dir.glob(glob).reject do |f|
+        legacy_mode = false
+        # check for other testing frameworks, we may need to add more
+        %w{serverspec bats pester rspec cucumber minitest bash}.each { |fw|
+          if Pathname.new(File.join( config[:test_base_path], fw)).exist?
+            logger.info("Detected alternative framework tests for `#{fw}`")
+            legacy_mode = true
+          end
+        }
+
+        base = File.join(base, 'inspec') if (legacy_mode)
+        logger.info("Search `#{base}` for tests")
+        filter_chef_files(base, '**/*_spec.rb')
+      end
+
+      def filter_chef_files(base, filter)
+        Dir.glob(File.join(base, filter)).reject do |f|
           chef_data_dir?(base, f) || File.directory?(f)
         end
       end
