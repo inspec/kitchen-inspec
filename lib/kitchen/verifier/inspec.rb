@@ -30,7 +30,7 @@ module Kitchen
     # InSpec verifier for Kitchen.
     #
     # @author Fletcher Nichol <fnichol@chef.io>
-    class Inspec < Kitchen::Verifier::Base
+    class Inspec < Kitchen::Verifier::Base # rubocop:disable Metrics/ClassLength
       kitchen_verifier_api_version 1
       plugin_version Kitchen::Verifier::INSPEC_VERSION
 
@@ -88,13 +88,13 @@ module Kitchen
         legacy_mode = false
         # check for other testing frameworks, we may need to add more
         %w{serverspec bats pester rspec cucumber minitest bash}.each { |fw|
-          if Pathname.new(File.join( config[:test_base_path], fw)).exist?
+          if Pathname.new(File.join(config[:test_base_path], fw)).exist?
             logger.info("Detected alternative framework tests for `#{fw}`")
             legacy_mode = true
           end
         }
 
-        base = File.join(base, 'inspec') if (legacy_mode)
+        base = File.join(base, 'inspec') if legacy_mode
         logger.info("Search `#{base}` for tests")
         filter_chef_files(base, '**/*_spec.rb')
       end
@@ -131,7 +131,6 @@ module Kitchen
       # @api private
       def runner_options_for_ssh(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-
         opts = {
           'backend' => 'ssh',
           'logger' => logger,
@@ -151,7 +150,6 @@ module Kitchen
         }
         opts['key_files'] = kitchen[:keys] unless kitchen[:keys].nil?
         opts['password'] = kitchen[:password] unless kitchen[:password].nil?
-
         opts
       end
 
@@ -161,7 +159,6 @@ module Kitchen
       # @api private
       def runner_options_for_winrm(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-
         opts = {
           'backend' => 'winrm',
           'logger' => logger,
@@ -173,7 +170,6 @@ module Kitchen
           'connection_retry_sleep' => kitchen[:connection_retry_sleep],
           'max_wait_until_ready' => kitchen[:max_wait_until_ready],
         }
-
         opts
       end
 
@@ -183,7 +179,6 @@ module Kitchen
       # @api private
       def runner_options_for_docker(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-
         opts = {
           'backend' => 'docker',
           'logger' => logger,
@@ -193,7 +188,6 @@ module Kitchen
           'connection_retry_sleep' => kitchen[:connection_retry_sleep],
           'max_wait_until_ready' => kitchen[:max_wait_until_ready],
         }
-
         opts
       end
     end
