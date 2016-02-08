@@ -23,13 +23,14 @@ require 'kitchen/verifier/inspec_version'
 require 'kitchen/verifier/base'
 
 require 'uri'
+require 'pathname'
 
 module Kitchen
   module Verifier
     # InSpec verifier for Kitchen.
     #
     # @author Fletcher Nichol <fnichol@chef.io>
-    class Inspec < Kitchen::Verifier::Base
+    class Inspec < Kitchen::Verifier::Base # rubocop:disable Metrics/ClassLength
       kitchen_verifier_api_version 1
       plugin_version Kitchen::Verifier::INSPEC_VERSION
 
@@ -76,12 +77,30 @@ module Kitchen
       # residing on the local workstation. Any special provisioner-specific
       # directories (such as a Chef roles/ directory) are excluded.
       #
+      # we support the base directories
+      # - test/integration
+      # - test/integration/inspec (prefered if used with other test environments)
+      #
       # @return [Array<String>] array of suite files
       # @api private
       def local_suite_files
         base = File.join(config[:test_base_path], config[:suite_name])
-        glob = File.join(base, '**/*_spec.rb')
-        Dir.glob(glob).reject do |f|
+        legacy_mode = false
+        # check for other testing frameworks, we may need to add more
+        %w{serverspec bats pester rspec cucumber minitest bash}.each { |fw|
+          if Pathname.new(File.join(config[:test_base_path], fw)).exist?
+            logger.info("Detected alternative framework tests for `#{fw}`")
+            legacy_mode = true
+          end
+        }
+
+        base = File.join(base, 'inspec') if legacy_mode
+        logger.info("Search `#{base}` for tests")
+        filter_chef_files(base, '**/*_spec.rb')
+      end
+
+      def filter_chef_files(base, filter)
+        Dir.glob(File.join(base, filter)).reject do |f|
           chef_data_dir?(base, f) || File.directory?(f)
         end
       end
@@ -112,7 +131,6 @@ module Kitchen
       # @api private
       def runner_options_for_ssh(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-
         opts = {
           'backend' => 'ssh',
           'logger' => logger,
@@ -132,7 +150,6 @@ module Kitchen
         }
         opts['key_files'] = kitchen[:keys] unless kitchen[:keys].nil?
         opts['password'] = kitchen[:password] unless kitchen[:password].nil?
-
         opts
       end
 
@@ -142,7 +159,6 @@ module Kitchen
       # @api private
       def runner_options_for_winrm(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-
         opts = {
           'backend' => 'winrm',
           'logger' => logger,
@@ -154,7 +170,6 @@ module Kitchen
           'connection_retry_sleep' => kitchen[:connection_retry_sleep],
           'max_wait_until_ready' => kitchen[:max_wait_until_ready],
         }
-
         opts
       end
 
@@ -164,7 +179,6 @@ module Kitchen
       # @api private
       def runner_options_for_docker(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-
         opts = {
           'backend' => 'docker',
           'logger' => logger,
@@ -174,7 +188,6 @@ module Kitchen
           'connection_retry_sleep' => kitchen[:connection_retry_sleep],
           'max_wait_until_ready' => kitchen[:max_wait_until_ready],
         }
-
         opts
       end
     end

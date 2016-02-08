@@ -30,6 +30,46 @@ verifier:
   name: inspec
 ```
 
+### Directory Structure
+
+By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
+
+```
+.
+├── Berksfile
+├── Gemfile
+├── README.md
+├── metadata.rb
+├── recipes
+│   ├── default.rb
+│   └── nginx.rb
+└── test
+    └── integration
+        └── default
+            └── web_spec.rb
+```
+
+
+### Combination with other testing frameworks
+
+If you need support with other testing frameworks, we recommend to place the tests in `test/integration/%suite%/inspec`:
+
+```
+.
+├── Berksfile
+├── Gemfile
+├── README.md
+├── metadata.rb
+├── recipes
+│   ├── default.rb
+│   └── nginx.rb
+└── test
+    └── integration
+        └── default
+            └── inspec
+                └── web_spec.rb
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
