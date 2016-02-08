@@ -14,7 +14,8 @@ group :test do
   gem 'rubocop', '~> 0.32'
   gem 'concurrent-ruby', '~> 0.9'
   gem 'codeclimate-test-reporter', :require => nil
-  gem 'test-kitchen', '~> 1.4', :require => nil
+  # gem 'test-kitchen', '~> 1.5'
+  gem 'test-kitchen', git: 'https://github.com/test-kitchen/test-kitchen.git', branch: 'chris-rock/winrm-properties-fix'
 end
 
 group :integration do
