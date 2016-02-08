@@ -18,6 +18,12 @@ group :test do
   gem 'test-kitchen', git: 'https://github.com/test-kitchen/test-kitchen.git', branch: 'chris-rock/winrm-properties-fix'
 end
 
+# pin dependency for Ruby 1.9.3 since bundler is not
+# detecting that net-ssh 3 does not work with 1.9.3
+if Gem::Version.new(RUBY_VERSION) <= Gem::Version.new('1.9.3')
+  gem 'net-ssh', '~> 2.9'
+end
+
 group :integration do
   gem 'berkshelf'
   gem 'kitchen-dokken'

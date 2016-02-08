@@ -17,15 +17,10 @@ before_install:
 matrix:
   include:
     - rvm: 1.9.3
-      gemfile: Gemfile.193
     - rvm: 2.0
-      gemfile: Gemfile
     - rvm: 2.1
-      gemfile: Gemfile
     - rvm: ruby-head
-      gemfile: Gemfile
     - rvm: 2.2
-      gemfile: Gemfile
       bundler_args: --without guard tools
       script: bundle exec rake test:integration
   allow_failures:
