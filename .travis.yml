@@ -11,13 +11,13 @@ services:
 bundler_args: --without integration guard tools
 
 before_install:
-  - gem update --system 2.4.5
+  - gem install bundler
   - gem --version
 
 matrix:
   include:
     - rvm: 1.9.3
-      gemfile: Gemfile
+      gemfile: Gemfile.193
     - rvm: 2.0
       gemfile: Gemfile
     - rvm: 2.1
