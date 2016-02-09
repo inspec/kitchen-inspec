@@ -179,15 +179,20 @@ module Kitchen
       # @api private
       def runner_options_for_docker(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
+        #
+        # Note: kitchen-dokken uses two containers the
+        #  - config_data[:data_container][:Id] : (hosts chef-client)
+        #  - config_data[:runner_container][:Id] : (the kitchen-container)
         opts = {
           'backend' => 'docker',
           'logger' => logger,
-          'host' => kitchen[:data_container][:Id],
+          'host' => config_data[:runner_container][:Id],
           'connection_timeout' => kitchen[:timeout],
           'connection_retries' => kitchen[:connection_retries],
           'connection_retry_sleep' => kitchen[:connection_retry_sleep],
           'max_wait_until_ready' => kitchen[:max_wait_until_ready],
         }
+        logger.debug "Connect to Container: #{opts['host']}"
         opts
       end
     end
