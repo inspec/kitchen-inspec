@@ -1,7 +1,19 @@
 # Change Log
 
-## [0.11.0](https://github.com/chef/kitchen-inspec/tree/0.11.0) (2016-02-02)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.1...0.11.0)
+## [0.11.1](https://github.com/chef/kitchen-inspec/tree/0.11.1) (2016-02-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.11.0...0.11.1)
+
+**Fixed bugs:**
+
+- bugfix: use the right container in combination with kitchen-dokken [\#43](https://github.com/chef/kitchen-inspec/pull/43) ([chris-rock](https://github.com/chris-rock))
+
+**Merged pull requests:**
+
+- deduplicate Gemfiles [\#41](https://github.com/chef/kitchen-inspec/pull/41) ([srenatus](https://github.com/srenatus))
+- work well with other testing frameworks in test-kitchen [\#40](https://github.com/chef/kitchen-inspec/pull/40) ([chris-rock](https://github.com/chris-rock))
+
+## [v0.11.0](https://github.com/chef/kitchen-inspec/tree/v0.11.0) (2016-02-08)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.1...v0.11.0)
 
 **Implemented enhancements:**
 
@@ -11,6 +23,10 @@
 
 - Failures should be tagged with the instance they failed against [\#30](https://github.com/chef/kitchen-inspec/issues/30)
 - kitchen verify has exit status 0 with failed examples [\#9](https://github.com/chef/kitchen-inspec/issues/9)
+
+**Merged pull requests:**
+
+- 0.11.0 [\#38](https://github.com/chef/kitchen-inspec/pull/38) ([chris-rock](https://github.com/chris-rock))
 
 ## [v0.10.1](https://github.com/chef/kitchen-inspec/tree/v0.10.1) (2016-01-15)
 [Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.0...v0.10.1)
