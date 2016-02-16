@@ -15,7 +15,7 @@ group :test do
   gem 'concurrent-ruby', '~> 0.9'
   gem 'codeclimate-test-reporter', :require => nil
   # gem 'test-kitchen', '~> 1.5'
-  gem 'test-kitchen', git: 'https://github.com/test-kitchen/test-kitchen.git', branch: 'chris-rock/winrm-properties-fix'
+  gem 'test-kitchen', git: 'https://github.com/test-kitchen/test-kitchen.git', branch: 'master'
 end
 
 # pin dependency for Ruby 1.9.3 since bundler is not
