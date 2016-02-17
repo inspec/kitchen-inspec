@@ -36,7 +36,7 @@ module Kitchen
 
       # (see Base#call)
       def call(state)
-        tests = helper_files + local_suite_files
+        tests = local_suite_files
 
         runner = ::Inspec::Runner.new(runner_options(instance.transport, state))
         runner.add_tests(tests)
@@ -61,16 +61,6 @@ module Kitchen
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
         require 'inspec'
-      end
-
-      # Returns an Array of common helper filenames currently residing on the
-      # local workstation.
-      #
-      # @return [Array<String>] array of helper files
-      # @api private
-      def helper_files
-        glob = File.join(config[:test_base_path], 'helpers', '*/**/*')
-        Dir.glob(glob).reject { |f| File.directory?(f) }
       end
 
       # Returns an Array of test suite filenames for the related suite currently
