@@ -7,5 +7,5 @@
 /pkg/
 /spec/reports/
 /tmp/
-test/integration/.kitchen
 Berksfile.lock
+.kitchen
