@@ -123,6 +123,6 @@ namespace :test do
   task :integration do
     concurrency = ENV['CONCURRENCY'] || 1
     path = File.join(File.dirname(__FILE__), 'test', 'integration')
-    sh('sh', '-c', "cd #{path} && bundle exec kitchen test -c #{concurrency}")
+    sh('sh', '-c', "bundle exec kitchen test -c #{concurrency}")
   end
 end
