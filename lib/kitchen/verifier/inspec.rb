@@ -30,13 +30,13 @@ module Kitchen
     # InSpec verifier for Kitchen.
     #
     # @author Fletcher Nichol <fnichol@chef.io>
-    class Inspec < Kitchen::Verifier::Base # rubocop:disable Metrics/ClassLength
+    class Inspec < Kitchen::Verifier::Base
       kitchen_verifier_api_version 1
       plugin_version Kitchen::Verifier::INSPEC_VERSION
 
       # (see Base#call)
       def call(state)
-        tests = helper_files + local_suite_files
+        tests = local_suite_files
 
         runner = ::Inspec::Runner.new(runner_options(instance.transport, state))
         runner.add_tests(tests)
@@ -48,29 +48,9 @@ module Kitchen
 
       private
 
-      # Determines whether or not a local workstation file exists under a
-      # Chef-related directory.
-      #
-      # @return [truthy,falsey] whether or not a given file is some kind of
-      #   Chef-related file
-      # @api private
-      def chef_data_dir?(base, file)
-        file =~ %r{^#{base}/(data|data_bags|environments|nodes|roles)/}
-      end
-
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
         require 'inspec'
-      end
-
-      # Returns an Array of common helper filenames currently residing on the
-      # local workstation.
-      #
-      # @return [Array<String>] array of helper files
-      # @api private
-      def helper_files
-        glob = File.join(config[:test_base_path], 'helpers', '*/**/*')
-        Dir.glob(glob).reject { |f| File.directory?(f) }
       end
 
       # Returns an Array of test suite filenames for the related suite currently
@@ -88,7 +68,7 @@ module Kitchen
         legacy_mode = false
         # check for other testing frameworks, we may need to add more
         %w{serverspec bats pester rspec cucumber minitest bash}.each { |fw|
-          if Pathname.new(File.join(config[:test_base_path], fw)).exist?
+          if Pathname.new(File.join(base, fw)).exist?
             logger.info("Detected alternative framework tests for `#{fw}`")
             legacy_mode = true
           end
@@ -96,13 +76,9 @@ module Kitchen
 
         base = File.join(base, 'inspec') if legacy_mode
         logger.info("Search `#{base}` for tests")
-        filter_chef_files(base, '**/*_spec.rb')
-      end
 
-      def filter_chef_files(base, filter)
-        Dir.glob(File.join(base, filter)).reject do |f|
-          chef_data_dir?(base, f) || File.directory?(f)
-        end
+        # we do not filter for specific directories, this is core of inspec
+        [base]
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.

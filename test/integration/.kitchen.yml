@@ -15,10 +15,14 @@ verifier:
 platforms:
 - name: ubuntu
   driver:
-      image: ubuntu:14.04
+    image: ubuntu:14.04
 
 suites:
   - name: default
+    run_list:
+      - recipe[os_prepare]
+    attributes:
+  - name: profile
     run_list:
       - recipe[os_prepare]
     attributes:

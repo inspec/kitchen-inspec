@@ -60,23 +60,6 @@ describe Kitchen::Verifier::Inspec do
     )
   end
 
-  let(:test_files) do
-    %w{
-      inspec/base_spec.rb
-      inspec/another_spec.rb
-      inspec/supporting.rb
-      inspec/other.json
-    }
-  end
-
-  let(:helper_files) do
-    %w{
-      inspec/spec_helper.rb
-      inspec/support/custom.rb
-      inspec/support/more_custom.rb
-    }
-  end
-
   before do
     allow(transport).to receive(:instance).and_return(instance)
 
@@ -179,29 +162,26 @@ describe Kitchen::Verifier::Inspec do
       verifier.call(port: 123)
     end
 
-    it 'adds *spec.rb test files to runner' do
-      create_test_files
+    it 'find test path for runner' do
+      # create_test_files
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_tests).with(array_including([
         File.join(
           config[:test_base_path],
-          'germany', 'inspec', 'another_spec.rb'
+          'germany',
         ),
+      ]))
+
+      verifier.call({})
+    end
+
+    it 'find test path for runner if legacy' do
+      create_legacy_test_directories
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
+      expect(runner).to receive(:add_tests).with(array_including([
         File.join(
           config[:test_base_path],
-          'germany', 'inspec', 'base_spec.rb'
-        ),
-        File.join(
-          config[:test_base_path],
-          'helpers', 'inspec', 'spec_helper.rb'
-        ),
-        File.join(
-          config[:test_base_path],
-          'helpers', 'inspec', 'support', 'custom.rb'
-        ),
-        File.join(
-          config[:test_base_path],
-          'helpers', 'inspec', 'support', 'more_custom.rb'
+          'germany', 'inspec'
         ),
       ]))
 
@@ -269,21 +249,9 @@ describe Kitchen::Verifier::Inspec do
     end
   end
 
-  def create_file(file, content)
-    FileUtils.mkdir_p(File.dirname(file))
-    File.open(file, 'wb') { |f| f.write(content) }
-  end
-
-  def create_test_files
+  def create_legacy_test_directories
     base = File.join(config[:test_base_path], 'germany')
-    hbase = File.join(config[:test_base_path], 'helpers')
-
-    test_files.map { |f| File.join(base, f) }.each do |file|
-      create_file(file, 'hello')
-    end
-
-    helper_files.map { |f| File.join(hbase, f) }.each do |file|
-      create_file(file, 'hello')
-    end
+    FileUtils.mkdir_p(File.join(base, 'inspec'))
+    FileUtils.mkdir_p(File.join(base, 'serverspec'))
   end
 end
