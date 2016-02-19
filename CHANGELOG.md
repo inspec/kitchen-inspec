@@ -1,7 +1,23 @@
 # Change Log
 
-## [0.11.1](https://github.com/chef/kitchen-inspec/tree/0.11.1) (2016-02-15)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.11.0...0.11.1)
+## [0.12.0](https://github.com/chef/kitchen-inspec/tree/0.12.0) (2016-02-19)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.11.1...0.12.0)
+
+**Implemented enhancements:**
+
+- move integration tests to top-level [\#50](https://github.com/chef/kitchen-inspec/pull/50) ([chris-rock](https://github.com/chris-rock))
+- support embedded profiles, leave directory checking to inspec [\#49](https://github.com/chef/kitchen-inspec/pull/49) ([chris-rock](https://github.com/chris-rock))
+
+**Fixed bugs:**
+
+- Point test-kitchen to master in Gemfile [\#48](https://github.com/chef/kitchen-inspec/pull/48) ([jaym](https://github.com/jaym))
+
+## [v0.11.1](https://github.com/chef/kitchen-inspec/tree/v0.11.1) (2016-02-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.11.0...v0.11.1)
+
+**Implemented enhancements:**
+
+- work well with other testing frameworks in test-kitchen [\#40](https://github.com/chef/kitchen-inspec/pull/40) ([chris-rock](https://github.com/chris-rock))
 
 **Fixed bugs:**
 
@@ -9,8 +25,8 @@
 
 **Merged pull requests:**
 
+- 0.11.1 [\#47](https://github.com/chef/kitchen-inspec/pull/47) ([chris-rock](https://github.com/chris-rock))
 - deduplicate Gemfiles [\#41](https://github.com/chef/kitchen-inspec/pull/41) ([srenatus](https://github.com/srenatus))
-- work well with other testing frameworks in test-kitchen [\#40](https://github.com/chef/kitchen-inspec/pull/40) ([chris-rock](https://github.com/chris-rock))
 
 ## [v0.11.0](https://github.com/chef/kitchen-inspec/tree/v0.11.0) (2016-02-08)
 [Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.10.1...v0.11.0)
