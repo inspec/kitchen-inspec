@@ -1,7 +1,14 @@
 # Change Log
 
-## [0.12.0](https://github.com/chef/kitchen-inspec/tree/0.12.0) (2016-02-19)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.11.1...0.12.0)
+## [0.12.1](https://github.com/chef/kitchen-inspec/tree/0.12.1) (2016-02-22)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.0...0.12.1)
+
+**Merged pull requests:**
+
+- Support inspec dir in the test suite dir [\#55](https://github.com/chef/kitchen-inspec/pull/55) ([alexpop](https://github.com/alexpop))
+
+## [v0.12.0](https://github.com/chef/kitchen-inspec/tree/v0.12.0) (2016-02-19)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.11.1...v0.12.0)
 
 **Implemented enhancements:**
 
@@ -11,6 +18,11 @@
 **Fixed bugs:**
 
 - Point test-kitchen to master in Gemfile [\#48](https://github.com/chef/kitchen-inspec/pull/48) ([jaym](https://github.com/jaym))
+
+**Merged pull requests:**
+
+- require latest inspec version [\#53](https://github.com/chef/kitchen-inspec/pull/53) ([chris-rock](https://github.com/chris-rock))
+- 0.12.0 [\#52](https://github.com/chef/kitchen-inspec/pull/52) ([chris-rock](https://github.com/chris-rock))
 
 ## [v0.11.1](https://github.com/chef/kitchen-inspec/tree/v0.11.1) (2016-02-15)
 [Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.11.0...v0.11.1)
