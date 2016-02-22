@@ -116,7 +116,7 @@ describe Kitchen::Verifier::Inspec do
     end
 
     before do
-      allow(runner).to receive(:add_tests)
+      allow(runner).to receive(:add_target)
       allow(runner).to receive(:run).and_return 0
     end
 
@@ -165,12 +165,11 @@ describe Kitchen::Verifier::Inspec do
     it 'find test path for runner' do
       # create_test_files
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_tests).with(array_including([
+      expect(runner).to receive(:add_target).with(
         File.join(
           config[:test_base_path],
           'germany',
-        ),
-      ]))
+        ), anything)
 
       verifier.call({})
     end
@@ -178,12 +177,11 @@ describe Kitchen::Verifier::Inspec do
     it 'find test path for runner if legacy' do
       create_legacy_test_directories
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_tests).with(array_including([
+      expect(runner).to receive(:add_target).with(
         File.join(
           config[:test_base_path],
           'germany', 'inspec'
-        ),
-      ]))
+        ), anything)
 
       verifier.call({})
     end
@@ -217,7 +215,7 @@ describe Kitchen::Verifier::Inspec do
     end
 
     before do
-      allow(runner).to receive(:add_tests)
+      allow(runner).to receive(:add_target)
       allow(runner).to receive(:run).and_return 0
     end
 

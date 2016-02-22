@@ -38,8 +38,10 @@ module Kitchen
       def call(state)
         tests = local_suite_files
 
-        runner = ::Inspec::Runner.new(runner_options(instance.transport, state))
-        runner.add_tests(tests)
+        opts = runner_options(instance.transport, state)
+        runner = ::Inspec::Runner.new(opts)
+        tests.each { |target| runner.add_target(target, opts) }
+
         debug("Running specs from: #{tests.inspect}")
         exit_code = runner.run
         return if exit_code == 0
