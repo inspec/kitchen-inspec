@@ -1,9 +1,17 @@
 # Change Log
 
-## [0.12.1](https://github.com/chef/kitchen-inspec/tree/0.12.1) (2016-02-22)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.0...0.12.1)
+## [0.12.2](https://github.com/chef/kitchen-inspec/tree/0.12.2) (2016-02-22)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.1...0.12.2)
 
-**Merged pull requests:**
+**Fixed bugs:**
+
+- Load directory from single inspec directory [\#54](https://github.com/chef/kitchen-inspec/issues/54)
+- update to latest runner interface in inspec [\#56](https://github.com/chef/kitchen-inspec/pull/56) ([chris-rock](https://github.com/chris-rock))
+
+## [v0.12.1](https://github.com/chef/kitchen-inspec/tree/v0.12.1) (2016-02-22)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.0...v0.12.1)
+
+**Implemented enhancements:**
 
 - Support inspec dir in the test suite dir [\#55](https://github.com/chef/kitchen-inspec/pull/55) ([alexpop](https://github.com/alexpop))
 
