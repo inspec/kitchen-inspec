@@ -66,8 +66,8 @@ module Kitchen
       def local_suite_files
         base = File.join(config[:test_base_path], config[:suite_name])
         legacy_mode = false
-        # check for other testing frameworks, we may need to add more
-        %w{serverspec bats pester rspec cucumber minitest bash}.each { |fw|
+        # check for testing frameworks, we may need to add more
+        %w{inspec serverspec bats pester rspec cucumber minitest bash}.each { |fw|
           if Pathname.new(File.join(base, fw)).exist?
             logger.info("Detected alternative framework tests for `#{fw}`")
             legacy_mode = true
