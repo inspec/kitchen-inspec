@@ -24,7 +24,7 @@ if Gem::Version.new(RUBY_VERSION) <= Gem::Version.new('1.9.3')
 end
 
 group :integration do
-  gem 'berkshelf'
+  gem 'berkshelf', '>= 4.2.3'
   gem 'kitchen-dokken'
 end
 
