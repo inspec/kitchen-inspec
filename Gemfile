@@ -30,5 +30,5 @@ end
 
 group :tools do
   gem 'pry', '~> 0.10'
-  gem 'github_changelog_generator', '!= 1.10.2', '!= 1.10.3', '!= 1.10.4', '!= 1.10.5', '!= 1.11.0', '!= 1.11.1', '!= 1.11.2'
+  gem 'github_changelog_generator', '1.11.3'
 end
