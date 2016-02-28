@@ -66,9 +66,7 @@ module Kitchen
 
       # (see Base#call)
       def call(state)
-        p config[:inspec_tests]
-        # get local tests and get run list of profiles
-        tests = (local_suite_files + config[:inspec_tests]).compact
+        tests = collect_tests
 
         opts = runner_options(instance.transport, state)
         runner = ::Inspec::Runner.new(opts)
@@ -95,7 +93,7 @@ module Kitchen
       # - test/integration
       # - test/integration/inspec (prefered if used with other test environments)
       #
-      # @return [Array<String>] array of suite files
+      # @return [Array<String>] array of suite directories
       # @api private
       def local_suite_files
         base = File.join(config[:test_base_path], config[:suite_name])
@@ -113,6 +111,14 @@ module Kitchen
 
         # we do not filter for specific directories, this is core of inspec
         [base]
+      end
+
+      # Returns an array of test profiles
+      # @return [Array<String>] array of suite directories or remote urls
+      # @api private
+      def collect_tests
+        # get local tests and get run list of profiles
+        (local_suite_files + config[:inspec_tests]).compact
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
