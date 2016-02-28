@@ -26,6 +26,34 @@ require 'uri'
 require 'pathname'
 
 module Kitchen
+  module DataMungerExtension
+    # overwrite the verifier_data_for to get access to the suite data
+    def verifier_data_for(suite, platform)
+      # filter current suite and extract `inspec_tests` and move it to verifier
+      data.fetch(:suites, []).select { |f| f[:name] == suite  }.each do |suite_data|
+        move_data_to!(:verifier, suite_data, :inspec_tests)
+      end
+
+      # call patched function
+      super
+    end
+
+    # TODO: remove, once https://github.com/test-kitchen/test-kitchen/pull/955 is
+    # merged
+    def move_data_to!(to, root, key)
+      return unless root.key?(key)
+      pdata = root.fetch(to, {})
+      pdata = { name: pdata } if pdata.is_a?(String)
+      root[to] = pdata.rmerge(key => root.delete(key)) if !root.fetch(key, nil).nil?
+    end
+  end
+
+  # monkey patch test-kitchen to get the suite information within this verifier,
+  # since test-kitchen does not allow a proper hook
+  class DataMunger
+    prepend DataMungerExtension
+  end
+
   module Verifier
     # InSpec verifier for Kitchen.
     #
@@ -34,9 +62,13 @@ module Kitchen
       kitchen_verifier_api_version 1
       plugin_version Kitchen::Verifier::INSPEC_VERSION
 
+      default_config :inspec_tests, []
+
       # (see Base#call)
       def call(state)
-        tests = local_suite_files
+        p config[:inspec_tests]
+        # get local tests and get run list of profiles
+        tests = (local_suite_files + config[:inspec_tests]).compact
 
         opts = runner_options(instance.transport, state)
         runner = ::Inspec::Runner.new(opts)

@@ -21,12 +21,11 @@ suites:
   - name: default
     run_list:
       - recipe[os_prepare]
-    attributes:
   - name: profile
     run_list:
       - recipe[os_prepare]
-    attributes:
   - name: contains_inspec
     run_list:
       - recipe[os_prepare]
-    attributes:
+    inspec_tests:
+      - https://github.com/nathenharvey/tmp_compliance_profile
