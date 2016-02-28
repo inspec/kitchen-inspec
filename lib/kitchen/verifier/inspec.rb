@@ -26,32 +26,29 @@ require 'uri'
 require 'pathname'
 
 module Kitchen
-  module DataMungerExtension
-    # overwrite the verifier_data_for to get access to the suite data
+  # monkey patch test-kitchen to get the suite information within this verifier,
+  # since test-kitchen does not allow a proper hook
+  class DataMunger
+    # save reference to olf method
+    alias_method :original_verifier_data_for, :verifier_data_for
+
     def verifier_data_for(suite, platform)
       # filter current suite and extract `inspec_tests` and move it to verifier
       data.fetch(:suites, []).select { |f| f[:name] == suite  }.each do |suite_data|
         move_data_to!(:verifier, suite_data, :inspec_tests)
       end
 
-      # call patched function
-      super
+      # run original behaviour
+      original_verifier_data_for(suite, platform)
     end
 
-    # TODO: remove, once https://github.com/test-kitchen/test-kitchen/pull/955 is
-    # merged
+    # TODO: remove, once https://github.com/test-kitchen/test-kitchen/pull/955 is merged
     def move_data_to!(to, root, key)
       return unless root.key?(key)
       pdata = root.fetch(to, {})
       pdata = { name: pdata } if pdata.is_a?(String)
       root[to] = pdata.rmerge(key => root.delete(key)) if !root.fetch(key, nil).nil?
     end
-  end
-
-  # monkey patch test-kitchen to get the suite information within this verifier,
-  # since test-kitchen does not allow a proper hook
-  class DataMunger
-    prepend DataMungerExtension
   end
 
   module Verifier
