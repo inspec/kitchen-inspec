@@ -162,7 +162,7 @@ describe Kitchen::Verifier::Inspec do
       verifier.call(port: 123)
     end
 
-    it 'find test path for runner' do
+    it 'find test directory for runner' do
       # create_test_files
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_target).with(
@@ -174,7 +174,7 @@ describe Kitchen::Verifier::Inspec do
       verifier.call({})
     end
 
-    it 'find test path for runner if legacy' do
+    it 'find test directory for runner if legacy' do
       create_legacy_test_directories
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_target).with(
@@ -190,6 +190,53 @@ describe Kitchen::Verifier::Inspec do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:run)
 
+      verifier.call({})
+    end
+  end
+
+  context 'with an remote profile' do
+
+    let(:transport) do
+      Kitchen::Transport::Ssh.new({})
+    end
+
+    let(:runner) do
+      instance_double('Inspec::Runner')
+    end
+
+    let(:suite) do
+      instance_double('Kitchen::Suite', { name: 'local' })
+    end
+
+    let(:instance) do
+      instance_double(
+        'Kitchen::Instance',
+        name: 'coolbeans',
+        logger: logger,
+        platform: platform,
+        suite: suite,
+        transport: transport,
+        to_str: 'instance',
+      )
+    end
+
+    let(:config) {
+      {
+        inspec_tests: ['https://github.com/nathenharvey/tmp_compliance_profile'],
+      }
+    }
+
+    before do
+      allow(runner).to receive(:add_target)
+      allow(runner).to receive(:run).and_return 0
+    end
+
+    it 'find test directory and remote profile' do
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
+      expect(runner).to receive(:add_target).with(
+        File.join(config[:test_base_path], 'local'), anything)
+      expect(runner).to receive(:add_target).with(
+        'https://github.com/nathenharvey/tmp_compliance_profile', anything)
       verifier.call({})
     end
   end
