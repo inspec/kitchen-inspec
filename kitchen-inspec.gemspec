@@ -7,7 +7,7 @@ require 'English'
 Gem::Specification.new do |spec|
   spec.name          = 'kitchen-inspec'
   spec.version       = Kitchen::Verifier::INSPEC_VERSION
-  spec.license       = 'Apache 2.0'
+  spec.license       = 'Apache-2.0'
   spec.authors       = ['Fletcher Nichol']
   spec.email         = ['fnichol@chef.io']
 
