@@ -1,7 +1,20 @@
 # Change Log
 
-## [0.12.2](https://github.com/chef/kitchen-inspec/tree/0.12.2) (2016-02-22)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.1...0.12.2)
+## [0.12.3](https://github.com/chef/kitchen-inspec/tree/0.12.3) (2016-03-01)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.2...0.12.3)
+
+**Implemented enhancements:**
+
+- fix gem build license warning [\#59](https://github.com/chef/kitchen-inspec/pull/59) ([chris-rock](https://github.com/chris-rock))
+- Add support for remote profiles [\#51](https://github.com/chef/kitchen-inspec/pull/51) ([chris-rock](https://github.com/chris-rock))
+
+**Merged pull requests:**
+
+- add test-kitchen 1.6 as dependency [\#60](https://github.com/chef/kitchen-inspec/pull/60) ([chris-rock](https://github.com/chris-rock))
+- Bump berks requirement to latest [\#58](https://github.com/chef/kitchen-inspec/pull/58) ([jkeiser](https://github.com/jkeiser))
+
+## [v0.12.2](https://github.com/chef/kitchen-inspec/tree/v0.12.2) (2016-02-22)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.1...v0.12.2)
 
 **Fixed bugs:**
 
