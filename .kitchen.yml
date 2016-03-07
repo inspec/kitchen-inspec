@@ -27,5 +27,6 @@ suites:
   - name: contains_inspec
     run_list:
       - recipe[os_prepare]
-    inspec_tests:
-      - https://github.com/nathenharvey/tmp_compliance_profile
+    verifier:
+      inspec_tests:
+        - https://github.com/nathenharvey/tmp_compliance_profile
