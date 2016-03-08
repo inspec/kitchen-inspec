@@ -163,7 +163,7 @@ describe Kitchen::Verifier::Inspec do
     end
 
     it 'find test directory for runner' do
-      # create_test_files
+      ensure_suite_directory('germany')
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_target).with(
         File.join(
@@ -181,6 +181,17 @@ describe Kitchen::Verifier::Inspec do
         File.join(
           config[:test_base_path],
           'germany', 'inspec'
+        ), anything)
+
+      verifier.call({})
+    end
+
+    it 'non-existent test directory for runner' do
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
+      expect(runner).to_not receive(:add_target).with(
+        File.join(
+          config[:test_base_path],
+          'nobody',
         ), anything)
 
       verifier.call({})
@@ -232,6 +243,7 @@ describe Kitchen::Verifier::Inspec do
     end
 
     it 'find test directory and remote profile' do
+      ensure_suite_directory('local')
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_target).with(
         File.join(config[:test_base_path], 'local'), anything)
@@ -298,5 +310,10 @@ describe Kitchen::Verifier::Inspec do
     base = File.join(config[:test_base_path], 'germany')
     FileUtils.mkdir_p(File.join(base, 'inspec'))
     FileUtils.mkdir_p(File.join(base, 'serverspec'))
+  end
+
+  def ensure_suite_directory(suitename)
+    suite = File.join(config[:test_base_path], suitename)
+    FileUtils.mkdir_p(suite)
   end
 end
