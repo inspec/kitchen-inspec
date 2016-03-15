@@ -1,7 +1,28 @@
 # Change Log
 
-## [0.12.3](https://github.com/chef/kitchen-inspec/tree/0.12.3) (2016-03-01)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.2...0.12.3)
+## [0.12.4](https://github.com/chef/kitchen-inspec/tree/0.12.4) (2016-03-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.3...0.12.4)
+
+**Implemented enhancements:**
+
+- InSpec Profile [\#46](https://github.com/chef/kitchen-inspec/issues/46)
+
+**Fixed bugs:**
+
+- `kitchen verify` fails on Windows [\#57](https://github.com/chef/kitchen-inspec/issues/57)
+
+**Closed issues:**
+
+- Unable to test installed Gems [\#65](https://github.com/chef/kitchen-inspec/issues/65)
+- InSpec Profile support in kitchen-inspec [\#39](https://github.com/chef/kitchen-inspec/issues/39)
+
+**Merged pull requests:**
+
+- add output to runner options [\#64](https://github.com/chef/kitchen-inspec/pull/64) ([vjeffrey](https://github.com/vjeffrey))
+- Improve handling for remote profiles [\#63](https://github.com/chef/kitchen-inspec/pull/63) ([chris-rock](https://github.com/chris-rock))
+
+## [v0.12.3](https://github.com/chef/kitchen-inspec/tree/v0.12.3) (2016-03-01)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.2...v0.12.3)
 
 **Implemented enhancements:**
 
@@ -10,6 +31,7 @@
 
 **Merged pull requests:**
 
+- 0.12.3 [\#61](https://github.com/chef/kitchen-inspec/pull/61) ([chris-rock](https://github.com/chris-rock))
 - add test-kitchen 1.6 as dependency [\#60](https://github.com/chef/kitchen-inspec/pull/60) ([chris-rock](https://github.com/chris-rock))
 - Bump berks requirement to latest [\#58](https://github.com/chef/kitchen-inspec/pull/58) ([jkeiser](https://github.com/jkeiser))
 
