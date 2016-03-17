@@ -1,7 +1,14 @@
 # Change Log
 
-## [0.12.4](https://github.com/chef/kitchen-inspec/tree/0.12.4) (2016-03-15)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.3...0.12.4)
+## [0.12.5](https://github.com/chef/kitchen-inspec/tree/0.12.5) (2016-03-17)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.4...0.12.5)
+
+**Merged pull requests:**
+
+- allow for slightly newer versions of inspec [\#68](https://github.com/chef/kitchen-inspec/pull/68) ([arlimus](https://github.com/arlimus))
+
+## [v0.12.4](https://github.com/chef/kitchen-inspec/tree/v0.12.4) (2016-03-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.3...v0.12.4)
 
 **Implemented enhancements:**
 
@@ -18,6 +25,7 @@
 
 **Merged pull requests:**
 
+- 0.12.4 [\#67](https://github.com/chef/kitchen-inspec/pull/67) ([chris-rock](https://github.com/chris-rock))
 - add output to runner options [\#64](https://github.com/chef/kitchen-inspec/pull/64) ([vjeffrey](https://github.com/vjeffrey))
 - Improve handling for remote profiles [\#63](https://github.com/chef/kitchen-inspec/pull/63) ([chris-rock](https://github.com/chris-rock))
 
