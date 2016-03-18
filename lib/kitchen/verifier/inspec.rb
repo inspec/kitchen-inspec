@@ -36,12 +36,24 @@ module Kitchen
 
       default_config :inspec_tests, []
 
+      def add_target(runner, target, opts)
+        profile = ::Inspec::Profile.for_target(target, opts)
+
+        # TODO: temporary workaround to get metadata into tests
+        if profile.source_reader.metadata.params.empty?
+          metadata = profile_data
+          profile.source_reader.metadata.params = metadata.params
+        end
+
+        runner.add_profile(profile, opts)
+      end
+
       # (see Base#call)
       def call(state)
         tests = collect_tests
         opts = runner_options(instance.transport, state)
         runner = ::Inspec::Runner.new(opts)
-        tests.each { |target| runner.add_target(target, opts) }
+        tests.each { |target| add_target(runner, target, opts) }
 
         debug("Running specs from: #{tests.inspect}")
         exit_code = runner.run
@@ -54,6 +66,13 @@ module Kitchen
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
         require 'inspec'
+      end
+
+      def profile_data
+        yml = File.join(config[:test_base_path], 'inspec.yml')
+        return nil unless File.file?(yml)
+        content = File.read(yml)
+        ::Inspec::Metadata.from_yaml(yml, content, nil)
       end
 
       # Returns an Array of test suite filenames for the related suite currently
