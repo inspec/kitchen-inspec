@@ -291,6 +291,7 @@ describe Kitchen::Verifier::Inspec do
             'connection_retries' => 'thousand',
             'connection_retry_sleep' => 'sleepy',
             'max_wait_until_ready' => 42,
+            'color' => true,
           ),
         )
         .and_return(runner)
