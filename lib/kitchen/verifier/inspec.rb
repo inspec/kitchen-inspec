@@ -110,6 +110,8 @@ module Kitchen
         else
           fail Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
         end.tap do |runner_options|
+          # default color to true to match InSpec behavior
+          runner_options['color'] = (config[:color].nil? ? true : config[:color])
           runner_options['format'] = config[:format] unless config[:format].nil?
           runner_options['output'] = config[:output] unless config[:output].nil?
         end
