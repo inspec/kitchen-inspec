@@ -49,6 +49,28 @@ By default `kitchen-inspec` expects test to be in `test/integration/%suite%` dir
             └── web_spec.rb
 ```
 
+### Directory Structure with complete profile
+
+A complete profile is used here, including a custom inspec resource named `gordon_config`:
+
+```
+.
+├── Berksfile
+├── Gemfile
+├── README.md
+├── metadata.rb
+├── recipes
+│   ├── default.rb
+│   └── nginx.rb
+└── test
+    └── integration
+        └── default
+            ├── controls
+            │   └── gordon.rb
+            ├── inspec.yml
+            └── libraries
+                └── gordon_config.rb
+```
 
 ### Combination with other testing frameworks
 
