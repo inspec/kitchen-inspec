@@ -114,6 +114,7 @@ module Kitchen
           runner_options['color'] = (config[:color].nil? ? true : config[:color])
           runner_options['format'] = config[:format] unless config[:format].nil?
           runner_options['output'] = config[:output] unless config[:output].nil?
+          runner_options['profiles_path'] = config[:profiles_path] unless config[:profiles_path].nil?
         end
       end
 
