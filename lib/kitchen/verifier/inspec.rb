@@ -30,7 +30,7 @@ module Kitchen
     # InSpec verifier for Kitchen.
     #
     # @author Fletcher Nichol <fnichol@chef.io>
-    class Inspec < Kitchen::Verifier::Base
+    class Inspec < Kitchen::Verifier::Base # rubocop:disable Metrics/ClassLength
       kitchen_verifier_api_version 1
       plugin_version Kitchen::Verifier::INSPEC_VERSION
 
