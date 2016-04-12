@@ -98,7 +98,7 @@ module Kitchen
       #
       # @return [Hash] a configuration hash of string-based keys
       # @api private
-      def runner_options(transport, state = {})
+      def runner_options(transport, state = {}) # rubocop:disable Metrics/AbcSize
         transport_data = transport.diagnose.merge(state)
         if transport.is_a?(Kitchen::Transport::Ssh)
           runner_options_for_ssh(transport_data)
