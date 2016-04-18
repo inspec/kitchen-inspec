@@ -1,27 +1,27 @@
----
 sudo: required
 language: ruby
 cache: bundler
-
-# necessary for docker to work
 dist: trusty
 services:
-  - docker
-
-bundler_args: --without integration guard tools
-
+- docker
+bundler_args: "--without integration guard tools"
 before_install:
-  - gem install bundler
-  - gem --version
-
+- gem install bundler
+- gem --version
 matrix:
   include:
-    - rvm: 1.9.3
-    - rvm: 2.0
-    - rvm: 2.1
-    - rvm: ruby-head
-    - rvm: 2.2
-      bundler_args: --without guard tools
-      script: bundle exec rake test:integration
+  - rvm: 1.9.3
+  - rvm: 2.0
+  - rvm: 2.1
+  - rvm: ruby-head
+  - rvm: 2.2
+    bundler_args: "--without guard tools"
+    script: bundle exec rake test:integration
   allow_failures:
-    - rvm: ruby-head
+  - rvm: ruby-head
+deploy:
+  provider: rubygems
+  on:
+    tags: true
+  api_key:
+    secure: lfOpkVSc5+O6mSc1JXEBRuJtNrQm2WxDyClovsV1tfKb54doutDD4fOoogQFUwu3Yq9kujer8KuqZaxzRd/DwQGkTFBGt3KgMEpCUZlRLCD1v81/xnc61DU37PeZMbfdQt0OeioTcyNoBrmjCggu3nmb4dIMZgRMi69qR/OGejz1FVun1d5PmdJ8jckU/wzwttISkHzkAaY55NBEZc8oLA7ekUo+1gnKM4+0YskP6lKg7Wf3r//neTvd0qXG9iHdc1laHnSEevrMrzzcsN4oWn+MXiT7cWB1Xh/MUc4wFCy1CJnw9rmX2YT20994avApJJRu3WVZ+gt0cxVPy7sux1qCG3KcMI0ei6jJuy8akRraYwFt4/CWAZXh41SNMGkvZEQU9J/3sxhCUeS5bGm6IYYWNczFPEgWRXAGOXgFflLE6+NaCT3KtCG3G994aPCFiiz5cc/n9nrsncLsXmL+4MlF+foA2UkT44/VwQTJK1UIBKqXscghR1FzD0It/Y3Gqe+fcKb2Wq77v3dC4IBmWncXDk3LjT36+T4C0hctsaaSjopSc7CyI4HE3MkwqPqJ8PPjlz36/d+42MkNFHE6dd2wPMtWVSfC1AsNf9k79GCSU+f3lYgZK1mjvR3Hx1MZGEfgvJHpZH2S4eOqiV+c9C+PPNUXRaYRyapIa+H4qow=
