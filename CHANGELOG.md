@@ -1,10 +1,33 @@
 # Change Log
 
-## [0.12.5](https://github.com/chef/kitchen-inspec/tree/0.12.5) (2016-03-17)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.4...0.12.5)
+## [0.13.0](https://github.com/chef/kitchen-inspec/tree/0.13.0) (2016-05-10)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.5...0.13.0)
+
+**Implemented enhancements:**
+
+- Supermarket and Compliance support [\#84](https://github.com/chef/kitchen-inspec/pull/84) ([chris-rock](https://github.com/chris-rock))
+- add more debug messages [\#82](https://github.com/chef/kitchen-inspec/pull/82) ([chris-rock](https://github.com/chris-rock))
+
+**Fixed bugs:**
+
+- Cannot run supermarket and compliance profiles [\#80](https://github.com/chef/kitchen-inspec/issues/80)
 
 **Merged pull requests:**
 
+- release via travis to rubygems on tags [\#79](https://github.com/chef/kitchen-inspec/pull/79) ([arlimus](https://github.com/arlimus))
+- fix lint [\#77](https://github.com/chef/kitchen-inspec/pull/77) ([chris-rock](https://github.com/chris-rock))
+- fix lint [\#76](https://github.com/chef/kitchen-inspec/pull/76) ([chris-rock](https://github.com/chris-rock))
+- Add support for profiles\_path [\#75](https://github.com/chef/kitchen-inspec/pull/75) ([brettlangdon](https://github.com/brettlangdon))
+- Add complete profile example to readme [\#73](https://github.com/chef/kitchen-inspec/pull/73) ([alexpop](https://github.com/alexpop))
+- Use only the keys provided by Kitchen [\#72](https://github.com/chef/kitchen-inspec/pull/72) ([ehartmann](https://github.com/ehartmann))
+- Support color flag [\#71](https://github.com/chef/kitchen-inspec/pull/71) ([jbussdieker](https://github.com/jbussdieker))
+
+## [v0.12.5](https://github.com/chef/kitchen-inspec/tree/v0.12.5) (2016-03-17)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.4...v0.12.5)
+
+**Merged pull requests:**
+
+- 0.12.5 [\#69](https://github.com/chef/kitchen-inspec/pull/69) ([arlimus](https://github.com/arlimus))
 - allow for slightly newer versions of inspec [\#68](https://github.com/chef/kitchen-inspec/pull/68) ([arlimus](https://github.com/arlimus))
 
 ## [v0.12.4](https://github.com/chef/kitchen-inspec/tree/v0.12.4) (2016-03-15)
