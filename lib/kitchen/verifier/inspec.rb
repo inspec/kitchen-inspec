@@ -38,12 +38,15 @@ module Kitchen
 
       # (see Base#call)
       def call(state)
-        tests = collect_tests
+        logger.debug('Initialize InSpec')
         opts = runner_options(instance.transport, state)
         runner = ::Inspec::Runner.new(opts)
+
+        # add each profile to runner
+        tests = collect_tests
         tests.each { |target| runner.add_target(target, opts) }
 
-        debug("Running specs from: #{tests.inspect}")
+        logger.debug("Running tests from: #{tests.inspect}")
         exit_code = runner.run
         return if exit_code == 0
         fail ActionFailed, "Inspec Runner returns #{exit_code}"
@@ -91,7 +94,7 @@ module Kitchen
         }
 
         base = File.join(base, 'inspec') if legacy_mode
-        logger.info("Search `#{base}` for tests")
+        logger.info("Use `#{base}` for testing")
 
         # only return the directory if it exists
         Pathname.new(base).exist? ? [base] : []
