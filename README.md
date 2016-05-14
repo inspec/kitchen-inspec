@@ -30,7 +30,7 @@ verifier:
   name: inspec
 ```
 
-Optionally, specify sudo and sudo_command if needed
+Optionally specify sudo and sudo_command
 ```
 verifier:
   name: inspec
