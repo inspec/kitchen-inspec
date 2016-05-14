@@ -122,6 +122,7 @@ describe Kitchen::Verifier::Inspec do
 
     it 'constructs a Inspec::Runner using transport config data and state' do
       config[:sudo] = 'jellybeans'
+      config[:sudo_command] = 'allyourbase'
 
       expect(Inspec::Runner).to receive(:new)
         .with(
@@ -129,6 +130,7 @@ describe Kitchen::Verifier::Inspec do
             'backend' => 'ssh',
             'logger' => logger,
             'sudo' => 'jellybeans',
+            'sudo_command' => 'allyourbase',
             'host' => 'boogie',
             'port' => 123,
             'user' => 'dance',
