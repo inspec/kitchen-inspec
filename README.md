@@ -35,7 +35,7 @@ Optionally specify sudo and sudo_command
 verifier:
   name: inspec
   sudo: true
-  sudo_command: 'supersizeme'
+  sudo_command: 'skittles'
 ```
 
 ### Directory Structure
