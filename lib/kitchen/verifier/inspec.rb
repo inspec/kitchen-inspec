@@ -143,6 +143,7 @@ module Kitchen
           'logger' => logger,
           # pass-in sudo config from kitchen verifier
           'sudo' => config[:sudo],
+          'sudo_command' => config[:sudo_command],
           'host' => kitchen[:hostname],
           'port' => kitchen[:port],
           'user' => kitchen[:username],

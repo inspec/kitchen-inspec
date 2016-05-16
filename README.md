@@ -30,6 +30,14 @@ verifier:
   name: inspec
 ```
 
+Optionally specify sudo and sudo_command
+```
+verifier:
+  name: inspec
+  sudo: true
+  sudo_command: 'skittles'
+```
+
 ### Directory Structure
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
