@@ -100,6 +100,58 @@ If you need support with other testing frameworks, we recommend to place the tes
                 └── web_spec.rb
 ```
 
+### Use remote InSpec profiles
+
+In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, call [InSpec profiles](https://github.com/chef/inspec/blob/master/docs/profiles.rst). Those can be easiliy added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
+
+```
+suites:
+  - name: default
+    verifier:
+      inspec_tests:
+        - https://github.com/dev-sec/tests-ssh-hardening
+```
+
+`inspec_tests` accepts all values that `inspec exec profile` would expect. We support:
+
+* local directory eg. `/path/to/profile`
+* github url `https://github.com/dev-sec/tests-ssh-hardening`
+* Chef Supermarket `supermarket://hardening/ssh-hardening` (list all available profiles with `inspec supermarket profiles`)
+* Chef Compliance `compliance://base/ssh`
+
+The following example illustrates the usage in a `.kitchen.yml`
+
+```
+suites:
+  - name: contains_inspec
+    run_list:
+      - recipe[apt]
+      - recipe[yum]
+      - recipe[ssh-hardening]
+    verifier:
+      inspec_tests:
+        - https://github.com/dev-sec/tests-ssh-hardening
+  - name: supermarket
+    run_list:
+      - recipe[apt]
+      - recipe[yum]
+      - recipe[ssh-hardening]
+    verifier:
+      inspec_tests:
+        - supermarket://hardening/ssh-hardening
+  # before you are able to use the compliance plugin, you need to run
+  # insecure is only required if you use self-signed certificates
+  # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
+  - name: compliance
+    run_list:
+      - recipe[apt]
+      - recipe[yum]
+      - recipe[ssh-hardening]
+    verifier:
+      inspec_tests:
+        - compliance://base/ssh
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
