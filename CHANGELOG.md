@@ -1,7 +1,20 @@
 # Change Log
 
-## [0.13.0](https://github.com/chef/kitchen-inspec/tree/0.13.0) (2016-05-10)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.5...0.13.0)
+## [0.14.0](https://github.com/chef/kitchen-inspec/tree/0.14.0) (2016-05-25)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.13.0...0.14.0)
+
+**Closed issues:**
+
+- How to verify with a local profile [\#88](https://github.com/chef/kitchen-inspec/issues/88)
+
+**Merged pull requests:**
+
+- update readme with remote profile handling [\#89](https://github.com/chef/kitchen-inspec/pull/89) ([chris-rock](https://github.com/chris-rock))
+- depend on inspec 0.22+ [\#87](https://github.com/chef/kitchen-inspec/pull/87) ([chris-rock](https://github.com/chris-rock))
+- support for sudo\_command [\#86](https://github.com/chef/kitchen-inspec/pull/86) ([jeremymv2](https://github.com/jeremymv2))
+
+## [v0.13.0](https://github.com/chef/kitchen-inspec/tree/v0.13.0) (2016-05-10)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.12.5...v0.13.0)
 
 **Implemented enhancements:**
 
