@@ -128,9 +128,11 @@ suites:
       - recipe[apt]
       - recipe[yum]
       - recipe[ssh-hardening]
+      - recipe[os-hardening]
     verifier:
       inspec_tests:
         - https://github.com/dev-sec/tests-ssh-hardening
+        - https://github.com/dev-sec/tests-os-hardening
   - name: supermarket
     run_list:
       - recipe[apt]
