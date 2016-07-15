@@ -1,7 +1,23 @@
 # Change Log
 
-## [0.14.0](https://github.com/chef/kitchen-inspec/tree/0.14.0) (2016-05-25)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.13.0...0.14.0)
+## [0.15.0](https://github.com/chef/kitchen-inspec/tree/0.15.0) (2016-07-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.14.0...0.15.0)
+
+**Fixed bugs:**
+
+- TTY issue with base AWS CentOS AMI [\#45](https://github.com/chef/kitchen-inspec/issues/45)
+
+**Closed issues:**
+
+- kitchen converge fails on ubuntu [\#81](https://github.com/chef/kitchen-inspec/issues/81)
+
+**Merged pull requests:**
+
+- Overwriting test\_base\_path to test/recipes instead of test/integration [\#95](https://github.com/chef/kitchen-inspec/pull/95) ([tyler-ball](https://github.com/tyler-ball))
+- demonstrated utilizing an array of profile sources [\#90](https://github.com/chef/kitchen-inspec/pull/90) ([jeremymv2](https://github.com/jeremymv2))
+
+## [v0.14.0](https://github.com/chef/kitchen-inspec/tree/v0.14.0) (2016-05-25)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.13.0...v0.14.0)
 
 **Closed issues:**
 
