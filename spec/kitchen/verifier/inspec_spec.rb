@@ -29,8 +29,14 @@ describe Kitchen::Verifier::Inspec do
 
   let(:logged_output)     { StringIO.new }
   let(:logger)            { Logger.new(logged_output) }
-  let(:config)            { {} }
+  let(:config) {
+    {
+      kitchen_root: kitchen_root,
+      test_base_path: File.join(kitchen_root, 'test', 'integration'),
+    }
+  }
   let(:transport_config)  { {} }
+  let(:kitchen_root)      { Dir.mktmpdir }
 
   let(:platform) do
     instance_double('Kitchen::Platform', os_type: nil, shell_type: nil)
@@ -62,13 +68,10 @@ describe Kitchen::Verifier::Inspec do
 
   before do
     allow(transport).to receive(:instance).and_return(instance)
-
-    @root = Dir.mktmpdir
-    config[:test_base_path] = @root
   end
 
   after do
-    FileUtils.remove_entry(@root)
+    FileUtils.remove_entry(kitchen_root)
   end
 
   let(:verifier) do
@@ -86,6 +89,25 @@ describe Kitchen::Verifier::Inspec do
 
   describe 'configuration' do
     # nothing yet, woah!
+  end
+
+  describe '#finalize_config!' do
+    let(:kitchen_inspec_tests) { File.join(kitchen_root, 'test', 'recipes') }
+    context 'when a test/recipes folder exists' do
+      before do
+        FileUtils.mkdir_p(kitchen_inspec_tests)
+      end
+
+      it 'should read the tests from there' do
+        expect(verifier[:test_base_path]).to eq(kitchen_inspec_tests)
+      end
+    end
+
+    context 'when a test/recipes folder does not exist' do
+      it 'should read the tests from the default location' do
+        expect(verifier[:test_base_path]).to eq(File.join(kitchen_root, 'test', 'integration'))
+      end
+    end
   end
 
   context 'with an ssh transport' do
@@ -236,6 +258,8 @@ describe Kitchen::Verifier::Inspec do
     let(:config) {
       {
         inspec_tests: ['https://github.com/nathenharvey/tmp_compliance_profile'],
+        kitchen_root: kitchen_root,
+        test_base_path: File.join(kitchen_root, 'test', 'integration'),
       }
     }
 

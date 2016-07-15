@@ -36,6 +36,31 @@ module Kitchen
 
       default_config :inspec_tests, []
 
+      # A lifecycle method that should be invoked when the object is about
+      # ready to be used. A reference to an Instance is required as
+      # configuration dependant data may be access through an Instance. This
+      # also acts as a hook point where the object may wish to perform other
+      # last minute checks, validations, or configuration expansions.
+      #
+      # @param instance [Instance] an associated instance
+      # @return [self] itself, for use in chaining
+      # @raise [ClientError] if instance parameter is nil
+      def finalize_config!(instance)
+        super
+
+        # We want to switch kitchen-inspec to look for its tests in
+        # `cookbook_dir/test/recipes` instead of `cookbook_dir/test/integration`
+        # Unfortunately there is no way to read `test_base_path` from the
+        # .kitchen.yml, it can only be provided on the CLI.
+        # See https://github.com/test-kitchen/test-kitchen/issues/1077
+        inspec_test_dir = File.join(config[:kitchen_root], 'test', 'recipes')
+        if File.directory?(inspec_test_dir)
+          config[:test_base_path] = inspec_test_dir
+        end
+
+        self
+      end
+
       # (see Base#call)
       def call(state)
         logger.debug('Initialize InSpec')
