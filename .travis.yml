@@ -3,21 +3,20 @@ language: ruby
 cache: bundler
 dist: trusty
 services:
-- docker
+  - docker
 bundler_args: "--without integration guard tools"
 before_install:
-- gem install bundler
-- gem --version
+  - gem install bundler
+  - gem --version
 matrix:
   include:
-  - rvm: 1.9.3
   - rvm: 2.0
-  - rvm: 2.1
+  - rvm: 2.1.9
   - rvm: ruby-head
-  - rvm: 2.2
+  - rvm: 2.2.5
     bundler_args: "--without guard tools"
     script: bundle exec rake test:integration OS='default profile contains_inspec'
-  - rvm: 2.2
+  - rvm: 2.2.5
     bundler_args: "--without guard tools"
     script: bundle exec rake test:integration OS='supermarket'
   allow_failures:

@@ -2,7 +2,8 @@
 
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
-require 'rubocop/rake_task'
+require "chefstyle"
+require "rubocop/rake_task"
 
 # Specs
 RSpec::Core::RakeTask.new(:spec)
@@ -11,13 +12,13 @@ desc "Run all test suites"
 task :test => [:spec]
 
 # Rubocop
-desc 'Run Rubocop lint checks'
+desc "Run Rubocop lint checks"
 task :rubocop do
   RuboCop::RakeTask.new
 end
 
 # lint the project
-desc 'Run robocop linter'
+desc "Run robocop linter"
 task lint: [:rubocop]
 
 desc "Display LOC stats"
@@ -36,20 +37,20 @@ task :default => [:test, :quality]
 # Automatically generate a changelog for this project. Only loaded if
 # the necessary gem is installed.
 begin
-  require 'github_changelog_generator/task'
+  require "github_changelog_generator/task"
   GitHubChangelogGenerator::RakeTask.new :changelog
 rescue LoadError
-  puts '>>>>> GitHub Changelog Generator not loaded, omitting tasks'
+  puts ">>>>> GitHub Changelog Generator not loaded, omitting tasks"
 end
 
 # Print the current version of this gem or update it.
 #
 # @param [Type] target the new version you want to set, or nil if you only want to show
 def kitchen_inspec_version(target = nil)
-  path = 'lib/kitchen/verifier/inspec_version.rb'
-  require_relative path.sub(/.rb$/, '')
+  path = "lib/kitchen/verifier/inspec_version.rb"
+  require_relative path.sub(/.rb$/, "")
 
-  nu_version = target.nil? ? '' : " -> #{target}"
+  nu_version = target.nil? ? "" : " -> #{target}"
   puts "Kitchen-inspec: #{Kitchen::Verifier::INSPEC_VERSION}#{nu_version}"
 
   unless target.nil?
@@ -66,7 +67,7 @@ end
 # @param [Type] msg the message to display if the command is missing
 def require_command(x, msg = nil)
   return if system("command -v #{x} || exit 1")
-  msg ||= 'Please install it first!'
+  msg ||= "Please install it first!"
   puts "\033[31;1mCan't find command #{x.inspect}. #{msg}\033[0m"
   exit 1
 end
@@ -84,11 +85,11 @@ end
 
 # Check the requirements for running an update of this repository.
 def check_update_requirements
-  require_command 'git'
-  require_command 'github_changelog_generator', "\n"\
+  require_command "git"
+  require_command "github_changelog_generator", "\n"\
     "For more information on how to install it see:\n"\
     "  https://github.com/skywinder/github-changelog-generator\n"
-  require_env 'CHANGELOG_GITHUB_TOKEN', "\n"\
+  require_env "CHANGELOG_GITHUB_TOKEN", "\n"\
     "Please configure this token to make sure you can run all commands\n"\
     "against GitHub.\n\n"\
     "See github_changelog_generator homepage for more information:\n"\
@@ -96,33 +97,33 @@ def check_update_requirements
 end
 
 # Show the current version of this gem.
-desc 'Show the version of this gem'
+desc "Show the version of this gem"
 task :version do
   kitchen_inspec_version
 end
 
-desc 'Generate the changelog'
+desc "Generate the changelog"
 task :changelog do
-  require_relative 'lib/kitchen/verifier/inspec_version'
+  require_relative "lib/kitchen/verifier/inspec_version"
   system "github_changelog_generator -u chef -p kitchen-inspec --future-release #{Kitchen::Verifier::INSPEC_VERSION}"
 end
 
 # Update the version of this gem and create an updated
 # changelog. It covers everything short of actually releasing
 # the gem.
-desc 'Bump the version of this gem'
+desc "Bump the version of this gem"
 task :bump_version, [:version] do |_, args|
-  v = args[:version] || ENV['to']
-  fail "You must specify a target version!  rake release[1.2.3]" if v.empty?
+  v = args[:version] || ENV["to"]
+  raise "You must specify a target version!  rake release[1.2.3]" if v.empty?
   check_update_requirements
   kitchen_inspec_version(v)
-  Rake::Task['changelog'].invoke
+  Rake::Task["changelog"].invoke
 end
 
 namespace :test do
   task :integration do
-    concurrency = ENV['CONCURRENCY'] || 1
-    os = ENV['OS'] || ''
-    sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{os}")
+    concurrency = ENV["CONCURRENCY"] || 1
+    os = ENV["OS"] || ""
+    sh("sh", "-c", "bundle exec kitchen test -c #{concurrency} #{os}")
   end
 end
