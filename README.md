@@ -1,10 +1,12 @@
 # Kitchen::InSpec - A Test Kitchen Verifier for InSpec
 
+[![Build Status Master](https://travis-ci.org/chef/kitchen-inspec.svg?branch=master)](https://travis-ci.org/chef/kitchen-inspec) [![Gem Version](https://badge.fury.io/rb/kitchen-inspec.svg)](https://badge.fury.io/rb/kitchen-inspec)
+
 This is the kitchen driver for [InSpec](https://github.com/chef/inspec). To see the project in action, we have the following test-kitchen examples available:
 
- - [Chef and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-chef)
- - [Puppet and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-puppet)
- - [Ansible and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-ansible)
+- [Chef and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-chef)
+- [Puppet and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-puppet)
+- [Ansible and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-ansible)
 
 ## Installation
 
@@ -16,22 +18,28 @@ gem 'kitchen-inspec'
 
 And then execute:
 
-    $ bundle
+```shell
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install kitchen-inspec
+```shell
+$ gem install kitchen-inspec
+```
 
 ## Usage
 
 In your .kitchen.yml include
-```
+
+```yaml
 verifier:
   name: inspec
 ```
 
 Optionally specify sudo and sudo_command
-```
+
+```yaml
 verifier:
   name: inspec
   sudo: true
@@ -49,8 +57,8 @@ By default `kitchen-inspec` expects test to be in `test/integration/%suite%` dir
 ├── README.md
 ├── metadata.rb
 ├── recipes
-│   ├── default.rb
-│   └── nginx.rb
+│   ├── default.rb
+│   └── nginx.rb
 └── test
     └── integration
         └── default
@@ -68,13 +76,13 @@ A complete profile is used here, including a custom inspec resource named `gordo
 ├── README.md
 ├── metadata.rb
 ├── recipes
-│   ├── default.rb
-│   └── nginx.rb
+│   ├── default.rb
+│   └── nginx.rb
 └── test
     └── integration
         └── default
             ├── controls
-            │   └── gordon.rb
+            │   └── gordon.rb
             ├── inspec.yml
             └── libraries
                 └── gordon_config.rb
@@ -91,8 +99,8 @@ If you need support with other testing frameworks, we recommend to place the tes
 ├── README.md
 ├── metadata.rb
 ├── recipes
-│   ├── default.rb
-│   └── nginx.rb
+│   ├── default.rb
+│   └── nginx.rb
 └── test
     └── integration
         └── default
@@ -104,7 +112,7 @@ If you need support with other testing frameworks, we recommend to place the tes
 
 In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, call [InSpec profiles](https://github.com/chef/inspec/blob/master/docs/profiles.rst). Those can be easiliy added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
 
-```
+```yaml
 suites:
   - name: default
     verifier:
@@ -114,14 +122,14 @@ suites:
 
 `inspec_tests` accepts all values that `inspec exec profile` would expect. We support:
 
-* local directory eg. `/path/to/profile`
-* github url `https://github.com/dev-sec/tests-ssh-hardening`
-* Chef Supermarket `supermarket://hardening/ssh-hardening` (list all available profiles with `inspec supermarket profiles`)
-* Chef Compliance `compliance://base/ssh`
+- local directory eg. `/path/to/profile`
+- github url `https://github.com/dev-sec/tests-ssh-hardening`
+- Chef Supermarket `supermarket://hardening/ssh-hardening` (list all available profiles with `inspec supermarket profiles`)
+- Chef Compliance `compliance://base/ssh`
 
 The following example illustrates the usage in a `.kitchen.yml`
 
-```
+```yaml
 suites:
   - name: contains_inspec
     run_list:
@@ -162,10 +170,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/chef/kitchen-inspec.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/chef/kitchen-inspec>.
 
 ## License
 
-Apache 2.0 (see [LICENSE][license])
+Apache 2.0 (see [LICENSE])
 
 [license]: https://github.com/chef/kitchen-inspec/blob/master/LICENSE
