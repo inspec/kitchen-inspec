@@ -8,26 +8,23 @@ group :guard do
 end
 
 group :test do
-  gem "bundler", "~> 1.5"
+  gem "bundler", "~> 1.10"
   gem "minitest", "~> 5.5"
-  gem "rake", "~> 10"
-  gem "chefstyle", "~> 0.4.0"
+  gem "rake", "~> 11.0"
+  gem "chefstyle", "0.4.0"
   gem "concurrent-ruby", "~> 0.9"
   gem "codeclimate-test-reporter", :require => nil
-end
-
-# pin dependency for Ruby 1.9.3 since bundler is not
-# detecting that net-ssh 3 does not work with 1.9.3
-if Gem::Version.new(RUBY_VERSION) <= Gem::Version.new("1.9.3")
-  gem "net-ssh", "~> 2.9"
+  gem "rspec"
+  gem "simplecov", "~> 0.12"
+  gem "countloc", "~> 0.4"
 end
 
 group :integration do
-  gem "berkshelf", ">= 4.2.3"
+  gem "berkshelf", ">= 4.3.5"
   gem "kitchen-dokken"
 end
 
 group :tools do
   gem "pry", "~> 0.10"
-  gem "github_changelog_generator", "1.11.3"
+  gem "github_changelog_generator", "1.13.1"
 end

@@ -20,15 +20,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = ">= 2.1.0"
   spec.add_dependency "inspec", ">=0.22.0", "<1.0.0"
   spec.add_dependency "test-kitchen", "~> 1.6"
-  spec.add_development_dependency "countloc", "~> 0.4"
-  spec.add_development_dependency "bundler", "~> 1.10"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "simplecov", "~> 0.10"
-  # style and complexity libraries are tightly version pinned as newer releases
-  # may introduce new and undesireable style choices which would be immediately
-  # enforced in CI
-  spec.add_development_dependency "chefstyle", "0.4.0"
 end
