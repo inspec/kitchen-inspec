@@ -199,7 +199,7 @@ module Kitchen
           "host" => URI(kitchen[:endpoint]).hostname,
           "port" => URI(kitchen[:endpoint]).port,
           "user" => kitchen[:user],
-          "password" => kitchen[:pass],
+          "password" => kitchen[:password] || kitchen[:pass],
           "connection_retries" => kitchen[:connection_retries],
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
