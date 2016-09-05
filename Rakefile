@@ -55,7 +55,7 @@ def kitchen_inspec_version(target = nil)
 
   unless target.nil?
     raw = File.read(path)
-    nu = raw.sub(/INSPEC_VERSION.*/, "INSPEC_VERSION = '#{target}'")
+    nu = raw.sub(/INSPEC_VERSION.*/, "INSPEC_VERSION = \"#{target}\"")
     File.write(path, nu)
     load(path)
   end
