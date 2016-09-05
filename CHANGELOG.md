@@ -1,7 +1,21 @@
 # Change Log
 
-## [0.15.0](https://github.com/chef/kitchen-inspec/tree/0.15.0) (2016-07-15)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.14.0...0.15.0)
+## [0.15.1](https://github.com/chef/kitchen-inspec/tree/0.15.1) (2016-09-05)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.0...0.15.1)
+
+**Closed issues:**
+
+- Kitchen verify/test fails when using the command resource with curl [\#100](https://github.com/chef/kitchen-inspec/issues/100)
+- Default to \( progress | documentation \) format for test-kitchen inspec verifier [\#91](https://github.com/chef/kitchen-inspec/issues/91)
+
+**Merged pull requests:**
+
+- Require Ruby 2.1+ [\#99](https://github.com/chef/kitchen-inspec/pull/99) ([tas50](https://github.com/tas50))
+- Switch from finstyle / rubocop to chefstyle [\#98](https://github.com/chef/kitchen-inspec/pull/98) ([tas50](https://github.com/tas50))
+- Update winrm password key for winrm-v2 [\#94](https://github.com/chef/kitchen-inspec/pull/94) ([mwrock](https://github.com/mwrock))
+
+## [v0.15.0](https://github.com/chef/kitchen-inspec/tree/v0.15.0) (2016-07-15)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.14.0...v0.15.0)
 
 **Fixed bugs:**
 
