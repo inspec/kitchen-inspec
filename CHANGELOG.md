@@ -1,7 +1,15 @@
 # Change Log
 
-## [0.15.1](https://github.com/chef/kitchen-inspec/tree/0.15.1) (2016-09-05)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.0...0.15.1)
+## [0.15.2](https://github.com/chef/kitchen-inspec/tree/0.15.2) (2016-09-26)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.1...0.15.2)
+
+**Merged pull requests:**
+
+- add support for inspec 1.0 [\#104](https://github.com/chef/kitchen-inspec/pull/104) ([chris-rock](https://github.com/chris-rock))
+- use double-quotes for rake bump\_version [\#102](https://github.com/chef/kitchen-inspec/pull/102) ([chris-rock](https://github.com/chris-rock))
+
+## [v0.15.1](https://github.com/chef/kitchen-inspec/tree/v0.15.1) (2016-09-05)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.0...v0.15.1)
 
 **Closed issues:**
 
