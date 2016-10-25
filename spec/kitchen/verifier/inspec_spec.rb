@@ -172,6 +172,23 @@ describe Kitchen::Verifier::Inspec do
       verifier.call(port: 123)
     end
 
+    it "constructs a Inspec::Runner using transport config data(host and port)" do
+      config[:host] = "192.168.33.40"
+      config[:port] = 222
+
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            "backend" => "ssh",
+            "host" => "192.168.33.40",
+            "port" => 222
+          )
+        )
+        .and_return(runner)
+
+      verifier.call(port: 123)
+    end
+
     it "constructs an Inspec::Runner with a specified inspec output format" do
       config[:format] = "documentation"
 
@@ -318,6 +335,23 @@ describe Kitchen::Verifier::Inspec do
             "connection_retry_sleep" => "sleepy",
             "max_wait_until_ready" => 42,
             "color" => true
+          )
+        )
+        .and_return(runner)
+
+      verifier.call(hostname: "win.dows", port: 123)
+    end
+
+    it "constructs a Inspec::Runner using transport config data(host and port)" do
+      config[:host] = "192.168.56.40"
+      config[:port] = 22
+
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            "backend" => "winrm",
+            "host" => "192.168.56.40",
+            "port" => 22
           )
         )
         .and_return(runner)
