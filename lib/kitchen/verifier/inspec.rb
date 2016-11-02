@@ -119,7 +119,7 @@ module Kitchen
         end
 
         base = File.join(base, "inspec") if legacy_mode
-        logger.info("Use `#{base}` for testing")
+        logger.info("Using `#{base}` for testing")
 
         # only return the directory if it exists
         Pathname.new(base).exist? ? [base] : []
