@@ -169,8 +169,8 @@ module Kitchen
           # pass-in sudo config from kitchen verifier
           "sudo" => config[:sudo],
           "sudo_command" => config[:sudo_command],
-          "host" => kitchen[:hostname],
-          "port" => kitchen[:port],
+          "host" => config[:host] || kitchen[:hostname],
+          "port" => config[:port] || kitchen[:port],
           "user" => kitchen[:username],
           "keepalive" => kitchen[:keepalive],
           "keepalive_interval" => kitchen[:keepalive_interval],
@@ -196,8 +196,8 @@ module Kitchen
         opts = {
           "backend" => "winrm",
           "logger" => logger,
-          "host" => URI(kitchen[:endpoint]).hostname,
-          "port" => URI(kitchen[:endpoint]).port,
+          "host" => config[:host] || URI(kitchen[:endpoint]).hostname,
+          "port" => config[:port] || URI(kitchen[:endpoint]).port,
           "user" => kitchen[:user],
           "password" => kitchen[:password] || kitchen[:pass],
           "connection_retries" => kitchen[:connection_retries],

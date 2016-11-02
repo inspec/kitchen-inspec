@@ -46,6 +46,15 @@ verifier:
   sudo_command: 'skittles'
 ```
 
+You can also specify the host and port to be used by InSpec when targeting the node. Otherwise, it defaults to the hostname and port used by kitchen for converging.
+
+```yaml
+verifier:
+  name: inspec
+  host: 192.168.56.40
+  port: 22
+```
+
 ### Directory Structure
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
