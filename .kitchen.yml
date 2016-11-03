@@ -29,14 +29,15 @@ suites:
       - recipe[os_prepare]
     verifier:
       inspec_tests:
-        - https://github.com/nathenharvey/tmp_compliance_profile
+        - name: tmp
+          git: https://github.com/nathenharvey/tmp_compliance_profile.git
   - name: supermarket
     run_list:
       - recipe[apt]
       - recipe[ssh-hardening]
     verifier:
       inspec_tests:
-        - supermarket://hardening/ssh-hardening
+        - name: hardening/ssh-hardening
   # before you are able to use the compliance plugin, you need to run
   # insecure is only required if you use self-signed certificates
   # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
@@ -46,4 +47,5 @@ suites:
       - recipe[ssh-hardening]
     verifier:
       inspec_tests:
-        - compliance://base/ssh
+        - name: ssh
+          compliance: base/ssh
