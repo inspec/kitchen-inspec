@@ -26,6 +26,10 @@ matrix:
   - rvm: 2.3.1
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
+    env: SUITE="test:integration" OS='duplicates'
+  - rvm: 2.3.1
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='supermarket'
   - rvm: ruby-head
   allow_failures:

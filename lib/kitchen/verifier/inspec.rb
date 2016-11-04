@@ -122,7 +122,21 @@ module Kitchen
         logger.info("Using `#{base}` for testing")
 
         # only return the directory if it exists
-        Pathname.new(base).exist? ? [base] : []
+        Pathname.new(base).exist? ? [{ :path => base }] : []
+      end
+
+      # Takes config[:inspec_tests] and modifies any value with a key of :path by adding the full path
+      # @return [Array] array of modified hashes
+      # @api private
+      def resolve_config_inspec_tests
+        config[:inspec_tests].map do |test_hash|
+          if test_hash.is_a? Hash
+            test_hash = { :path => config[:kitchen_root] + "/" + test_hash[:path] } if test_hash.has_key?(:path)
+            test_hash
+          else
+            test_hash # if it's not a hash, just return it as is
+          end
+        end
       end
 
       # Returns an array of test profiles
@@ -130,7 +144,7 @@ module Kitchen
       # @api private
       def collect_tests
         # get local tests and get run list of profiles
-        (local_suite_files + config[:inspec_tests]).compact
+        (local_suite_files + resolve_config_inspec_tests).compact.uniq
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
