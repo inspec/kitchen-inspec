@@ -130,9 +130,12 @@ module Kitchen
       # @api private
       def resolve_config_inspec_tests
         config[:inspec_tests].map do |test_hash|
-          raise Kitchen::UserError, "Please specify your inspec tests using the format `path: path/to/file` or `url: url_address`. See README for more information." unless test_hash.is_a? Hash
-          test_hash = { :path => config[:kitchen_root] + "/" + test_hash[:path] } if test_hash.has_key?(:path)
-          test_hash
+          if test_hash.is_a? Hash
+            test_hash = { :path => config[:kitchen_root] + "/" + test_hash[:path] } if test_hash.has_key?(:path)
+            test_hash
+          else
+            test_hash # if it's not a hash, just return it as is
+          end
         end
       end
 
