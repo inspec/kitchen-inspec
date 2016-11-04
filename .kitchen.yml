@@ -44,6 +44,13 @@ suites:
     verifier:
       inspec_tests:
         - https://github.com/nathenharvey/tmp_compliance_profile.git
+  - name: duplicates
+    run_list:
+      - recipe[os_prepare]
+    verifier:
+      inspec_tests:
+        - path: ./test/integration/duplicates
+        - path: ./test/integration/duplicates
   # before you are able to use the compliance plugin, you need to run
   # insecure is only required if you use self-signed certificates
   # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
