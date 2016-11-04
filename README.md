@@ -126,15 +126,16 @@ suites:
   - name: default
     verifier:
       inspec_tests:
-        - https://github.com/dev-sec/tests-ssh-hardening
+        - name: ssh-hardening
+          url: https://github.com/dev-sec/tests-ssh-hardening
 ```
 
 `inspec_tests` accepts all values that `inspec exec profile` would expect. We support:
 
-- local directory eg. `/path/to/profile`
-- github url `https://github.com/dev-sec/tests-ssh-hardening`
-- Chef Supermarket `supermarket://hardening/ssh-hardening` (list all available profiles with `inspec supermarket profiles`)
-- Chef Compliance `compliance://base/ssh`
+- local directory eg. `path: /path/to/profile`
+- github url `git: https://github.com/dev-sec/tests-ssh-hardening.git`
+- Chef Supermarket `name: hardening/ssh-hardening` # defaults to supermarket (list all available profiles with `inspec supermarket profiles`)
+- Chef Compliance `name: ssh` `compliance: base/ssh`
 
 The following example illustrates the usage in a `.kitchen.yml`
 
@@ -148,8 +149,11 @@ suites:
       - recipe[os-hardening]
     verifier:
       inspec_tests:
-        - https://github.com/dev-sec/tests-ssh-hardening
-        - https://github.com/dev-sec/tests-os-hardening
+        - path: path/to/some/local/tests
+        - name: ssh-hardening
+          url: https://github.com/dev-sec/tests-ssh-hardening/archive/master.zip
+        - name: os-hardening
+          git: https://github.com/dev-sec/tests-os-hardening.git
   - name: supermarket
     run_list:
       - recipe[apt]
@@ -157,7 +161,9 @@ suites:
       - recipe[ssh-hardening]
     verifier:
       inspec_tests:
-        - supermarket://hardening/ssh-hardening
+        - name: hardening/ssh-hardening  # name only defaults to supermarket
+        - name: ssh-supermarket  # alternatively, you can explicitly specify that the profile is from supermarket in this way
+          supermarket: hardening/ssh-hardening
   # before you are able to use the compliance plugin, you need to run
   # insecure is only required if you use self-signed certificates
   # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
@@ -168,7 +174,8 @@ suites:
       - recipe[ssh-hardening]
     verifier:
       inspec_tests:
-        - compliance://base/ssh
+        - name: ssh
+          compliance: base/ssh
 ```
 
 ## Development

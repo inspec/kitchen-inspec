@@ -17,6 +17,9 @@ matrix:
     script: bundle exec rake test:integration OS='default profile contains_inspec'
   - rvm: 2.3.1
     bundler_args: "--without guard tools"
+    script: bundle exec rake test:integration OS='backwards'
+  - rvm: 2.3.1
+    bundler_args: "--without guard tools"
     script: bundle exec rake test:integration OS='supermarket'
   - rvm: ruby-head
   allow_failures:
