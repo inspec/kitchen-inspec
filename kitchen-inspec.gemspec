@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.1.0"
   spec.add_dependency "inspec", ">=0.22.0", "<2.0.0"
   spec.add_dependency "test-kitchen", "~> 1.6"
+  spec.add_dependency "hashie", "~> 3.4"
 end

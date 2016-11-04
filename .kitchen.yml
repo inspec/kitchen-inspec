@@ -51,6 +51,24 @@ suites:
       inspec_tests:
         - path: ./test/integration/duplicates
         - path: ./test/integration/duplicates
+  - name: attributes_inline
+    run_list:
+      - recipe[os_prepare]
+    verifier:
+      inspec_tests:
+        - path: ./test/integration/attributes
+      attributes:
+        user: bob
+        password: secret
+  - name: attributes_file
+    run_list:
+      - recipe[os_prepare]
+    verifier:
+      inspec_tests:
+        - test/integration/attributes
+        # - path: ./test/integration/attributes
+      attrs:
+        - test/integration/profile-attribute.yml
   # before you are able to use the compliance plugin, you need to run
   # insecure is only required if you use self-signed certificates
   # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
