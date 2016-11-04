@@ -1,7 +1,32 @@
 # Change Log
 
-## [0.15.2](https://github.com/chef/kitchen-inspec/tree/0.15.2) (2016-09-26)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.1...0.15.2)
+## [0.16.0](https://github.com/chef/kitchen-inspec/tree/0.16.0) (2016-11-04)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.2...0.16.0)
+
+**Implemented enhancements:**
+
+- Harmonize profile location targets [\#111](https://github.com/chef/kitchen-inspec/issues/111)
+- Add host and port config options [\#110](https://github.com/chef/kitchen-inspec/pull/110) ([alexpop](https://github.com/alexpop))
+
+**Fixed bugs:**
+
+- Duplicate testing when verifier specified in suite definition [\#109](https://github.com/chef/kitchen-inspec/issues/109)
+- OS detection 2nd time with unknown value? [\#92](https://github.com/chef/kitchen-inspec/issues/92)
+
+**Closed issues:**
+
+- Message: Could not load the 'inspec' verifier from the load path. Please ensure that your transport is installed as a gem or included in your Gemfile if using Bundler. [\#105](https://github.com/chef/kitchen-inspec/issues/105)
+
+**Merged pull requests:**
+
+- add attributes support in kitchen-inspec [\#116](https://github.com/chef/kitchen-inspec/pull/116) ([chris-rock](https://github.com/chris-rock))
+- use suite names and only test master branch + PRs [\#115](https://github.com/chef/kitchen-inspec/pull/115) ([chris-rock](https://github.com/chris-rock))
+- fix duplicate testing when unique suite name [\#114](https://github.com/chef/kitchen-inspec/pull/114) ([vjeffrey](https://github.com/vjeffrey))
+- update readme to reflect harmonization of profile location targets [\#113](https://github.com/chef/kitchen-inspec/pull/113) ([vjeffrey](https://github.com/vjeffrey))
+- Make the info message clearer [\#112](https://github.com/chef/kitchen-inspec/pull/112) ([chilicheech](https://github.com/chilicheech))
+
+## [v0.15.2](https://github.com/chef/kitchen-inspec/tree/v0.15.2) (2016-09-26)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.1...v0.15.2)
 
 **Merged pull requests:**
 
