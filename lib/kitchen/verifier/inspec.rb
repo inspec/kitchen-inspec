@@ -64,7 +64,15 @@ module Kitchen
       # (see Base#call)
       def call(state)
         logger.debug("Initialize InSpec")
+
+        # gather connection options
         opts = runner_options(instance.transport, state)
+
+        # add attributes
+        opts[:attrs] = config[:attrs]
+        opts[:attributes] = Hashie.stringify_keys config[:attributes] unless config[:attributes].nil?
+
+        # initialize runner
         runner = ::Inspec::Runner.new(opts)
 
         # add each profile to runner
