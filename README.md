@@ -178,6 +178,29 @@ suites:
           compliance: base/ssh
 ```
 
+### Use attributes with your inspec profiles
+
+To run a profile with attributes defined inline, you can adapt your `.kitchen.yml`:
+
+```yaml
+    verifier:
+      inspec_tests:
+        - path: test/integration/attributes
+      attributes:
+        user: bob
+        password: secret
+```
+
+You can also define your attributes in an external file. Adapt your `.kitchen.yml` to point to that file:
+
+```yaml
+    verifier:
+      inspec_tests:
+        - path: test/integration/attributes
+      attrs:
+        - test/integration/profile-attribute.yml
+  ```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
