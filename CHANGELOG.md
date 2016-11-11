@@ -1,7 +1,22 @@
 # Change Log
 
-## [0.16.0](https://github.com/chef/kitchen-inspec/tree/0.16.0) (2016-11-04)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.2...0.16.0)
+## [0.16.1](https://github.com/chef/kitchen-inspec/tree/0.16.1) (2016-11-11)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.16.0...0.16.1)
+
+**Implemented enhancements:**
+
+- Support InSpec attributes [\#108](https://github.com/chef/kitchen-inspec/issues/108)
+
+**Closed issues:**
+
+- Incorrect dependencies on 0.16 release [\#117](https://github.com/chef/kitchen-inspec/issues/117)
+
+**Merged pull requests:**
+
+- fix \#117 [\#118](https://github.com/chef/kitchen-inspec/pull/118) ([chris-rock](https://github.com/chris-rock))
+
+## [v0.16.0](https://github.com/chef/kitchen-inspec/tree/v0.16.0) (2016-11-04)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.15.2...v0.16.0)
 
 **Implemented enhancements:**
 
