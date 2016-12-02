@@ -66,7 +66,7 @@ module Kitchen
         logger.debug("Initialize InSpec")
 
         # gather connection options
-        opts = runner_options(instance.transport, state)
+        opts = runner_options(instance.transport, state, instance.platform.name, instance.suite.name)
 
         # add attributes
         opts[:attrs] = config[:attrs]
@@ -159,7 +159,7 @@ module Kitchen
       #
       # @return [Hash] a configuration hash of string-based keys
       # @api private
-      def runner_options(transport, state = {}) # rubocop:disable Metrics/AbcSize
+      def runner_options(transport, state = {}, platform = nil, suite = nil) # rubocop:disable Metrics/AbcSize
         transport_data = transport.diagnose.merge(state)
         if transport.is_a?(Kitchen::Transport::Ssh)
           runner_options_for_ssh(transport_data)
@@ -174,7 +174,7 @@ module Kitchen
           # default color to true to match InSpec behavior
           runner_options["color"] = (config[:color].nil? ? true : config[:color])
           runner_options["format"] = config[:format] unless config[:format].nil?
-          runner_options["output"] = config[:output] unless config[:output].nil?
+          runner_options["output"] = config[:output] % { platform: platform, suite: suite } unless config[:output].nil?
           runner_options["profiles_path"] = config[:profiles_path] unless config[:profiles_path].nil?
         end
       end

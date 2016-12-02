@@ -55,6 +55,19 @@ verifier:
   port: 22
 ```
 
+If you want to customize the output file per platform or test suite
+you can use template format for your output variable. Current flags
+supported:
+ * _%{platform}_
+ * _%{suite}_
+
+```yaml
+verifier:
+  name: inspec
+  format: junit
+  output: path/to/results/%{platform}_%{suite}_inspec.xml
+```
+
 ### Directory Structure
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):

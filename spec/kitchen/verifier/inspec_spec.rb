@@ -39,7 +39,7 @@ describe Kitchen::Verifier::Inspec do
   let(:kitchen_root)      { Dir.mktmpdir }
 
   let(:platform) do
-    instance_double("Kitchen::Platform", os_type: nil, shell_type: nil)
+    instance_double("Kitchen::Platform", os_type: nil, shell_type: nil, name: "default")
   end
 
   let(:suite) do
@@ -201,6 +201,52 @@ describe Kitchen::Verifier::Inspec do
         .and_return(runner)
 
       verifier.call(port: 123)
+    end
+
+    it "provide platform and test suite to build output path" do
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
+
+      expect(verifier).to receive(:runner_options).with(
+          transport,
+          {},
+          "default",
+          "germany"
+      ).and_return({})
+      verifier.call({})
+    end
+
+    it "custom inspec output path" do
+      ensure_suite_directory("germany")
+      config[:output] = "/tmp/inspec_results.xml"
+
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
+
+      expect(runner).to receive(:add_target).with({ :path =>
+        File.join(
+          config[:test_base_path],
+          "germany"
+        ) }, hash_including(
+          "output" => "/tmp/inspec_results.xml"
+        ))
+
+      verifier.call({})
+    end
+
+    it "resolve template format for inspec output path" do
+      ensure_suite_directory("germany")
+      config[:output] = "/tmp/%{platform}_%{suite}.xml"
+
+      allow(Inspec::Runner).to receive(:new).and_return(runner)
+
+      expect(runner).to receive(:add_target).with({ :path =>
+        File.join(
+          config[:test_base_path],
+          "germany"
+        ) }, hash_including(
+          "output" => "/tmp/default_germany.xml"
+        ))
+
+      verifier.call({})
     end
 
     it "find test directory for runner" do
