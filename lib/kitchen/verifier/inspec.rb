@@ -77,15 +77,44 @@ module Kitchen
 
         # add each profile to runner
         tests = collect_tests
-        tests.each { |target| runner.add_target(target, opts) }
+        tests.each do |target|
+          logger.info("Loading Inspect Profile from #{test_location(target)}")
+          runner.add_target(target, opts)
+        end
 
-        logger.debug("Running tests from: #{tests.inspect}")
         exit_code = runner.run
         return if exit_code == 0
         raise ActionFailed, "Inspec Runner returns #{exit_code}"
       end
 
       private
+
+      # Print out where we are loading the tests from for clarity
+      #
+      # @param target [String, Hash] One of the values from the inspec_tests setting
+      # @return [String] Description of from where the tests are being loaded
+      # @api private
+      def test_location(target)
+        case target
+        when String
+          target
+        when Hash
+          if target[:name]
+            keys = target.keys.dup
+            keys.delete(:name)
+            type, location = if keys.empty?
+                               ["supermarket", target[:name]]
+                             else
+                               [keys[0], target[keys[0]]]
+                             end
+
+            "#{target[:name]} (#{type}: #{location})"
+          else
+            src = target.keys[0]
+            "#{src}: #{target[src]}"
+          end
+        end
+      end
 
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
@@ -127,7 +156,6 @@ module Kitchen
         end
 
         base = File.join(base, "inspec") if legacy_mode
-        logger.info("Using `#{base}` for testing")
 
         # only return the directory if it exists
         Pathname.new(base).exist? ? [{ :path => base }] : []
