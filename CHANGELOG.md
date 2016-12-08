@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.16.1](https://github.com/chef/kitchen-inspec/tree/0.16.1) (2016-11-11)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.16.0...0.16.1)
+## [0.17.0](https://github.com/chef/kitchen-inspec/tree/0.17.0) (2016-12-08)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.16.1...0.17.0)
+
+**Implemented enhancements:**
+
+- Support multiple outputs based on platform/test suite variables \(issue 121\) [\#122](https://github.com/chef/kitchen-inspec/pull/122) ([jcastillocano](https://github.com/jcastillocano))
+
+**Merged pull requests:**
+
+- Tweak logging for clarity [\#123](https://github.com/chef/kitchen-inspec/pull/123) ([tduffield](https://github.com/tduffield))
+
+## [v0.16.1](https://github.com/chef/kitchen-inspec/tree/v0.16.1) (2016-11-11)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.16.0...v0.16.1)
 
 **Implemented enhancements:**
 
