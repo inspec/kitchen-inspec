@@ -72,14 +72,25 @@ module Kitchen
         opts[:attrs] = config[:attrs]
         opts[:attributes] = Hashie.stringify_keys config[:attributes] unless config[:attributes].nil?
 
+        # setup logger
+        ::Inspec::Log.init(STDERR)
+        ::Inspec::Log.level = Kitchen::Util.from_logger_level(logger.level)
+
         # initialize runner
         runner = ::Inspec::Runner.new(opts)
 
         # add each profile to runner
         tests = collect_tests
-        tests.each { |target| runner.add_target(target, opts) }
+        profile_ctx = nil
+        tests.each do |target|
+          profile_ctx = runner.add_target(target, opts)
+        end
 
-        logger.debug("Running tests from: #{tests.inspect}")
+        profile_ctx ||= []
+        profile_ctx.each do |profile|
+          logger.info("Loaded #{profile.name} ")
+        end
+
         exit_code = runner.run
         return if exit_code == 0
         raise ActionFailed, "Inspec Runner returns #{exit_code}"
@@ -127,7 +138,6 @@ module Kitchen
         end
 
         base = File.join(base, "inspec") if legacy_mode
-        logger.info("Using `#{base}` for testing")
 
         # only return the directory if it exists
         Pathname.new(base).exist? ? [{ :path => base }] : []
