@@ -72,14 +72,23 @@ module Kitchen
         opts[:attrs] = config[:attrs]
         opts[:attributes] = Hashie.stringify_keys config[:attributes] unless config[:attributes].nil?
 
+        # setup logger
+        ::Inspec::Log.init(STDERR)
+        ::Inspec::Log.level = Kitchen::Util.from_logger_level(logger.level)
+
         # initialize runner
         runner = ::Inspec::Runner.new(opts)
 
         # add each profile to runner
         tests = collect_tests
+        profile_ctx = nil
         tests.each do |target|
-          logger.info("Loading Inspect Profile from #{test_location(target)}")
-          runner.add_target(target, opts)
+          profile_ctx = runner.add_target(target, opts)
+        end
+
+        profile_ctx ||= []
+        profile_ctx.each do |profile|
+          logger.info("Loaded #{profile.name} ")
         end
 
         exit_code = runner.run
@@ -88,33 +97,6 @@ module Kitchen
       end
 
       private
-
-      # Print out where we are loading the tests from for clarity
-      #
-      # @param target [String, Hash] One of the values from the inspec_tests setting
-      # @return [String] Description of from where the tests are being loaded
-      # @api private
-      def test_location(target)
-        case target
-        when String
-          target
-        when Hash
-          if target[:name]
-            keys = target.keys.dup
-            keys.delete(:name)
-            type, location = if keys.empty?
-                               ["supermarket", target[:name]]
-                             else
-                               [keys[0], target[keys[0]]]
-                             end
-
-            "#{target[:name]} (#{type}: #{location})"
-          else
-            src = target.keys[0]
-            "#{src}: #{target[src]}"
-          end
-        end
-      end
 
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
