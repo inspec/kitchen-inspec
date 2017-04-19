@@ -37,7 +37,7 @@ suites:
       - recipe[ssh-hardening]
     verifier:
       inspec_tests:
-        - name: hardening/ssh-hardening
+        - name: dev-sec/ssh-baseline
   - name: backwards
     run_list:
       - recipe[os_prepare]
