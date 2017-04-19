@@ -1,7 +1,25 @@
 # Change Log
 
-## [0.17.0](https://github.com/chef/kitchen-inspec/tree/0.17.0) (2016-12-08)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.16.1...0.17.0)
+## [0.18.0](https://github.com/chef/kitchen-inspec/tree/0.18.0) (2017-04-20)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.17.0...0.18.0)
+
+**Implemented enhancements:**
+
+- allow filtering controls [\#130](https://github.com/chef/kitchen-inspec/pull/130) ([arlimus](https://github.com/arlimus))
+
+**Closed issues:**
+
+- kitchen verify failed with permission denied to create /.inpec directory [\#129](https://github.com/chef/kitchen-inspec/issues/129)
+- junit format does not always use proper classname. [\#126](https://github.com/chef/kitchen-inspec/issues/126)
+- Skipped tests report as failures in kitchen [\#125](https://github.com/chef/kitchen-inspec/issues/125)
+- gem resource breaks if not using a different installation path [\#107](https://github.com/chef/kitchen-inspec/issues/107)
+
+**Merged pull requests:**
+
+- update kitchen test references [\#131](https://github.com/chef/kitchen-inspec/pull/131) ([arlimus](https://github.com/arlimus))
+
+## [v0.17.0](https://github.com/chef/kitchen-inspec/tree/v0.17.0) (2016-12-08)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.16.1...v0.17.0)
 
 **Implemented enhancements:**
 
