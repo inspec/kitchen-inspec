@@ -203,6 +203,20 @@ describe Kitchen::Verifier::Inspec do
       verifier.call(port: 123)
     end
 
+    it "constructs an Inspec::Runner with a controls filter" do
+      config[:controls] = %w{a control}
+
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            "controls" => %w{a control}
+          )
+        )
+        .and_return(runner)
+
+      verifier.call(port: 123)
+    end
+
     it "provide platform and test suite to build output path" do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 

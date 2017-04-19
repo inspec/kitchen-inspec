@@ -68,6 +68,17 @@ verifier:
   output: path/to/results/%{platform}_%{suite}_inspec.xml
 ```
 
+You can also decide to only run specific controls, instead of a full profile. This is done by specifying a list of controls:
+
+```
+verifier:
+  name: inspec
+  controls:
+    - control-id1
+    - control-id4
+    ...
+```
+
 ### Directory Structure
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
