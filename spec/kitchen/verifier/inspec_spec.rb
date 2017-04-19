@@ -209,7 +209,7 @@ describe Kitchen::Verifier::Inspec do
       expect(Inspec::Runner).to receive(:new)
         .with(
           hash_including(
-            "controls" => %w{a control}
+            controls: %w{a control}
           )
         )
         .and_return(runner)

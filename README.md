@@ -71,11 +71,16 @@ verifier:
 You can also decide to only run specific controls, instead of a full profile. This is done by specifying a list of controls:
 
 ```
-verifier:
-  name: inspec
-  controls:
-    - control-id1
-    - control-id4
+suites:
+  - name: supermarket
+    run_list:
+      - recipe[apt]
+      - recipe[ssh-hardening]
+    verifier:
+      inspec_tests:
+        - name: dev-sec/ssh-baseline
+      controls:
+        - sshd-46
     ...
 ```
 
