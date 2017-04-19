@@ -68,6 +68,22 @@ verifier:
   output: path/to/results/%{platform}_%{suite}_inspec.xml
 ```
 
+You can also decide to only run specific controls, instead of a full profile. This is done by specifying a list of controls:
+
+```
+suites:
+  - name: supermarket
+    run_list:
+      - recipe[apt]
+      - recipe[ssh-hardening]
+    verifier:
+      inspec_tests:
+        - name: dev-sec/ssh-baseline
+      controls:
+        - sshd-46
+    ...
+```
+
 ### Directory Structure
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
