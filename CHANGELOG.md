@@ -1,7 +1,14 @@
 # Change Log
 
-## [0.18.0](https://github.com/chef/kitchen-inspec/tree/0.18.0) (2017-04-20)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.17.0...0.18.0)
+## [0.19.0](https://github.com/chef/kitchen-inspec/tree/0.19.0) (2017-05-03)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.18.0...0.19.0)
+
+**Merged pull requests:**
+
+- add sudo\_options support [\#133](https://github.com/chef/kitchen-inspec/pull/133) ([arlimus](https://github.com/arlimus))
+
+## [v0.18.0](https://github.com/chef/kitchen-inspec/tree/v0.18.0) (2017-04-19)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.17.0...v0.18.0)
 
 **Implemented enhancements:**
 
