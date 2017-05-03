@@ -202,6 +202,7 @@ module Kitchen
           # pass-in sudo config from kitchen verifier
           "sudo" => config[:sudo],
           "sudo_command" => config[:sudo_command],
+          "sudo_options" => config[:sudo_options],
           "host" => config[:host] || kitchen[:hostname],
           "port" => config[:port] || kitchen[:port],
           "user" => kitchen[:username],
