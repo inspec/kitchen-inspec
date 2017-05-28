@@ -46,6 +46,15 @@ verifier:
   sudo_command: 'skittles'
 ```
 
+If you are verifying a host that requires a PTY to run sudo you can set pty to true
+
+```yaml
+verifier:
+  name: inspec
+  sudo: true
+  pty: true
+```
+
 You can also specify the host and port to be used by InSpec when targeting the node. Otherwise, it defaults to the hostname and port used by kitchen for converging.
 
 ```yaml
