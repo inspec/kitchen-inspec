@@ -186,6 +186,7 @@ module Kitchen
           runner_options["format"] = config[:format] unless config[:format].nil?
           runner_options["output"] = config[:output] % { platform: platform, suite: suite } unless config[:output].nil?
           runner_options["profiles_path"] = config[:profiles_path] unless config[:profiles_path].nil?
+          runner_options["junit"] = config[:junit] unless config[:junit].nil?
           runner_options[:controls] = config[:controls]
         end
       end
