@@ -110,6 +110,90 @@ describe Kitchen::Verifier::Inspec do
     end
   end
 
+  describe "#resolve_config_inspec_tests" do
+    context "when the entry is a string" do
+      context "when the path does not exist" do
+        it "returns the original string" do
+          config[:inspec_tests] = ["test/integration/foo"]
+          expect(File).to receive(:exist?).with("test/integration/foo").and_return(false)
+          allow(File).to receive(:exist?).and_call_original
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq(["test/integration/foo"])
+        end
+      end
+
+      context "when the path exists" do
+        it "expands to an absolute path and returns a hash" do
+          config[:inspec_tests] = ["test/integration/foo"]
+          expect(File).to receive(:exist?).with("test/integration/foo").and_return(true)
+          allow(File).to receive(:exist?).and_call_original
+          expect(File).to receive(:expand_path).with("test/integration/foo").and_return('/absolute/path/to/foo')
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ path: "/absolute/path/to/foo" }])
+        end
+      end
+    end
+
+    context "when the entry is a hash" do
+      context "when the entry is a path" do
+        it "expands the path to an absolute path and removes unnecessary keys" do
+          config[:inspec_tests] = [{ name: "foo_profile", path: "test/integration/foo" }]
+          expect(File).to receive(:expand_path).with("test/integration/foo").and_return('/absolute/path/to/foo')
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ path: "/absolute/path/to/foo" }])
+        end
+      end
+
+      context "when the entry is a url item" do
+        it "returns a hash with unnecessary keys removed" do
+          config[:inspec_tests] = [{ name: "foo_profile", url: "http://some.domain/profile" }]
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ url: "http://some.domain/profile" }])
+        end
+      end
+
+      context "when the entry is a git item" do
+        it "returns a hash with unnecessary keys removed" do
+          config[:inspec_tests] = [{ name: "foo_profile", git: "http://some.domain/profile" }]
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ git: "http://some.domain/profile" }])
+        end
+      end
+
+      context "when the entry is a compliance item" do
+        it "returns a hash with unnecessary keys removed" do
+          config[:inspec_tests] = [{ name: "foo_profile", compliance: "me/foo" }]
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ compliance: "me/foo" }])
+        end
+      end
+
+      context "when the entry only contains a name" do
+        it "returns it as-is to be resolved on Supermarket" do
+          config[:inspec_tests] = [{ name: "me/foo" }]
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ name: "me/foo" }])
+        end
+      end
+
+      context "when the entry contains no acceptable keys" do
+        it "returns nil" do
+          config[:inspec_tests] = [{ key1: "value1", key2: "value2" }]
+          expect(verifier.send(:resolve_config_inspec_tests)).to eq([nil])
+        end
+      end
+    end
+
+    it "returns an array of properly formatted entries when multiple entries are supplied" do
+      config[:inspec_tests] = [
+        { name: "profile1", git: "me/profile1" },
+        { name: "profile2", random_key: "random_value", compliance: "me/profile2" },
+        { name: "profile3", url: "someurl", random_key: "what is this for?", another_random_key: 123 },
+        { name: "profile4" }
+      ]
+
+      expect(verifier.send(:resolve_config_inspec_tests)).to eq([
+        { git: "me/profile1" },
+        { compliance: "me/profile2" },
+        { url: "someurl" },
+        { name: "profile4" }
+      ])
+    end
+  end
+
   context "with an ssh transport" do
 
     let(:transport_config) do
