@@ -126,7 +126,7 @@ describe Kitchen::Verifier::Inspec do
           config[:inspec_tests] = ["test/integration/foo"]
           expect(File).to receive(:exist?).with("test/integration/foo").and_return(true)
           allow(File).to receive(:exist?).and_call_original
-          expect(File).to receive(:expand_path).with("test/integration/foo").and_return('/absolute/path/to/foo')
+          expect(File).to receive(:expand_path).with("test/integration/foo").and_return("/absolute/path/to/foo")
           expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ path: "/absolute/path/to/foo" }])
         end
       end
@@ -136,7 +136,7 @@ describe Kitchen::Verifier::Inspec do
       context "when the entry is a path" do
         it "expands the path to an absolute path and removes unnecessary keys" do
           config[:inspec_tests] = [{ name: "foo_profile", path: "test/integration/foo" }]
-          expect(File).to receive(:expand_path).with("test/integration/foo").and_return('/absolute/path/to/foo')
+          expect(File).to receive(:expand_path).with("test/integration/foo").and_return("/absolute/path/to/foo")
           expect(verifier.send(:resolve_config_inspec_tests)).to eq([{ path: "/absolute/path/to/foo" }])
         end
       end
@@ -182,14 +182,14 @@ describe Kitchen::Verifier::Inspec do
         { name: "profile1", git: "me/profile1" },
         { name: "profile2", random_key: "random_value", compliance: "me/profile2" },
         { name: "profile3", url: "someurl", random_key: "what is this for?", another_random_key: 123 },
-        { name: "profile4" }
+        { name: "profile4" },
       ]
 
       expect(verifier.send(:resolve_config_inspec_tests)).to eq([
         { git: "me/profile1" },
         { compliance: "me/profile2" },
         { url: "someurl" },
-        { name: "profile4" }
+        { name: "profile4" },
       ])
     end
   end
