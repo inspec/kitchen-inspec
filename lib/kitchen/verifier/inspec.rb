@@ -147,13 +147,29 @@ module Kitchen
       # @return [Array] array of modified hashes
       # @api private
       def resolve_config_inspec_tests
-        config[:inspec_tests].map do |test_hash|
-          if test_hash.is_a? Hash
-            test_hash = { :path => config[:kitchen_root] + "/" + test_hash[:path] } if test_hash.has_key?(:path)
-            test_hash
-          else
-            test_hash # if it's not a hash, just return it as is
+        config[:inspec_tests].map do |test_item|
+          if test_item.is_a?(Hash)
+            # replace the "path" key with an absolute path
+            test_item[:path] = File.expand_path(test_item[:path]) if test_item.key?(:path)
+
+            # delete any unnecessary keys to ensure deduplication in #collect_tests isn't
+            # foiled by extra stuff. However, if the only entry is a "name" key, then
+            # leave it alone so it can default to resolving to the Supermarket.
+            unless test_item.keys == [:name]
+              test_item.delete_if { |k, v| ![:path, :url, :git, :compliance].include?(k) }
+            end
+          elsif File.exist?(test_item)
+            # if the entry is a path to something on disk, rewrite as a Hash entry with a path key.
+            # This is necessary to ensure that auto-detected local suite files found with
+            # #local_suite_files are de-duplicated with relative path entries supplied by the user
+            # in the inspec_tests array.
+            #
+            # If the path doesn't exist, it could be a URL, or it could simply be an error.
+            # We will let it fall through and let InSpec raise the appropriate exception.
+            test_item = { path: File.expand_path(test_item) }
           end
+
+          test_item unless test_item.nil? || test_item.empty?
         end
       end
 
