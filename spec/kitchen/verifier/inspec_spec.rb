@@ -217,6 +217,18 @@ describe Kitchen::Verifier::Inspec do
       verifier.call(port: 123)
     end
 
+    it "does not send keys_only=true to InSpec (which breaks SSH Agent usage)" do
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_not_including(
+            "keys_only" => true
+          )
+        )
+        .and_return(runner)
+
+      verifier.call(port: 123)
+    end
+
     it "provide platform and test suite to build output path" do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
