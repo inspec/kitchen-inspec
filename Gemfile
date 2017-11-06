@@ -41,3 +41,6 @@ group :tools do
   gem "pry", "~> 0.10"
   gem "github_changelog_generator", "1.13.1"
 end
+
+# Pending release of kitchen-kubernetes
+gem "kitchen-kubernetes", git: 'https://github.com/coderanger/kitchen-kubernetes'

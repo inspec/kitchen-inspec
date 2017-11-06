@@ -24,4 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "inspec", ">=0.34.0", "<2.0.0"
   spec.add_dependency "test-kitchen", "~> 1.6"
   spec.add_dependency "hashie", "~> 3.4"
+
+  spec.add_development_dependency "kitchen-kubernetes", "~> 1.0"
 end

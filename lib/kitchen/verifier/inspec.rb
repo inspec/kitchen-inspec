@@ -194,6 +194,8 @@ module Kitchen
         # optional transport which is not in core test-kitchen
         elsif defined?(Kitchen::Transport::Dokken) && transport.is_a?(Kitchen::Transport::Dokken)
           runner_options_for_docker(transport_data)
+        elsif defined?(Kitchen::Transport::Kubernetes) && transport.is_a?(Kitchen::Transport::Kubernetes)
+          runner_options_for_kubernetes(transport_data)
         else
           raise Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
         end.tap do |runner_options|
@@ -276,6 +278,22 @@ module Kitchen
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
         }
         logger.debug "Connect to Container: #{opts['host']}"
+        opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_kubernetes(config_data)
+        opts = {
+          "backend" => "kubernetes",
+          "logger" => logger,
+          "pod" => config_data[:pod_id],
+          "container" => "default",
+          "kubectl_path" => config_data[:kubectl_path],
+        }
+        logger.debug "Connect to Pod: #{opts['pod']}"
         opts
       end
     end

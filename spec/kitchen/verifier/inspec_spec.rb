@@ -24,6 +24,7 @@ require "logger"
 require "kitchen/verifier/inspec"
 require "kitchen/transport/ssh"
 require "kitchen/transport/winrm"
+require "kitchen/transport/kubernetes"
 
 describe Kitchen::Verifier::Inspec do
 
@@ -513,6 +514,44 @@ describe Kitchen::Verifier::Inspec do
         .and_return(runner)
 
       verifier.call(hostname: "win.dows", port: 123)
+    end
+  end
+
+  context "with a kubernetes transport" do
+    let(:transport_config) do
+      {
+        kubectl_path: "./kubectl"
+      }
+    end
+
+    let(:transport) do
+      Kitchen::Transport::Kubernetes.new(transport_config)
+    end
+
+    let(:runner) do
+      instance_double("Inspec::Runner")
+    end
+
+    before do
+      allow(runner).to receive(:add_target)
+      allow(runner).to receive(:run).and_return 0
+    end
+
+    it "constructs a Inspec::Runner using transport config data" do
+      config[:host] = "192.168.56.40"
+      config[:port] = 22
+
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            "backend" => "kubernetes",
+            "pod" => "asdf1234",
+            "kubectl_path" => "./kubectl"
+          )
+        )
+        .and_return(runner)
+
+      verifier.call(pod_id: "asdf1234")
     end
   end
 
