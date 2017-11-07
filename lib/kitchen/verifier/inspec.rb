@@ -195,7 +195,8 @@ module Kitchen
         elsif defined?(Kitchen::Transport::Dokken) && transport.is_a?(Kitchen::Transport::Dokken)
           runner_options_for_docker(transport_data)
         else
-          raise Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
+          require "kitchen/verifier/train_fallback_transport"
+          {"backend" => "fallback", "transport" => transport, "state" => state}
         end.tap do |runner_options|
           # default color to true to match InSpec behavior
           runner_options["color"] = (config[:color].nil? ? true : config[:color])
