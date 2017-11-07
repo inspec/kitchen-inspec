@@ -187,13 +187,8 @@ module Kitchen
       # @api private
       def runner_options(transport, state = {}, platform = nil, suite = nil) # rubocop:disable Metrics/AbcSize
         transport_data = transport.diagnose.merge(state)
-        if transport.is_a?(Kitchen::Transport::Ssh)
-          runner_options_for_ssh(transport_data)
-        elsif transport.is_a?(Kitchen::Transport::Winrm)
-          runner_options_for_winrm(transport_data)
-        # optional transport which is not in core test-kitchen
-        elsif defined?(Kitchen::Transport::Dokken) && transport.is_a?(Kitchen::Transport::Dokken)
-          runner_options_for_docker(transport_data)
+        if respond_to?("runner_options_for_#{transport.name.downcase}")
+          send("runner_options_for_#{transport.name.downcase}", transport_data)
         else
           raise Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
         end.tap do |runner_options|
@@ -260,7 +255,7 @@ module Kitchen
       #
       # @return [Hash] a configuration hash of string-based keys
       # @api private
-      def runner_options_for_docker(config_data)
+      def runner_options_for_dokken(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
         #
         # Note: kitchen-dokken uses two containers the
