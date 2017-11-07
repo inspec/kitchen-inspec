@@ -187,7 +187,7 @@ module Kitchen
       # @api private
       def runner_options(transport, state = {}, platform = nil, suite = nil) # rubocop:disable Metrics/AbcSize
         transport_data = transport.diagnose.merge(state)
-        if respond_to?("runner_options_for_#{transport.name.downcase}")
+        if respond_to?("runner_options_for_#{transport.name.downcase}", true)
           send("runner_options_for_#{transport.name.downcase}", transport_data)
         else
           raise Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
