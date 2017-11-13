@@ -1,7 +1,51 @@
 # Change Log
 
-## [0.19.0](https://github.com/chef/kitchen-inspec/tree/0.19.0) (2017-05-03)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.18.0...0.19.0)
+## [0.20.0](https://github.com/chef/kitchen-inspec/tree/0.20.0) (2017-11-13)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.19.0...0.20.0)
+
+**Implemented enhancements:**
+
+- Reuse the same test for multiple test suites in one cookbook [\#97](https://github.com/chef/kitchen-inspec/issues/97)
+- show test and result in the log [\#44](https://github.com/chef/kitchen-inspec/issues/44)
+- Remove the restriction of `\_spec` file [\#14](https://github.com/chef/kitchen-inspec/issues/14)
+
+**Fixed bugs:**
+
+- Kitchen verify fails with the kitchen-docker plugin [\#83](https://github.com/chef/kitchen-inspec/issues/83)
+
+**Closed issues:**
+
+- \[QUESTION\] kitchen-inspec formatter [\#147](https://github.com/chef/kitchen-inspec/issues/147)
+- Executing inspec against a container from within the host [\#145](https://github.com/chef/kitchen-inspec/issues/145)
+- Option to specify path to Inspec test with kitchen-inspec [\#139](https://github.com/chef/kitchen-inspec/issues/139)
+- False attribute value is not initializing [\#138](https://github.com/chef/kitchen-inspec/issues/138)
+- Failed to complete \#verify action: \[no implicit conversion of nil into String\] [\#135](https://github.com/chef/kitchen-inspec/issues/135)
+- Using tags/versioning for supermarket inspec profiles [\#134](https://github.com/chef/kitchen-inspec/issues/134)
+- chef exec kitchen verify fails for inspec tests [\#132](https://github.com/chef/kitchen-inspec/issues/132)
+- Intermittent SSH failures [\#127](https://github.com/chef/kitchen-inspec/issues/127)
+- Inspec Test Location [\#124](https://github.com/chef/kitchen-inspec/issues/124)
+- Output file support for multiple platforms and multiple test suites [\#121](https://github.com/chef/kitchen-inspec/issues/121)
+- Custom inspec resources not loaded: 'undefined method' [\#120](https://github.com/chef/kitchen-inspec/issues/120)
+- kitchen ec2 verifier broken [\#106](https://github.com/chef/kitchen-inspec/issues/106)
+- Vague error if 'platform' value is missing in platform section and inspec profile platfrom/os-family is set [\#101](https://github.com/chef/kitchen-inspec/issues/101)
+- lost support for spec\_helper in inspec [\#93](https://github.com/chef/kitchen-inspec/issues/93)
+- Make it easier to filter output [\#85](https://github.com/chef/kitchen-inspec/issues/85)
+- Can't verify when used with kitchen-digitalocean provider [\#78](https://github.com/chef/kitchen-inspec/issues/78)
+- Add way to define alternate test-path [\#70](https://github.com/chef/kitchen-inspec/issues/70)
+- Using profiles with kitchen-inspec [\#66](https://github.com/chef/kitchen-inspec/issues/66)
+- Colo\[u\]r those dots and Fs! [\#62](https://github.com/chef/kitchen-inspec/issues/62)
+- Error with apache\_conf on CentOS [\#37](https://github.com/chef/kitchen-inspec/issues/37)
+- kitchen-inspec breaks existing file pattern [\#11](https://github.com/chef/kitchen-inspec/issues/11)
+
+**Merged pull requests:**
+
+- Add a CODEOWNERS file [\#144](https://github.com/chef/kitchen-inspec/pull/144) ([adamleff](https://github.com/adamleff))
+- Adding a maintainers file [\#143](https://github.com/chef/kitchen-inspec/pull/143) ([adamleff](https://github.com/adamleff))
+- Eliminate duplicate profiles being added to runner [\#141](https://github.com/chef/kitchen-inspec/pull/141) ([adamleff](https://github.com/adamleff))
+- Don't send keys\_only config to InSpec/Train [\#140](https://github.com/chef/kitchen-inspec/pull/140) ([adamleff](https://github.com/adamleff))
+
+## [v0.19.0](https://github.com/chef/kitchen-inspec/tree/v0.19.0) (2017-05-03)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.18.0...v0.19.0)
 
 **Merged pull requests:**
 
