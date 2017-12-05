@@ -240,6 +240,8 @@ module Kitchen
         opts = {
           "backend" => "winrm",
           "logger" => logger,
+          "ssl" => URI(kitchen[:endpoint]).scheme=='https',
+          "self_signed" => kitchen[:no_ssl_peer_verification],
           "host" => config[:host] || URI(kitchen[:endpoint]).hostname,
           "port" => config[:port] || URI(kitchen[:endpoint]).port,
           "user" => kitchen[:user],
