@@ -33,7 +33,7 @@ describe Kitchen::Verifier::Inspec do
     {
       kitchen_root: kitchen_root,
       test_base_path: File.join(kitchen_root, "test", "integration"),
-      backend_cache: false,
+      backend_cache: true,
     }
   end
   let(:transport_config)  { {} }
@@ -93,15 +93,15 @@ describe Kitchen::Verifier::Inspec do
       Kitchen::Transport::Ssh.new({})
     end
 
-    it "backend_cache option sets to false" do
-      config = verifier.send(:runner_options, transport)
-      expect(config.to_hash).to include(backend_cache: false)
-    end
-
-    it "backend_cache option defaults to true" do
-      config[:backend_cache] = nil
+    it "backend_cache option sets to true" do
       config = verifier.send(:runner_options, transport)
       expect(config.to_hash).to include(backend_cache: true)
+    end
+
+    it "backend_cache option defaults to false" do
+      config[:backend_cache] = nil
+      config = verifier.send(:runner_options, transport)
+      expect(config.to_hash).to include(backend_cache: false)
     end
 
     it "inspec version warn for backend_cache" do
