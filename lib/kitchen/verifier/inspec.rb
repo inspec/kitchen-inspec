@@ -67,6 +67,7 @@ module Kitchen
 
         # gather connection options
         opts = runner_options(instance.transport, state, instance.platform.name, instance.suite.name)
+        logger.debug "Options #{opts.inspect}"
 
         # add attributes
         opts[:attrs] = config[:attrs]
@@ -198,6 +199,16 @@ module Kitchen
           runner_options["output"] = config[:output] % { platform: platform, suite: suite } unless config[:output].nil?
           runner_options["profiles_path"] = config[:profiles_path] unless config[:profiles_path].nil?
           runner_options[:controls] = config[:controls]
+
+          # check to make sure we have a valid version for caching
+          if config[:backend_cache]
+            backend_cache_msg = "backend_cache requires InSpec version >= 1.47.0"
+            logger.warn backend_cache_msg if Gem::Version.new(::Inspec::VERSION) < Gem::Version.new("1.47.0")
+            runner_options[:backend_cache] = config[:backend_cache]
+          else
+            # default to false until we default to true in inspec
+            runner_options[:backend_cache] = false
+          end
         end
       end
 
@@ -240,7 +251,7 @@ module Kitchen
         opts = {
           "backend" => "winrm",
           "logger" => logger,
-          "ssl" => URI(kitchen[:endpoint]).scheme=='https',
+          "ssl" => URI(kitchen[:endpoint]).scheme == "https",
           "self_signed" => kitchen[:no_ssl_peer_verification],
           "host" => config[:host] || URI(kitchen[:endpoint]).hostname,
           "port" => config[:port] || URI(kitchen[:endpoint]).port,
