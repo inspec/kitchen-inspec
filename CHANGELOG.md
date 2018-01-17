@@ -1,7 +1,30 @@
 # Change Log
 
-## [0.20.0](https://github.com/chef/kitchen-inspec/tree/0.20.0) (2017-11-13)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.19.0...0.20.0)
+## [0.22.0](https://github.com/chef/kitchen-inspec/tree/0.22.0) (2018-01-17)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.20.0...0.22.0)
+
+**Implemented enhancements:**
+
+- Support use of SSH agent without requiring a key path to be set [\#142](https://github.com/chef/kitchen-inspec/issues/142)
+
+**Fixed bugs:**
+
+- Can't use Branch for verifier [\#157](https://github.com/chef/kitchen-inspec/issues/157)
+
+**Closed issues:**
+
+- Expose --backend-cache command-line option [\#154](https://github.com/chef/kitchen-inspec/issues/154)
+- kitchen-inspec fails to configure HTTPS winrm for inspec [\#152](https://github.com/chef/kitchen-inspec/issues/152)
+
+**Merged pull requests:**
+
+- git fetcher: support branch/tag/ref [\#158](https://github.com/chef/kitchen-inspec/pull/158) ([adamleff](https://github.com/adamleff))
+- Add the InSpec backend\_cache option [\#155](https://github.com/chef/kitchen-inspec/pull/155) ([jquick](https://github.com/jquick))
+- correctly configure HTTPS WinRM [\#153](https://github.com/chef/kitchen-inspec/pull/153) ([joekhoobyar](https://github.com/joekhoobyar))
+- Allow extending which transports are supported by kitchen-inspec [\#149](https://github.com/chef/kitchen-inspec/pull/149) ([coderanger](https://github.com/coderanger))
+
+## [v0.20.0](https://github.com/chef/kitchen-inspec/tree/v0.20.0) (2017-11-13)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.19.0...v0.20.0)
 
 **Implemented enhancements:**
 
@@ -39,6 +62,7 @@
 
 **Merged pull requests:**
 
+- Release 0.20.0 [\#151](https://github.com/chef/kitchen-inspec/pull/151) ([adamleff](https://github.com/adamleff))
 - Add a CODEOWNERS file [\#144](https://github.com/chef/kitchen-inspec/pull/144) ([adamleff](https://github.com/adamleff))
 - Adding a maintainers file [\#143](https://github.com/chef/kitchen-inspec/pull/143) ([adamleff](https://github.com/adamleff))
 - Eliminate duplicate profiles being added to runner [\#141](https://github.com/chef/kitchen-inspec/pull/141) ([adamleff](https://github.com/adamleff))
