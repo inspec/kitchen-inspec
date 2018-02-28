@@ -25,7 +25,7 @@ group :test do
   gem "minitest", "~> 5.5"
   gem "rake", "~> 11.0"
   gem "chefstyle", "0.4.0"
-  gem "concurrent-ruby", "~> 0.9"
+  gem "concurrent-ruby", "~> 1.0"
   gem "codeclimate-test-reporter", :require => nil
   gem "rspec"
   gem "simplecov", "~> 0.12"
