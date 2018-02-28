@@ -1,15 +1,35 @@
 # Change Log
 
-## [0.22.0](https://github.com/chef/kitchen-inspec/tree/0.22.0) (2018-01-17)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.20.0...0.22.0)
+## [0.23.0](https://github.com/chef/kitchen-inspec/tree/0.23.0) (2018-02-28)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.22.0...0.23.0)
 
-**Implemented enhancements:**
+**Closed issues:**
 
-- Support use of SSH agent without requiring a key path to be set [\#142](https://github.com/chef/kitchen-inspec/issues/142)
+- InSpec 2.0.x is using a higher-version of concurrent-ruby 1.0 [\#165](https://github.com/chef/kitchen-inspec/issues/165)
+
+**Merged pull requests:**
+
+- Update kitchen inspec to support inspec 2.0. [\#168](https://github.com/chef/kitchen-inspec/pull/168) ([jquick](https://github.com/jquick))
+- Fix travis-ci bundler issue [\#162](https://github.com/chef/kitchen-inspec/pull/162) ([jquick](https://github.com/jquick))
+
+## [v0.22.0](https://github.com/chef/kitchen-inspec/tree/v0.22.0) (2018-01-17)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.21.0...v0.22.0)
 
 **Fixed bugs:**
 
 - Can't use Branch for verifier [\#157](https://github.com/chef/kitchen-inspec/issues/157)
+
+**Merged pull requests:**
+
+- Release v0.22.0 [\#159](https://github.com/chef/kitchen-inspec/pull/159) ([adamleff](https://github.com/adamleff))
+- git fetcher: support branch/tag/ref [\#158](https://github.com/chef/kitchen-inspec/pull/158) ([adamleff](https://github.com/adamleff))
+
+## [v0.21.0](https://github.com/chef/kitchen-inspec/tree/v0.21.0) (2017-12-12)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.20.0...v0.21.0)
+
+**Implemented enhancements:**
+
+- Support use of SSH agent without requiring a key path to be set [\#142](https://github.com/chef/kitchen-inspec/issues/142)
 
 **Closed issues:**
 
@@ -18,7 +38,6 @@
 
 **Merged pull requests:**
 
-- git fetcher: support branch/tag/ref [\#158](https://github.com/chef/kitchen-inspec/pull/158) ([adamleff](https://github.com/adamleff))
 - Add the InSpec backend\_cache option [\#155](https://github.com/chef/kitchen-inspec/pull/155) ([jquick](https://github.com/jquick))
 - correctly configure HTTPS WinRM [\#153](https://github.com/chef/kitchen-inspec/pull/153) ([joekhoobyar](https://github.com/joekhoobyar))
 - Allow extending which transports are supported by kitchen-inspec [\#149](https://github.com/chef/kitchen-inspec/pull/149) ([coderanger](https://github.com/coderanger))
