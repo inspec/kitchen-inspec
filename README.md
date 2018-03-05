@@ -148,7 +148,7 @@ If you need support with other testing frameworks, we recommend to place the tes
 
 ### Use remote InSpec profiles
 
-In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, call [InSpec profiles](https://github.com/chef/inspec/blob/master/docs/profiles.rst). Those can be easiliy added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
+In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/chef/inspec/blob/master/docs/profiles.md). Those can be easiliy added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
 
 ```yaml
 suites:
