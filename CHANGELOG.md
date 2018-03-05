@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.23.0](https://github.com/chef/kitchen-inspec/tree/0.23.0) (2018-02-28)
-[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.22.0...0.23.0)
+## [0.23.1](https://github.com/chef/kitchen-inspec/tree/0.23.1) (2018-03-05)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.23.0...0.23.1)
+
+**Fixed bugs:**
+
+- Add inspec exit code 101 to the approved list [\#170](https://github.com/chef/kitchen-inspec/pull/170) ([jquick](https://github.com/jquick))
+
+**Merged pull requests:**
+
+- Fix inspec profile doc URL in README [\#166](https://github.com/chef/kitchen-inspec/pull/166) ([james-stocks](https://github.com/james-stocks))
+
+## [v0.23.0](https://github.com/chef/kitchen-inspec/tree/v0.23.0) (2018-02-28)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.22.0...v0.23.0)
 
 **Closed issues:**
 
@@ -9,6 +20,7 @@
 
 **Merged pull requests:**
 
+- Release kitchen inspec 0.23.0 [\#169](https://github.com/chef/kitchen-inspec/pull/169) ([jquick](https://github.com/jquick))
 - Update kitchen inspec to support inspec 2.0. [\#168](https://github.com/chef/kitchen-inspec/pull/168) ([jquick](https://github.com/jquick))
 - Fix travis-ci bundler issue [\#162](https://github.com/chef/kitchen-inspec/pull/162) ([jquick](https://github.com/jquick))
 
