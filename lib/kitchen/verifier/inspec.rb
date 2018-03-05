@@ -93,7 +93,8 @@ module Kitchen
         end
 
         exit_code = runner.run
-        return if exit_code == 0
+        # 101 is a success as well (exit with no fails but has skipped controls)
+        return if exit_code == 0 || exit_code == 101
         raise ActionFailed, "Inspec Runner returns #{exit_code}"
       end
 
