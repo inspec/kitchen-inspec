@@ -201,6 +201,7 @@ module Kitchen
           runner_options["format"] = config[:format] unless config[:format].nil?
           runner_options["output"] = config[:output] % { platform: platform, suite: suite } unless config[:output].nil?
           runner_options["profiles_path"] = config[:profiles_path] unless config[:profiles_path].nil?
+          runner_options["reporter"] = config[:reporter] unless config[:reporter].nil?
           runner_options[:controls] = config[:controls]
 
           # check to make sure we have a valid version for caching
