@@ -17,22 +17,23 @@ matrix:
   include:
   - rvm: 2.3.6
   - rvm: 2.4.3
+  - rvm: 2.5.0
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='default profile contains_inspec'
-  - rvm: 2.4.3
+  - rvm: 2.5.0
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='backwards'
-  - rvm: 2.4.3
+  - rvm: 2.5.0
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='duplicates'
-  - rvm: 2.4.3
+  - rvm: 2.5.0
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='supermarket'
-  - rvm: 2.4.3
+  - rvm: 2.5.0
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='attributes-inline attributes-file'
