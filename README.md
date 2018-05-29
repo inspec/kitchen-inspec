@@ -86,7 +86,7 @@ suites:
 
 ### Directory Structure
 
-By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
+By default `kitchen-inspec` expects tests to be in the `test/recipes/%suite%` directory structure (we use Chef as provisioner here):
 
 ```
 .
@@ -98,7 +98,7 @@ By default `kitchen-inspec` expects test to be in `test/integration/%suite%` dir
 │   ├── default.rb
 │   └── nginx.rb
 └── test
-    └── integration
+    └── recipes
         └── default
             └── web_spec.rb
 ```
@@ -117,7 +117,7 @@ A complete profile is used here, including a custom inspec resource named `gordo
 │   ├── default.rb
 │   └── nginx.rb
 └── test
-    └── integration
+    └── recipes
         └── default
             ├── controls
             │   └── gordon.rb
@@ -125,6 +125,8 @@ A complete profile is used here, including a custom inspec resource named `gordo
             └── libraries
                 └── gordon_config.rb
 ```
+
+**Note:** If `kitchen-inspec` doesn't find a `test/recipes/%suite%` directory structure, it will look in `test/integration/%suite%`. 
 
 ### Combination with other testing frameworks
 
