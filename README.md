@@ -1,12 +1,12 @@
 # Kitchen::InSpec - A Test Kitchen Verifier for InSpec
 
-[![Build Status Master](https://travis-ci.org/chef/kitchen-inspec.svg?branch=master)](https://travis-ci.org/chef/kitchen-inspec) [![Gem Version](https://badge.fury.io/rb/kitchen-inspec.svg)](https://badge.fury.io/rb/kitchen-inspec)
+[![Build Status Master](https://travis-ci.org/inspec/kitchen-inspec.svg?branch=master)](https://travis-ci.org/inspec/kitchen-inspec) [![Gem Version](https://badge.fury.io/rb/kitchen-inspec.svg)](https://badge.fury.io/rb/kitchen-inspec)
 
 This is the kitchen driver for [InSpec](https://github.com/chef/inspec). To see the project in action, we have the following test-kitchen examples available:
 
-- [Chef and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-chef)
-- [Puppet and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-puppet)
-- [Ansible and InSpec](https://github.com/chef/inspec/tree/master/examples/kitchen-ansible)
+- [Chef and InSpec](https://github.com/inspec/inspec/tree/master/examples/kitchen-chef)
+- [Puppet and InSpec](https://github.com/inspec/inspec/tree/master/examples/kitchen-puppet)
+- [Ansible and InSpec](https://github.com/inspec/inspec/tree/master/examples/kitchen-ansible)
 
 ## Installation
 
@@ -55,11 +55,10 @@ verifier:
   port: 22
 ```
 
-If you want to customize the output file per platform or test suite
-you can use template format for your output variable. Current flags
-supported:
- * _%{platform}_
- * _%{suite}_
+If you want to customize the output file per platform or test suite you can use template format for your output variable. Current flags supported:
+
+- _%{platform}_
+- _%{suite}_
 
 ```yaml
 verifier:
@@ -148,7 +147,7 @@ If you need support with other testing frameworks, we recommend to place the tes
 
 ### Use remote InSpec profiles
 
-In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/chef/inspec/blob/master/docs/profiles.md). Those can be easiliy added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
+In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/inspec/inspec/blob/master/docs/profiles.md). Those can be easiliy added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
 
 ```yaml
 suites:
@@ -228,7 +227,7 @@ You can also define your attributes in an external file. Adapt your `.kitchen.ym
         - path: test/integration/attributes
       attrs:
         - test/integration/profile-attribute.yml
-  ```
+```
 
 ## Development
 
@@ -238,10 +237,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at <https://github.com/chef/kitchen-inspec>.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/inspec/kitchen-inspec>.
 
 ## License
 
 Apache 2.0 (see [LICENSE])
 
-[license]: https://github.com/chef/kitchen-inspec/blob/master/LICENSE
+[license]: https://github.com/inspec/kitchen-inspec/blob/master/LICENSE
