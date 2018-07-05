@@ -253,6 +253,7 @@ describe Kitchen::Verifier::Inspec do
     it "constructs a Inspec::Runner using transport config data and state" do
       config[:sudo] = "jellybeans"
       config[:sudo_command] = "allyourbase"
+      config[:proxy_command] = "gateway"
 
       expect(Inspec::Runner).to receive(:new)
         .with(
@@ -272,7 +273,8 @@ describe Kitchen::Verifier::Inspec do
             "max_wait_until_ready" => 42,
             "compression" => "maxyo",
             "compression_level" => "pico",
-            "key_files" => ["/backstage/pass"]
+            "key_files" => ["/backstage/pass"],
+            "proxy_command" => "gateway"
           )
         )
         .and_return(runner)

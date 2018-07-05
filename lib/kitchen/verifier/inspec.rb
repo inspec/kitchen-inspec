@@ -241,6 +241,7 @@ module Kitchen
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
           "compression" => kitchen[:compression],
           "compression_level" => kitchen[:compression_level],
+          "proxy_command" => config[:proxy_command],
         }
         opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
         opts["password"] = kitchen[:password] unless kitchen[:password].nil?
