@@ -158,9 +158,10 @@ module Kitchen
             # foiled by extra stuff. However, if the only entry is a "name" key, then
             # leave it alone so it can default to resolving to the Supermarket.
             unless test_item.keys == [:name]
-              type_keys = [:path, :url, :git, :compliance]
+              type_keys = [:path, :url, :git, :compliance, :supermarket]
               git_keys = [:branch, :tag, :ref]
-              test_item.delete_if { |k, v| !(type_keys + git_keys).include?(k) }
+              supermarket_keys = [:supermarket_url]
+              test_item.delete_if { |k, v| !(type_keys + git_keys + supermarket_keys).include?(k) }
             end
           elsif File.exist?(test_item)
             # if the entry is a path to something on disk, rewrite as a Hash entry with a path key.
