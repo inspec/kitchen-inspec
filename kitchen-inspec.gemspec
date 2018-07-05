@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "A Test Kitchen Verifier for InSpec"
   spec.description   = spec.summary
-  spec.homepage      = "http://github.com/chef/kitchen-inspec"
+  spec.homepage      = "http://github.com/inspec/kitchen-inspec"
 
   spec.files         = `git ls-files -z`.split("\x0")
     .reject { |f| f.match(%r{^(test|spec|features)/}) }
