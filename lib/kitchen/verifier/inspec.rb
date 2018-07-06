@@ -202,7 +202,7 @@ module Kitchen
           runner_options["format"] = config[:format] unless config[:format].nil?
           runner_options["output"] = config[:output] % { platform: platform, suite: suite } unless config[:output].nil?
           runner_options["profiles_path"] = config[:profiles_path] unless config[:profiles_path].nil?
-          runner_options["reporter"] = config[:reporter] unless config[:reporter].nil?
+          runner_options["reporter"] = config[:reporter].map { |s| s % { platform: platform, suite: suite } } unless config[:reporter].nil?
           runner_options[:controls] = config[:controls]
 
           # check to make sure we have a valid version for caching
@@ -288,6 +288,32 @@ module Kitchen
           "connection_retries" => kitchen[:connection_retries],
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
+        }
+        logger.debug "Connect to Container: #{opts['host']}"
+        opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_exec(config_data)
+        opts = {
+          "backend" => "local",
+          "logger" => logger,
+        }
+        opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_dockercli(config_data)
+        opts = {
+          "backend" => "docker",
+          "logger" => logger,
+          "host" => config_data[:container_id],
         }
         logger.debug "Connect to Container: #{opts['host']}"
         opts
