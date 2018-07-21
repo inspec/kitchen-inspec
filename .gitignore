@@ -9,3 +9,9 @@
 /tmp/
 Berksfile.lock
 .kitchen
+
+# Jetbrains IDEs
+.idea/
+
+# Rbenv
+.ruby-version
