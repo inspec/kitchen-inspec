@@ -214,6 +214,12 @@ module Kitchen
             # default to false until we default to true in inspec
             runner_options[:backend_cache] = false
           end
+          
+          if config[:backend]
+            runner_options[:backend] = config[:backend]
+          else
+            runner_options[:backend] = 'ssh'
+          end
         end
       end
 

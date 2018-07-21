@@ -34,6 +34,7 @@ describe Kitchen::Verifier::Inspec do
       kitchen_root: kitchen_root,
       test_base_path: File.join(kitchen_root, "test", "integration"),
       backend_cache: true,
+      backend: 'gcp'
     }
   end
   let(:transport_config)  { {} }
@@ -112,6 +113,17 @@ describe Kitchen::Verifier::Inspec do
         and_return("captured")
       config = verifier.send(:runner_options, transport)
       expect(config.to_hash).to include(backend_cache: true)
+    end
+
+    it 'backend option sets to gcp' do
+      config = verifier.send(:runner_options, transport)
+      expect(config.to_hash).to include(backend: 'gcp')
+    end
+
+    it 'backend option defaults to ssh' do
+      config[:backend] = nil
+      config = verifier.send(:runner_options, transport)
+      expect(config.to_hash).to include(backend: 'ssh')
     end
   end
 
