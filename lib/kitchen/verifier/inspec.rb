@@ -292,6 +292,18 @@ module Kitchen
         logger.debug "Connect to Container: #{opts['host']}"
         opts
       end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_exec(config_data)
+        opts = {
+          "backend" => "local",
+          "logger" => logger,
+        }
+        opts
+      end
     end
   end
 end
