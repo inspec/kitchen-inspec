@@ -63,8 +63,7 @@ If you want to customize the output file per platform or test suite you can use 
 ```yaml
 verifier:
   name: inspec
-  format: junit
-  output: path/to/results/%{platform}_%{suite}_inspec.xml
+  reporter: junit:path/to/results/%{platform}_%{suite}_inspec.xml
 ```
 
 You can also decide to only run specific controls, instead of a full profile. This is done by specifying a list of controls:
