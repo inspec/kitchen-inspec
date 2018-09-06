@@ -39,6 +39,51 @@ verifier:
   name: inspec
 ```
 
+Optionally specify sudo and sudo_command
+
+```yaml
+verifier:
+  name: inspec
+  sudo: true
+  sudo_command: 'skittles'
+```
+
+You can also specify the host and port to be used by InSpec when targeting the node. Otherwise, it defaults to the hostname and port used by kitchen for converging.
+
+```yaml
+verifier:
+  name: inspec
+  host: 192.168.56.40
+  port: 22
+```
+
+If you want to customize the output file per platform or test suite you can use template format for your output variable. Current flags supported:
+
+- _%{platform}_
+- _%{suite}_
+
+```yaml
+verifier:
+  name: inspec
+  reporter: junit:path/to/results/%{platform}_%{suite}_inspec.xml
+```
+
+You can also decide to only run specific controls, instead of a full profile. This is done by specifying a list of controls:
+
+```
+suites:
+  - name: supermarket
+    run_list:
+      - recipe[apt]
+      - recipe[ssh-hardening]
+    verifier:
+      inspec_tests:
+        - name: dev-sec/ssh-baseline
+      controls:
+        - sshd-46
+    ...
+```
+
 ### Expected Directory Structure
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):

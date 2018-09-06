@@ -22,6 +22,7 @@ require_relative "../../spec_helper"
 require "logger"
 
 require "kitchen/verifier/inspec"
+require "kitchen/transport/exec"
 require "kitchen/transport/ssh"
 require "kitchen/transport/winrm"
 
@@ -539,6 +540,36 @@ describe Kitchen::Verifier::Inspec do
         .and_return(runner)
 
       verifier.call(hostname: "win.dows", port: 123)
+    end
+  end
+
+  context "with an exec transport" do
+
+    let(:transport) do
+      Kitchen::Transport::Exec.new
+    end
+
+    let(:runner) do
+      instance_double("Inspec::Runner")
+    end
+
+    before do
+      allow(runner).to receive(:add_target)
+      allow(runner).to receive(:run).and_return 0
+    end
+
+    it "constructs a Inspec::Runner using transport config data and state" do
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            "backend" => "local",
+            "logger" => logger,
+            "color" => true
+          )
+        )
+        .and_return(runner)
+
+      verifier.call({})
     end
   end
 
