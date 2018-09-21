@@ -103,17 +103,24 @@ module Kitchen
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
         require "inspec"
-        # TODO: this should be easier. I would expect to load a single class here
-        # load supermarket plugin, this is part of the inspec gem
-        require "bundles/inspec-supermarket/api"
-        require "bundles/inspec-supermarket/target"
 
-        # load the compliance plugin
-        require "bundles/inspec-compliance/configuration"
-        require "bundles/inspec-compliance/support"
-        require "bundles/inspec-compliance/http"
-        require "bundles/inspec-compliance/api"
-        require "bundles/inspec-compliance/target"
+        begin
+          require "plugins/inspec-compliance/lib/inspec-compliance/api"
+        rescue LoadError
+          # try loading the v1 plugins for older versions of inspec
+          require "bundles/inspec-compliance/configuration"
+          require "bundles/inspec-compliance/support"
+          require "bundles/inspec-compliance/http"
+          require "bundles/inspec-compliance/api"
+          require "bundles/inspec-compliance/target"
+        end
+
+        begin
+          require "plugins/inspec-supermarket/lib/inspec-supermarket/api"
+        rescue LoadError
+          require "bundles/inspec-supermarket/api"
+          require "bundles/inspec-supermarket/target"
+        end
       end
 
       # Returns an Array of test suite filenames for the related suite currently
