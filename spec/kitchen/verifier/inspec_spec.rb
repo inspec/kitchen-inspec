@@ -35,6 +35,10 @@ describe Kitchen::Verifier::Inspec do
       kitchen_root: kitchen_root,
       test_base_path: File.join(kitchen_root, "test", "integration"),
       backend_cache: true,
+      reporter: [
+        "cli",
+        "junit:path/to/results/%{platform}_%{suite}_inspec.xml",
+      ],
     }
   end
   let(:transport_config)  { {} }
@@ -92,6 +96,16 @@ describe Kitchen::Verifier::Inspec do
   describe "configuration" do
     let(:transport) do
       Kitchen::Transport::Ssh.new({})
+    end
+
+    it "supports reporter config platform and suite replacements" do
+      config = verifier.send(:runner_options, transport, {}, "osx", "internal")
+      expected_value = [
+        "cli",
+        "junit:path/to/results/osx_internal_inspec.xml",
+      ]
+
+      expect(config.to_hash).to include("reporter" => expected_value)
     end
 
     it "backend_cache option sets to true" do
