@@ -241,8 +241,11 @@ module Kitchen
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
           "compression" => kitchen[:compression],
           "compression_level" => kitchen[:compression_level],
-          "proxy_command" => config[:proxy_command],
         }
+        opts["proxy_command"] = kitchen[:proxy_command] if kitchen[:proxy_command]
+        opts["bastion_host"] = kitchen[:ssh_gateway] if kitchen[:ssh_gateway]
+        opts["bastion_user"] = kitchen[:ssh_gateway_username] if kitchen[:ssh_gateway_username]
+        opts["bastion_port"] = kitchen[:ssh_gateway_port] if kitchen[:ssh_gateway_port]
         opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
         opts["password"] = kitchen[:password] unless kitchen[:password].nil?
         opts
