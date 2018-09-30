@@ -242,7 +242,7 @@ module Kitchen
           "compression" => kitchen[:compression],
           "compression_level" => kitchen[:compression_level],
         }
-        opts["proxy_command"] = kitchen[:proxy_command] if kitchen[:proxy_command]
+        opts["proxy_command"] = config[:proxy_command] if config[:proxy_command]
         opts["bastion_host"] = kitchen[:ssh_gateway] if kitchen[:ssh_gateway]
         opts["bastion_user"] = kitchen[:ssh_gateway_username] if kitchen[:ssh_gateway_username]
         opts["bastion_port"] = kitchen[:ssh_gateway_port] if kitchen[:ssh_gateway_port]
