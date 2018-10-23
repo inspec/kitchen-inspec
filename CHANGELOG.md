@@ -1,5 +1,14 @@
 # Change Log
 
+## [0.25.0](https://github.com/chef/kitchen-inspec/tree/0.25.0) (2018-09-21)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.24.0...0.25.0)
+
+**Merged pull requests:**
+
+- add new transport support - docker_cli [\#207](https://github.com/inspec/kitchen-inspec/issues/207)
+- Slim the files that ship with the Gem [\#213](https://github.com/inspec/kitchen-inspec/issues/213)
+- Allow InSpec 3.0 [\#214](https://github.com/inspec/kitchen-inspec/issues/214)
+
 ## [0.24.0](https://github.com/chef/kitchen-inspec/tree/0.24.0) (2018-09-21)
 [Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.23.1...0.24.0)
 
