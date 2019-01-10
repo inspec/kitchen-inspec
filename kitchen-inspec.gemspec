@@ -7,17 +7,15 @@ Gem::Specification.new do |spec|
   spec.name          = "kitchen-inspec"
   spec.version       = Kitchen::Verifier::INSPEC_VERSION
   spec.license       = "Apache-2.0"
-  spec.authors       = ["Fletcher Nichol"]
-  spec.email         = ["fnichol@chef.io"]
+  spec.authors       = ["Chef Software, Inc."]
+  spec.email         = ["info@chef.io"]
 
   spec.summary       = "A Test Kitchen Verifier for InSpec"
   spec.description   = spec.summary
-  spec.homepage      = "http://github.com/inspec/kitchen-inspec"
+  spec.homepage      = "https://github.com/inspec/kitchen-inspec"
 
   spec.files         = `git ls-files -z`.split("\x0")
-    .grep(/LICENSE|^lib|^bin/)
-  spec.bindir        = "bin"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+    .grep(/LICENSE|^lib|/)
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 2.1.0"
   spec.add_dependency "inspec", ">=0.34.0", "<4.0.0"
