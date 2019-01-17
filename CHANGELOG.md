@@ -1,5 +1,18 @@
 # Change Log
 
+<!-- latest_release -->
+<!-- latest_release -->
+<!-- release_rollup -->
+<!-- release_rollup -->
+<!-- latest_stable_release -->
+## [0.26.0](https://github.com/chef/kitchen-inspec/tree/0.26.0) (2019-01-11)
+[Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.25.0...0.26.0)
+
+**Merged pull requests:**
+
+- Don't ship the console and setup binaries  [\#207](https://github.com/inspec/kitchen-inspec/issues/219)
+
+<!-- latest_stable_release -->
 ## [0.25.0](https://github.com/chef/kitchen-inspec/tree/0.25.0) (2018-09-21)
 [Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.24.0...0.25.0)
 
