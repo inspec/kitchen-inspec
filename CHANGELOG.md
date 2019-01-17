@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release unreleased -->
+## Unreleased
+
+#### Merged Pull Requests
+- Wire up this project for expedfitor [#220](https://github.com/inspec/kitchen-inspec/pull/220) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=0.26.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Wire up this project for expedfitor [#220](https://github.com/inspec/kitchen-inspec/pull/220) ([tas50](https://github.com/tas50)) <!-- 0.27.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [0.26.0](https://github.com/chef/kitchen-inspec/tree/0.26.0) (2019-01-11)
