@@ -12,7 +12,6 @@ group :test do
   gem "rake", "~> 11.0"
   gem "chefstyle", "0.4.0"
   gem "concurrent-ruby", "~> 1.0"
-  gem "codeclimate-test-reporter", :require => nil
   gem "rspec"
   gem "simplecov", "~> 0.12"
   gem "countloc", "~> 0.4"
