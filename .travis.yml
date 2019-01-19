@@ -1,9 +1,9 @@
-sudo: required
 branches:
   only:
     - master
 language: ruby
 cache: bundler
+dist: xenial
 services:
   - docker
 bundler_args: "--without guard tools"
