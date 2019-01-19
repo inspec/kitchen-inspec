@@ -6,11 +6,11 @@ language: ruby
 cache: bundler
 services:
   - docker
-bundler_args: "--without integration guard tools"
+bundler_args: "--without guard tools"
 before_install:
   - gem update --system
   - gem --version
-  - rvm @global do gem install bundler
+  - rvm @global do gem install bundler -f
   - bundle --version
 matrix:
   include:
