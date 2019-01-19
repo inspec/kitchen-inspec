@@ -36,6 +36,7 @@ matrix:
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='attributes-inline attributes-file'
   - rvm: 2.5.3
+  - rvm: 2.6.0
   - rvm: ruby-head
   allow_failures:
   - rvm: ruby-head
