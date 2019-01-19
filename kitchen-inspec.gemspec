@@ -14,8 +14,7 @@ Gem::Specification.new do |spec|
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/inspec/kitchen-inspec"
 
-  spec.files         = `git ls-files -z`.split("\x0")
-    .grep(/LICENSE|^lib|/)
+  spec.files         = `git ls-files -z`.split("\x0").grep(/LICENSE|^lib/)
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 2.3.0"
   spec.add_dependency "inspec", ">=1.47.0", "<4.0.0"
