@@ -3,7 +3,7 @@
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
 #
-# Copyright (C) 2015, Chef Software Inc.
+# Copyright (C) 2015-2019, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -95,7 +95,7 @@ module Kitchen
         exit_code = runner.run
         # 101 is a success as well (exit with no fails but has skipped controls)
         return if exit_code == 0 || exit_code == 101
-        raise ActionFailed, "Inspec Runner returns #{exit_code}"
+        raise ActionFailed, "InSpec Runner returns #{exit_code}"
       end
 
       private
