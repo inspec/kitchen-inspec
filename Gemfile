@@ -2,13 +2,6 @@
 source "https://rubygems.org"
 gemspec
 
-if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.2.2")
-  gem "json", "< 2.0"
-  gem "rack", "< 2.0"
-  gem "ruby_dep", "< 1.4.0"
-  gem "listen", "< 3.0.0"
-end
-
 group :guard do
   gem "guard-rspec",    :require => nil
   gem "guard-rubocop",  :require => nil
