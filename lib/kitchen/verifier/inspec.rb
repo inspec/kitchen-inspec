@@ -142,7 +142,7 @@ module Kitchen
         base = File.join(base, "inspec") if legacy_mode
 
         # only return the directory if it exists
-        Pathname.new(base).exist? ? [{ :path => base }] : []
+        Pathname.new(base).exist? ? [{ path: base }] : []
       end
 
       # Takes config[:inspec_tests] and modifies any value with a key of :path by adding the full path

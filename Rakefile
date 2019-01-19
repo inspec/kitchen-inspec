@@ -9,7 +9,7 @@ require "rubocop/rake_task"
 RSpec::Core::RakeTask.new(:spec)
 
 desc "Run all test suites"
-task :test => [:spec]
+task test: [:spec]
 
 # Rubocop
 desc "Run Rubocop lint checks"
@@ -30,9 +30,9 @@ task :stats do
 end
 
 desc "Run all quality tasks"
-task :quality => [:lint, :stats]
+task quality: [:lint, :stats]
 
-task :default => [:test, :quality]
+task default: [:test, :quality]
 
 # Automatically generate a changelog for this project. Only loaded if
 # the necessary gem is installed.
