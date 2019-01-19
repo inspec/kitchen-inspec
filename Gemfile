@@ -15,7 +15,6 @@ group :guard do
 end
 
 group :test do
-  gem "bundler", "~> 1.10"
   gem "minitest", "~> 5.5"
   gem "rake", "~> 11.0"
   gem "chefstyle", "0.4.0"
