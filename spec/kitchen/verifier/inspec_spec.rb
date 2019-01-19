@@ -118,16 +118,6 @@ describe Kitchen::Verifier::Inspec do
       config = verifier.send(:runner_options, transport)
       expect(config.to_hash).to include(backend_cache: false)
     end
-
-    it "inspec version warn for backend_cache" do
-      config[:backend_cache] = true
-      stub_const("Inspec::VERSION", "1.46.0")
-      expect_any_instance_of(Logger).to receive(:warn)
-        .with("backend_cache requires InSpec version >= 1.47.0")
-        .and_return("captured")
-      config = verifier.send(:runner_options, transport)
-      expect(config.to_hash).to include(backend_cache: true)
-    end
   end
 
   describe "#finalize_config!" do

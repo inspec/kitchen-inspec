@@ -207,8 +207,6 @@ module Kitchen
 
           # check to make sure we have a valid version for caching
           if config[:backend_cache]
-            backend_cache_msg = "backend_cache requires InSpec version >= 1.47.0"
-            logger.warn backend_cache_msg if Gem::Version.new(::Inspec::VERSION) < Gem::Version.new("1.47.0")
             runner_options[:backend_cache] = config[:backend_cache]
           else
             # default to false until we default to true in inspec
