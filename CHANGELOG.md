@@ -1,9 +1,10 @@
 # Change Log
 
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 1.0.1 -->
+## [v1.0.1](https://github.com/inspec/kitchen-inspec/tree/v1.0.1) (2019-01-23)
 
 #### Merged Pull Requests
+- Pass in extra inspec attributes, support bastion from transport options [#211](https://github.com/inspec/kitchen-inspec/pull/211) ([frezbo](https://github.com/frezbo))
 - Require Ruby 2.3+ / InSpec 1.47+ and update dev deps [#221](https://github.com/inspec/kitchen-inspec/pull/221) ([tas50](https://github.com/tas50))
 - Wire up this project for expedfitor [#220](https://github.com/inspec/kitchen-inspec/pull/220) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
@@ -11,6 +12,7 @@
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Pass in extra inspec attributes, support bastion from transport options [#211](https://github.com/inspec/kitchen-inspec/pull/211) ([frezbo](https://github.com/frezbo)) <!-- 1.0.1 -->
 - Require Ruby 2.3+ / InSpec 1.47+ and update dev deps [#221](https://github.com/inspec/kitchen-inspec/pull/221) ([tas50](https://github.com/tas50)) <!-- 1.0.0 -->
 - Wire up this project for expedfitor [#220](https://github.com/inspec/kitchen-inspec/pull/220) ([tas50](https://github.com/tas50)) <!-- 0.27.0 -->
 <!-- release_rollup -->
