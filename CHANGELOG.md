@@ -4,12 +4,14 @@
 ## Unreleased
 
 #### Merged Pull Requests
+- Require Ruby 2.3+ / InSpec 1.47+ and update dev deps [#221](https://github.com/inspec/kitchen-inspec/pull/221) ([tas50](https://github.com/tas50))
 - Wire up this project for expedfitor [#220](https://github.com/inspec/kitchen-inspec/pull/220) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 <!-- release_rollup since=0.26.0 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Require Ruby 2.3+ / InSpec 1.47+ and update dev deps [#221](https://github.com/inspec/kitchen-inspec/pull/221) ([tas50](https://github.com/tas50)) <!-- 1.0.0 -->
 - Wire up this project for expedfitor [#220](https://github.com/inspec/kitchen-inspec/pull/220) ([tas50](https://github.com/tas50)) <!-- 0.27.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
