@@ -118,16 +118,6 @@ describe Kitchen::Verifier::Inspec do
       config = verifier.send(:runner_options, transport)
       expect(config.to_hash).to include(backend_cache: false)
     end
-
-    it "inspec version warn for backend_cache" do
-      config[:backend_cache] = true
-      stub_const("Inspec::VERSION", "1.46.0")
-      expect_any_instance_of(Logger).to receive(:warn).
-        with("backend_cache requires InSpec version >= 1.47.0").
-        and_return("captured")
-      config = verifier.send(:runner_options, transport)
-      expect(config.to_hash).to include(backend_cache: true)
-    end
   end
 
   describe "#finalize_config!" do
@@ -372,8 +362,7 @@ describe Kitchen::Verifier::Inspec do
 
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany"
         ) }, hash_including(
@@ -389,8 +378,7 @@ describe Kitchen::Verifier::Inspec do
 
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany"
         ) }, hash_including(
@@ -403,8 +391,7 @@ describe Kitchen::Verifier::Inspec do
     it "find test directory for runner" do
       ensure_suite_directory("germany")
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany"
         ) }, anything)
@@ -415,8 +402,7 @@ describe Kitchen::Verifier::Inspec do
     it "find test directory for runner if legacy" do
       create_legacy_test_directories
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany", "inspec"
         ) }, anything)
@@ -471,7 +457,7 @@ describe Kitchen::Verifier::Inspec do
 
     let(:config) do
       {
-        inspec_tests: [{ :url => "https://github.com/nathenharvey/tmp_compliance_profile" }],
+        inspec_tests: [{ url: "https://github.com/nathenharvey/tmp_compliance_profile" }],
         kitchen_root: kitchen_root,
         test_base_path: File.join(kitchen_root, "test", "integration"),
       }
@@ -485,10 +471,9 @@ describe Kitchen::Verifier::Inspec do
     it "find test directory and remote profile" do
       ensure_suite_directory("local")
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(config[:test_base_path], "local") }, anything)
+      expect(runner).to receive(:add_target).with({ path: File.join(config[:test_base_path], "local") }, anything)
       expect(runner).to receive(:add_target).with(
-        { :url => "https://github.com/nathenharvey/tmp_compliance_profile" }, anything)
+        { url: "https://github.com/nathenharvey/tmp_compliance_profile" }, anything)
       verifier.call({})
     end
   end

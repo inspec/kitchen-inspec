@@ -1,41 +1,42 @@
-sudo: required
 branches:
   only:
     - master
 language: ruby
 cache: bundler
+dist: xenial
 services:
   - docker
-bundler_args: "--without integration guard tools"
+bundler_args: "--without guard tools"
 before_install:
   - gem update --system
   - gem --version
-  - rvm @global do gem install bundler
+  - rvm @global do gem install bundler -f
   - bundle --version
 matrix:
   include:
-  - rvm: 2.3.7
-  - rvm: 2.4.4
+  - rvm: 2.3.8
+  - rvm: 2.4.5
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='default profile contains_inspec'
-  - rvm: 2.4.4
+  - rvm: 2.4.5
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='backwards'
-  - rvm: 2.4.4
+  - rvm: 2.4.5
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='duplicates'
-  - rvm: 2.4.4
+  - rvm: 2.4.5
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='supermarket'
-  - rvm: 2.4.4
+  - rvm: 2.4.5
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE="test:integration" OS='attributes-inline attributes-file'
-  - rvm: 2.5.1
+  - rvm: 2.5.3
+  - rvm: 2.6.0
   - rvm: ruby-head
   allow_failures:
   - rvm: ruby-head

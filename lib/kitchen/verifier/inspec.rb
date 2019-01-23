@@ -3,7 +3,7 @@
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
 #
-# Copyright (C) 2015, Chef Software Inc.
+# Copyright (C) 2015-2019, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -95,7 +95,7 @@ module Kitchen
         exit_code = runner.run
         # 101 is a success as well (exit with no fails but has skipped controls)
         return if exit_code == 0 || exit_code == 101
-        raise ActionFailed, "Inspec Runner returns #{exit_code}"
+        raise ActionFailed, "InSpec Runner returns #{exit_code}"
       end
 
       private
@@ -142,7 +142,7 @@ module Kitchen
         base = File.join(base, "inspec") if legacy_mode
 
         # only return the directory if it exists
-        Pathname.new(base).exist? ? [{ :path => base }] : []
+        Pathname.new(base).exist? ? [{ path: base }] : []
       end
 
       # Takes config[:inspec_tests] and modifies any value with a key of :path by adding the full path
@@ -207,8 +207,6 @@ module Kitchen
 
           # check to make sure we have a valid version for caching
           if config[:backend_cache]
-            backend_cache_msg = "backend_cache requires InSpec version >= 1.47.0"
-            logger.warn backend_cache_msg if Gem::Version.new(::Inspec::VERSION) < Gem::Version.new("1.47.0")
             runner_options[:backend_cache] = config[:backend_cache]
           else
             # default to false until we default to true in inspec
