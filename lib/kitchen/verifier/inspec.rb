@@ -320,13 +320,13 @@ module Kitchen
         opts
       end
 
-       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
-       #
-       # @return [Hash] a configuration hash of string-based keys
-       # @api private
-       def runner_options_for_docker(config_data)
-         runner_options_for_dockercli(config_data)
-       end
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_docker(config_data)
+        runner_options_for_dockercli(config_data)
+      end
     end
   end
 end
