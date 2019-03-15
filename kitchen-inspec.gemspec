@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").grep(/LICENSE|^lib/)
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 2.3.0"
-  spec.add_dependency "inspec", ">=1.47.0", "<4.0.0"
-  spec.add_dependency "test-kitchen", "~> 1.6"
+  spec.add_dependency "inspec", ">= 1.47", "< 5.0"
+  spec.add_dependency "test-kitchen", ">= 1.6", "< 3"
   spec.add_dependency "hashie", "~> 3.4"
 end
