@@ -9,3 +9,4 @@
 /tmp/
 Berksfile.lock
 .kitchen
+*.gem
