@@ -1,25 +1,22 @@
 # Change Log
 
-<!-- latest_release 1.1.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+<!-- release_rollup -->
+<!-- release_rollup -->
+<!-- latest_stable_release -->
 ## [v1.1.0](https://github.com/inspec/kitchen-inspec/tree/v1.1.0) (2019-03-18)
 
 #### Merged Pull Requests
 - Update to allow Test Kitchen 2.0 and InSpec 4.0 [#226](https://github.com/inspec/kitchen-inspec/pull/226) ([tas50](https://github.com/tas50))
-<!-- latest_release -->
-<!-- release_rollup since=1.0.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Update to allow Test Kitchen 2.0 and InSpec 4.0 [#226](https://github.com/inspec/kitchen-inspec/pull/226) ([tas50](https://github.com/tas50)) <!-- 1.1.0 -->
-<!-- release_rollup -->
 <!-- latest_stable_release -->
+
 ## [v1.0.1](https://github.com/inspec/kitchen-inspec/tree/v1.0.1) (2019-01-25)
 
 #### Merged Pull Requests
 - Wire up this project for expedfitor [#220](https://github.com/inspec/kitchen-inspec/pull/220) ([tas50](https://github.com/tas50))
 - Require Ruby 2.3+ / InSpec 1.47+ and update dev deps [#221](https://github.com/inspec/kitchen-inspec/pull/221) ([tas50](https://github.com/tas50))
 - Pass in extra inspec attributes, support bastion from transport options [#211](https://github.com/inspec/kitchen-inspec/pull/211) ([frezbo](https://github.com/frezbo))
-<!-- latest_stable_release -->
 
 ## [0.26.0](https://github.com/chef/kitchen-inspec/tree/0.26.0) (2019-01-11)
 [Full Changelog](https://github.com/chef/kitchen-inspec/compare/v0.25.0...0.26.0)
