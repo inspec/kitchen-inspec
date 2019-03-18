@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 1.1.0 -->
+## [v1.1.0](https://github.com/inspec/kitchen-inspec/tree/v1.1.0) (2019-03-18)
+
+#### Merged Pull Requests
+- Update to allow Test Kitchen 2.0 and InSpec 4.0 [#226](https://github.com/inspec/kitchen-inspec/pull/226) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=1.0.1 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update to allow Test Kitchen 2.0 and InSpec 4.0 [#226](https://github.com/inspec/kitchen-inspec/pull/226) ([tas50](https://github.com/tas50)) <!-- 1.1.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v1.0.1](https://github.com/inspec/kitchen-inspec/tree/v1.0.1) (2019-01-25)
