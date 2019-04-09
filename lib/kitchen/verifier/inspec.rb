@@ -69,9 +69,8 @@ module Kitchen
         opts = runner_options(instance.transport, state, instance.platform.name, instance.suite.name)
         logger.debug "Options #{opts.inspect}"
 
-        # add attributes
-        opts[:attrs] = config[:attrs]
-        opts[:attributes] = Hashie.stringify_keys config[:attributes] unless config[:attributes].nil?
+        # add inputs
+        setup_inputs(opts, config)
 
         # setup logger
         ::Inspec::Log.init(STDERR)
@@ -99,6 +98,31 @@ module Kitchen
       end
 
       private
+
+      def setup_inputs(opts, config)
+        inspec_version = Gem::Version.new(::Inspec::VERSION)
+
+        # Handle input files
+        if config[:attrs]
+          logger.warn("kitchen-inspec: please use 'input-files' instead of 'attrs'")
+          config[:input_files] = config[:attrs]
+        end
+        if config[:input_files]
+          # Note that inspec expects the singular inflection, input_file
+          files_key = inspec_version >= Gem::Version.new('3.10') ? :input_file : :attrs
+          opts[files_key] = config[:input_files]
+        end
+
+        # Handle YAML => Hash inputs
+        if config[:attributes]
+          logger.warn("kitchen-inspec: please use 'inputs' instead of 'attributes'")
+          config[:inputs] = config[:attributes]
+        end
+        if config[:inputs]
+          inputs_key = inspec_version >= Gem::Version.new('3.11') ? :inputs : :attributes
+          opts[inputs_key] = Hashie.stringify_keys config[:inputs]
+        end
+      end
 
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
