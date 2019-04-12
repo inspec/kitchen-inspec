@@ -1,5 +1,11 @@
 # Kitchen::InSpec - A Test Kitchen Verifier for InSpec
 
+* **Project State: Active**
+* **Issues Response SLA: 3 business days**
+* **Pull Request Response SLA: 3 business days**
+
+For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
+
 [![Build Status Master](https://travis-ci.org/inspec/kitchen-inspec.svg?branch=master)](https://travis-ci.org/inspec/kitchen-inspec) [![Gem Version](https://badge.fury.io/rb/kitchen-inspec.svg)](https://badge.fury.io/rb/kitchen-inspec)
 
 This is the kitchen driver for [InSpec](https://github.com/chef/inspec). To see the project in action, we have the following test-kitchen examples available:
