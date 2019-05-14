@@ -1,8 +1,16 @@
 # Change Log
 
-<!-- latest_release -->
+<!-- latest_release 1.1.1 -->
+## [v1.1.1](https://github.com/inspec/kitchen-inspec/tree/v1.1.1) (2019-05-14)
+
+#### Merged Pull Requests
+- Update README / CODEOWNERS for ORP [#230](https://github.com/inspec/kitchen-inspec/pull/230) ([miah](https://github.com/miah))
 <!-- latest_release -->
 <!-- release_rollup -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update README / CODEOWNERS for ORP [#230](https://github.com/inspec/kitchen-inspec/pull/230) ([miah](https://github.com/miah)) <!-- 1.1.1 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v1.1.0](https://github.com/inspec/kitchen-inspec/tree/v1.1.0) (2019-03-18)
