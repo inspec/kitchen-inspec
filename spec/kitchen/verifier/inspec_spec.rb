@@ -139,24 +139,24 @@ describe Kitchen::Verifier::Inspec do
     end
   end
 
-  describe '#setup_inputs' do
+  describe "#setup_inputs" do
     let(:input_opts) { {} }
     let(:input_cfg) { {} }
     context "when InSpec is recent" do
       context "when file inputs are provided" do
         context "using modern syntax" do
-          it 'should place them in input_file' do
-            stub_const('Inspec::VERSION', '3.99.0')
-            input_cfg[:input_files] = ['a.yaml', 'b.yaml']
+          it "should place them in input_file" do
+            stub_const("Inspec::VERSION", "3.99.0")
+            input_cfg[:input_files] = ["a.yaml", "b.yaml"]
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :input_file
             expect(input_opts[:input_file]).to eq(input_cfg[:input_files])
           end
         end
         context "using legacy syntax" do
-          it 'should place them in input_file' do
-            stub_const('Inspec::VERSION', '3.99.0')
-            input_cfg[:attrs] = ['a.yaml', 'b.yaml']
+          it "should place them in input_file" do
+            stub_const("Inspec::VERSION", "3.99.0")
+            input_cfg[:attrs] = ["a.yaml", "b.yaml"]
             # TODO: this should emit a warning
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :input_file
@@ -166,21 +166,21 @@ describe Kitchen::Verifier::Inspec do
       end
       context "when hash inputs are provided" do
         context "using modern syntax" do
-          it 'should place them in inputs' do
-            stub_const('Inspec::VERSION', '3.99.0')
+          it "should place them in inputs" do
+            stub_const("Inspec::VERSION", "3.99.0")
             input_cfg[:inputs] = { a: 1, b: 2 }
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :inputs
-            expect(input_opts[:inputs]).to eq({ 'a' => 1, 'b' => 2 })
+            expect(input_opts[:inputs]).to eq({ "a" => 1, "b" => 2 })
           end
         end
         context "using legacy syntax" do
-          it 'should place them in inputs' do
-            stub_const('Inspec::VERSION', '3.99.0')
+          it "should place them in inputs" do
+            stub_const("Inspec::VERSION", "3.99.0")
             input_cfg[:attributes] = { a: 1, b: 2 }
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :inputs
-            expect(input_opts[:inputs]).to eq({ 'a' => 1, 'b' => 2 })
+            expect(input_opts[:inputs]).to eq({ "a" => 1, "b" => 2 })
           end
         end
       end
@@ -189,18 +189,18 @@ describe Kitchen::Verifier::Inspec do
     context "when InSpec is old" do
       context "when file inputs are provided" do
         context "using modern syntax" do
-          it 'should place them in attrs' do
-            stub_const('Inspec::VERSION', '3.0.0')
-            input_cfg[:input_files] = ['a.yaml', 'b.yaml']
+          it "should place them in attrs" do
+            stub_const("Inspec::VERSION", "3.0.0")
+            input_cfg[:input_files] = ["a.yaml", "b.yaml"]
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :attrs
             expect(input_opts[:attrs]).to eq(input_cfg[:input_files])
           end
         end
         context "using legacy syntax" do
-          it 'should place them in input_file' do
-            stub_const('Inspec::VERSION', '3.0.0')
-            input_cfg[:attrs] = ['a.yaml', 'b.yaml']
+          it "should place them in input_file" do
+            stub_const("Inspec::VERSION", "3.0.0")
+            input_cfg[:attrs] = ["a.yaml", "b.yaml"]
             # TODO: this should emit a warning
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :attrs
@@ -210,21 +210,21 @@ describe Kitchen::Verifier::Inspec do
       end
       context "when hash inputs are provided" do
         context "using modern syntax" do
-          it 'should place them in attributes' do
-            stub_const('Inspec::VERSION', '3.0.0')
+          it "should place them in attributes" do
+            stub_const("Inspec::VERSION", "3.0.0")
             input_cfg[:inputs] = { a: 1, b: 2 }
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :attributes
-            expect(input_opts[:attributes]).to eq({ 'a' => 1, 'b' => 2 })
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
           end
         end
         context "using legacy syntax" do
-          it 'should place them in attributes' do
-            stub_const('Inspec::VERSION', '3.0.0')
+          it "should place them in attributes" do
+            stub_const("Inspec::VERSION", "3.0.0")
             input_cfg[:attributes] = { a: 1, b: 2 }
             verifier.send(:setup_inputs, input_opts, input_cfg)
             expect(input_opts.keys).to include :attributes
-            expect(input_opts[:attributes]).to eq({ 'a' => 1, 'b' => 2 })
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
           end
         end
       end

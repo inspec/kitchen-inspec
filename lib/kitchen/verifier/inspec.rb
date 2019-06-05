@@ -109,7 +109,7 @@ module Kitchen
         end
         if config[:input_files]
           # Note that inspec expects the singular inflection, input_file
-          files_key = inspec_version >= Gem::Version.new('3.10') ? :input_file : :attrs
+          files_key = inspec_version >= Gem::Version.new("3.10") ? :input_file : :attrs
           opts[files_key] = config[:input_files]
         end
 
@@ -119,7 +119,7 @@ module Kitchen
           config[:inputs] = config[:attributes]
         end
         if config[:inputs]
-          inputs_key = inspec_version >= Gem::Version.new('3.11') ? :inputs : :attributes
+          inputs_key = inspec_version >= Gem::Version.new("3.11") ? :inputs : :attributes
           opts[inputs_key] = Hashie.stringify_keys config[:inputs]
         end
       end
