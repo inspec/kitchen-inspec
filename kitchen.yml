@@ -57,7 +57,7 @@ suites:
       - recipe[os_prepare]
     verifier:
       inspec_tests:
-        - path: ./test/integration/attributes
+        - path: ./test/integration/inputs-inline
       inputs:
         user: value_from_kitchen_yml_1
         password: value_from_kitchen_yml_2
@@ -66,9 +66,9 @@ suites:
       - recipe[os_prepare]
     verifier:
       inspec_tests:
-        - test/integration/attributes
+        - test/integration/inputs-file
       input_files:
-        - test/integration/profile-attribute.yml
+        - test/integration/profile-inputs.yml
   # before you are able to use the compliance plugin, you need to run
   # insecure is only required if you use self-signed certificates
   # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
