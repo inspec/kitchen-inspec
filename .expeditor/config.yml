@@ -6,7 +6,8 @@ slack:
 
 # This publish is triggered by the `built_in:publish_rubygems` artifact_action.
 rubygems:
-  - kitchen-inspec
+  - kitchen-inspec:
+      gemspec_path: ./ # Just here to force this to be a hash
 
 github:
   # This deletes the GitHub PR branch after successfully merged into the release branch
