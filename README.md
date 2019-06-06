@@ -241,26 +241,28 @@ suites:
           compliance: base/ssh
 ```
 
-### Use attributes with your inspec profiles
+### Use inputs with your inspec profiles
 
-To run a profile with attributes defined inline, you can adapt your `.kitchen.yml`:
+Note: InSpec Inputs were formerly known as InSpec Attributes. As they are not related to Chef Attributes, they have been renamed to reduce confusion.
+
+To run a profile with inputs defined inline, you can adapt your `.kitchen.yml`:
 
 ```yaml
     verifier:
       inspec_tests:
         - path: test/integration/attributes
-      attributes:
+      inputs:
         user: bob
         password: secret
 ```
 
-You can also define your attributes in an external file. Adapt your `.kitchen.yml` to point to that file:
+You can also define your inputs in external files. Adapt your `.kitchen.yml` to point to those files:
 
 ```yaml
     verifier:
       inspec_tests:
         - path: test/integration/attributes
-      attrs:
+      input_files:
         - test/integration/profile-attribute.yml
 ```
 
