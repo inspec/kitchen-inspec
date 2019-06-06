@@ -166,21 +166,21 @@ describe Kitchen::Verifier::Inspec do
       end
       context "when hash inputs are provided" do
         context "using modern syntax" do
-          it "should place them in inputs" do
+          it "should place them in attributes" do
             stub_const("Inspec::VERSION", "3.99.0")
             input_cfg[:inputs] = { a: 1, b: 2 }
             verifier.send(:setup_inputs, input_opts, input_cfg)
-            expect(input_opts.keys).to include :inputs
-            expect(input_opts[:inputs]).to eq({ "a" => 1, "b" => 2 })
+            expect(input_opts.keys).to include :attributes
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
           end
         end
         context "using legacy syntax" do
-          it "should place them in inputs" do
+          it "should place them in attributes" do
             stub_const("Inspec::VERSION", "3.99.0")
             input_cfg[:attributes] = { a: 1, b: 2 }
             verifier.send(:setup_inputs, input_opts, input_cfg)
-            expect(input_opts.keys).to include :inputs
-            expect(input_opts[:inputs]).to eq({ "a" => 1, "b" => 2 })
+            expect(input_opts.keys).to include :attributes
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
           end
         end
       end

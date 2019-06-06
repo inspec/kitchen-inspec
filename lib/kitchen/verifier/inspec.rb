@@ -119,7 +119,8 @@ module Kitchen
           config[:inputs] = config[:attributes]
         end
         if config[:inputs]
-          inputs_key = inspec_version >= Gem::Version.new("3.11") ? :inputs : :attributes
+          # Version here is dependent on https://github.com/inspec/inspec/issues/3856
+          inputs_key = inspec_version >= Gem::Version.new("4.10") ? :inputs : :attributes
           opts[inputs_key] = Hashie.stringify_keys config[:inputs]
         end
       end
