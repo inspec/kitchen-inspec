@@ -351,9 +351,9 @@ module Kitchen
       # @api private
       def runner_options_for_docker(config_data)
         opts = {
-          'backend' => 'docker',
-          'logger' => logger,
-          'host' => config_data[:container_id],
+          "backend" => "docker",
+          "logger" => logger,
+          "host" => config_data[:container_id],
         }
         logger.debug "Connect to Container: #{opts['host']}"
         opts
