@@ -1,24 +1,21 @@
 # Change Log
 
-<!-- latest_release 1.2.0 -->
-## [v1.2.0](https://github.com/inspec/kitchen-inspec/tree/v1.2.0) (2019-06-06)
-
-#### Merged Pull Requests
-- Rename attributes options to input options [#229](https://github.com/inspec/kitchen-inspec/pull/229) ([clintoncwolfe](https://github.com/clintoncwolfe))
+<!-- latest_release -->
 <!-- latest_release -->
 <!-- release_rollup -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Rename attributes options to input options [#229](https://github.com/inspec/kitchen-inspec/pull/229) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 1.2.0 -->
-- Update README / CODEOWNERS for ORP [#230](https://github.com/inspec/kitchen-inspec/pull/230) ([miah](https://github.com/miah)) <!-- 1.1.1 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
+## [v1.2.0](https://github.com/inspec/kitchen-inspec/tree/v1.2.0) (2019-08-15)
+
+#### Merged Pull Requests
+- Update README / CODEOWNERS for ORP [#230](https://github.com/inspec/kitchen-inspec/pull/230) ([miah](https://github.com/miah))
+- Rename attributes options to input options [#229](https://github.com/inspec/kitchen-inspec/pull/229) ([clintoncwolfe](https://github.com/clintoncwolfe))
+<!-- latest_stable_release -->
+
 ## [v1.1.0](https://github.com/inspec/kitchen-inspec/tree/v1.1.0) (2019-03-18)
 
 #### Merged Pull Requests
 - Update to allow Test Kitchen 2.0 and InSpec 4.0 [#226](https://github.com/inspec/kitchen-inspec/pull/226) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v1.0.1](https://github.com/inspec/kitchen-inspec/tree/v1.0.1) (2019-01-25)
 
