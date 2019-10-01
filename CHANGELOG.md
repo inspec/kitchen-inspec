@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 1.3.0 -->
+## [v1.3.0](https://github.com/inspec/kitchen-inspec/tree/v1.3.0) (2019-10-01)
+
+#### Merged Pull Requests
+- Add relative path support for the GIT fetcher [#239](https://github.com/inspec/kitchen-inspec/pull/239) ([bdwyertech](https://github.com/bdwyertech))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=1.2.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Add relative path support for the GIT fetcher [#239](https://github.com/inspec/kitchen-inspec/pull/239) ([bdwyertech](https://github.com/bdwyertech)) <!-- 1.3.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v1.2.0](https://github.com/inspec/kitchen-inspec/tree/v1.2.0) (2019-08-15)
