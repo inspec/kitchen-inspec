@@ -184,7 +184,7 @@ module Kitchen
             # leave it alone so it can default to resolving to the Supermarket.
             unless test_item.keys == [:name]
               type_keys = [:path, :url, :git, :compliance, :supermarket]
-              git_keys = [:branch, :tag, :ref]
+              git_keys = [:branch, :tag, :ref, :relative_path]
               supermarket_keys = [:supermarket_url]
               test_item.delete_if { |k, v| !(type_keys + git_keys + supermarket_keys).include?(k) }
             end
