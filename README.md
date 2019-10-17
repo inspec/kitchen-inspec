@@ -1,5 +1,11 @@
 # Kitchen::InSpec - A Test Kitchen Verifier for InSpec
 
+* **Project State: Active**
+* **Issues Response SLA: 3 business days**
+* **Pull Request Response SLA: 3 business days**
+
+For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
+
 [![Build Status Master](https://travis-ci.org/inspec/kitchen-inspec.svg?branch=master)](https://travis-ci.org/inspec/kitchen-inspec) [![Gem Version](https://badge.fury.io/rb/kitchen-inspec.svg)](https://badge.fury.io/rb/kitchen-inspec)
 
 This is the kitchen driver for [InSpec](https://github.com/chef/inspec). To see the project in action, we have the following test-kitchen examples available:
@@ -9,6 +15,8 @@ This is the kitchen driver for [InSpec](https://github.com/chef/inspec). To see 
 - [Ansible and InSpec](https://github.com/inspec/inspec/tree/master/examples/kitchen-ansible)
 
 ## Installation
+
+`Note:` kitchen-inspec ships as part of ChefDK. Installation is not necessary for DK users.
 
 Add this line to your application's Gemfile:
 
@@ -55,35 +63,7 @@ verifier:
   port: 22
 ```
 
-If you want to customize the output file per platform or test suite you can use template format for your output variable. Current flags supported:
-
-- _%{platform}_
-- _%{suite}_
-
-```yaml
-verifier:
-  name: inspec
-  format: junit
-  output: path/to/results/%{platform}_%{suite}_inspec.xml
-```
-
-You can also decide to only run specific controls, instead of a full profile. This is done by specifying a list of controls:
-
-```
-suites:
-  - name: supermarket
-    run_list:
-      - recipe[apt]
-      - recipe[ssh-hardening]
-    verifier:
-      inspec_tests:
-        - name: dev-sec/ssh-baseline
-      controls:
-        - sshd-46
-    ...
-```
-
-### Directory Structure
+### Expected Directory Structure
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
 
@@ -102,9 +82,9 @@ By default `kitchen-inspec` expects test to be in `test/integration/%suite%` dir
             └── web_spec.rb
 ```
 
-### Directory Structure with complete profile
+#### Directory Structure with complete profile
 
-A complete profile is used here, including a custom inspec resource named `gordon_config`:
+A complete profile is used here, including a custom InSpec resource named `gordon_config`:
 
 ```
 .
@@ -125,7 +105,7 @@ A complete profile is used here, including a custom inspec resource named `gordo
                 └── gordon_config.rb
 ```
 
-### Combination with other testing frameworks
+#### Combination with other testing frameworks
 
 If you need support with other testing frameworks, we recommend to place the tests in `test/integration/%suite%/inspec`:
 
@@ -145,9 +125,63 @@ If you need support with other testing frameworks, we recommend to place the tes
                 └── web_spec.rb
 ```
 
+### Specifying the Sudo Command
+
+You can enable/disable sudo and set your own custom sudo command.
+
+```yaml
+verifier:
+  name: inspec
+  sudo: true
+  sudo_command: 'skittles'
+```
+
+### Custom Host Settings
+
+You can also specify the host, port, and proxy settings to be used by InSpec when targeting the node. Otherwise, it defaults to the hostname and port used by kitchen for converging.
+
+```yaml
+verifier:
+  name: inspec
+  host: 192.168.56.40
+  port: 22
+  proxy_command: ssh user@1.2.3.4 -W %h:%p
+```
+
+### Custom Outputs
+
+If you want to customize the output file per platform or test suite you can use template format for your output variable. Current flags supported:
+
+- _%{platform}_
+- _%{suite}_
+
+```yaml
+verifier:
+  name: inspec
+  reporter:
+    - cli
+    - junit:path/to/results/%{platform}_%{suite}_inspec.xml
+```
+
+You can also decide to only run specific controls, instead of a full profile. This is done by specifying a list of controls:
+
+```yaml
+suites:
+  - name: supermarket
+    run_list:
+      - recipe[apt]
+      - recipe[ssh-hardening]
+    verifier:
+      inspec_tests:
+        - name: dev-sec/ssh-baseline
+      controls:
+        - sshd-46
+    ...
+```
+
 ### Use remote InSpec profiles
 
-In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/inspec/inspec/blob/master/docs/profiles.md). Those can be easiliy added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
+In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/inspec/inspec/blob/master/docs/profiles.md). Those can be easily added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
 
 ```yaml
 suites:
@@ -192,6 +226,7 @@ suites:
         - name: hardening/ssh-hardening  # name only defaults to supermarket
         - name: ssh-supermarket  # alternatively, you can explicitly specify that the profile is from supermarket in this way
           supermarket: hardening/ssh-hardening
+          supermarket_url: http://supermarket.example.com
   # before you are able to use the compliance plugin, you need to run
   # insecure is only required if you use self-signed certificates
   # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
@@ -206,26 +241,28 @@ suites:
           compliance: base/ssh
 ```
 
-### Use attributes with your inspec profiles
+### Use inputs with your inspec profiles
 
-To run a profile with attributes defined inline, you can adapt your `.kitchen.yml`:
+Note: InSpec Inputs were formerly known as InSpec Attributes. As they are not related to Chef Attributes, they have been renamed to reduce confusion.
+
+To run a profile with inputs defined inline, you can adapt your `.kitchen.yml`:
 
 ```yaml
     verifier:
       inspec_tests:
         - path: test/integration/attributes
-      attributes:
+      inputs:
         user: bob
         password: secret
 ```
 
-You can also define your attributes in an external file. Adapt your `.kitchen.yml` to point to that file:
+You can also define your inputs in external files. Adapt your `.kitchen.yml` to point to those files:
 
 ```yaml
     verifier:
       inspec_tests:
         - path: test/integration/attributes
-      attrs:
+      input_files:
         - test/integration/profile-attribute.yml
 ```
 

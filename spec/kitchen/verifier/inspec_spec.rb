@@ -22,6 +22,7 @@ require_relative "../../spec_helper"
 require "logger"
 
 require "kitchen/verifier/inspec"
+require "kitchen/transport/exec"
 require "kitchen/transport/ssh"
 require "kitchen/transport/winrm"
 
@@ -34,7 +35,11 @@ describe Kitchen::Verifier::Inspec do
       kitchen_root: kitchen_root,
       test_base_path: File.join(kitchen_root, "test", "integration"),
       backend_cache: true,
-      backend: 'gcp'
+      backend: 'gcp',
+      reporter: [
+        "cli",
+        "junit:path/to/results/%{platform}_%{suite}_inspec.xml",
+      ],
     }
   end
   let(:transport_config)  { {} }
@@ -94,6 +99,16 @@ describe Kitchen::Verifier::Inspec do
       Kitchen::Transport::Ssh.new({})
     end
 
+    it "supports reporter config platform and suite replacements" do
+      config = verifier.send(:runner_options, transport, {}, "osx", "internal")
+      expected_value = [
+        "cli",
+        "junit:path/to/results/osx_internal_inspec.xml",
+      ]
+
+      expect(config.to_hash).to include("reporter" => expected_value)
+    end
+
     it "backend_cache option sets to true" do
       config = verifier.send(:runner_options, transport)
       expect(config.to_hash).to include(backend_cache: true)
@@ -142,6 +157,98 @@ describe Kitchen::Verifier::Inspec do
     context "when a test/recipes folder does not exist" do
       it "should read the tests from the default location" do
         expect(verifier[:test_base_path]).to eq(File.join(kitchen_root, "test", "integration"))
+      end
+    end
+  end
+
+  describe "#setup_inputs" do
+    let(:input_opts) { {} }
+    let(:input_cfg) { {} }
+    context "when InSpec is recent" do
+      context "when file inputs are provided" do
+        context "using modern syntax" do
+          it "should place them in input_file" do
+            stub_const("Inspec::VERSION", "3.99.0")
+            input_cfg[:input_files] = ["a.yaml", "b.yaml"]
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :input_file
+            expect(input_opts[:input_file]).to eq(input_cfg[:input_files])
+          end
+        end
+        context "using legacy syntax" do
+          it "should place them in input_file" do
+            stub_const("Inspec::VERSION", "3.99.0")
+            input_cfg[:attrs] = ["a.yaml", "b.yaml"]
+            # TODO: this should emit a warning
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :input_file
+            expect(input_opts[:input_file]).to eq(input_cfg[:attrs])
+          end
+        end
+      end
+      context "when hash inputs are provided" do
+        context "using modern syntax" do
+          it "should place them in attributes" do
+            stub_const("Inspec::VERSION", "3.99.0")
+            input_cfg[:inputs] = { a: 1, b: 2 }
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :attributes
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
+          end
+        end
+        context "using legacy syntax" do
+          it "should place them in attributes" do
+            stub_const("Inspec::VERSION", "3.99.0")
+            input_cfg[:attributes] = { a: 1, b: 2 }
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :attributes
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
+          end
+        end
+      end
+    end
+
+    context "when InSpec is old" do
+      context "when file inputs are provided" do
+        context "using modern syntax" do
+          it "should place them in attrs" do
+            stub_const("Inspec::VERSION", "3.0.0")
+            input_cfg[:input_files] = ["a.yaml", "b.yaml"]
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :attrs
+            expect(input_opts[:attrs]).to eq(input_cfg[:input_files])
+          end
+        end
+        context "using legacy syntax" do
+          it "should place them in input_file" do
+            stub_const("Inspec::VERSION", "3.0.0")
+            input_cfg[:attrs] = ["a.yaml", "b.yaml"]
+            # TODO: this should emit a warning
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :attrs
+            expect(input_opts[:attrs]).to eq(input_cfg[:attrs])
+          end
+        end
+      end
+      context "when hash inputs are provided" do
+        context "using modern syntax" do
+          it "should place them in attributes" do
+            stub_const("Inspec::VERSION", "3.0.0")
+            input_cfg[:inputs] = { a: 1, b: 2 }
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :attributes
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
+          end
+        end
+        context "using legacy syntax" do
+          it "should place them in attributes" do
+            stub_const("Inspec::VERSION", "3.0.0")
+            input_cfg[:attributes] = { a: 1, b: 2 }
+            verifier.send(:setup_inputs, input_opts, input_cfg)
+            expect(input_opts.keys).to include :attributes
+            expect(input_opts[:attributes]).to eq({ "a" => 1, "b" => 2 })
+          end
+        end
       end
     end
   end
@@ -369,8 +476,7 @@ describe Kitchen::Verifier::Inspec do
 
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany"
         ) }, hash_including(
@@ -386,8 +492,7 @@ describe Kitchen::Verifier::Inspec do
 
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany"
         ) }, hash_including(
@@ -400,8 +505,7 @@ describe Kitchen::Verifier::Inspec do
     it "find test directory for runner" do
       ensure_suite_directory("germany")
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany"
         ) }, anything)
@@ -412,8 +516,7 @@ describe Kitchen::Verifier::Inspec do
     it "find test directory for runner if legacy" do
       create_legacy_test_directories
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(
+      expect(runner).to receive(:add_target).with({ path: File.join(
           config[:test_base_path],
           "germany", "inspec"
         ) }, anything)
@@ -468,7 +571,7 @@ describe Kitchen::Verifier::Inspec do
 
     let(:config) do
       {
-        inspec_tests: [{ :url => "https://github.com/nathenharvey/tmp_compliance_profile" }],
+        inspec_tests: [{ url: "https://github.com/nathenharvey/tmp_compliance_profile" }],
         kitchen_root: kitchen_root,
         test_base_path: File.join(kitchen_root, "test", "integration"),
       }
@@ -482,10 +585,9 @@ describe Kitchen::Verifier::Inspec do
     it "find test directory and remote profile" do
       ensure_suite_directory("local")
       allow(Inspec::Runner).to receive(:new).and_return(runner)
-      expect(runner).to receive(:add_target).with({ :path =>
-        File.join(config[:test_base_path], "local") }, anything)
+      expect(runner).to receive(:add_target).with({ path: File.join(config[:test_base_path], "local") }, anything)
       expect(runner).to receive(:add_target).with(
-        { :url => "https://github.com/nathenharvey/tmp_compliance_profile" }, anything)
+        { url: "https://github.com/nathenharvey/tmp_compliance_profile" }, anything)
       verifier.call({})
     end
   end
@@ -551,6 +653,36 @@ describe Kitchen::Verifier::Inspec do
         .and_return(runner)
 
       verifier.call(hostname: "win.dows", port: 123)
+    end
+  end
+
+  context "with an exec transport" do
+
+    let(:transport) do
+      Kitchen::Transport::Exec.new
+    end
+
+    let(:runner) do
+      instance_double("Inspec::Runner")
+    end
+
+    before do
+      allow(runner).to receive(:add_target)
+      allow(runner).to receive(:run).and_return 0
+    end
+
+    it "constructs a Inspec::Runner using transport config data and state" do
+      expect(Inspec::Runner).to receive(:new)
+        .with(
+          hash_including(
+            "backend" => "local",
+            "logger" => logger,
+            "color" => true
+          )
+        )
+        .and_return(runner)
+
+      verifier.call({})
     end
   end
 

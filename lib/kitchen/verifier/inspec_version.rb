@@ -3,7 +3,7 @@
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
 #
-# Copyright (C) 2015, Chef Software Inc.
+# Copyright (C) 2015-2019, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,6 +20,6 @@
 module Kitchen
   module Verifier
     # Version string for InSpec Kitchen verifier
-    INSPEC_VERSION = "0.23.1"
+    INSPEC_VERSION = "1.3.0".freeze
   end
 end

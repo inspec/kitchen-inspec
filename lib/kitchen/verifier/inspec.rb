@@ -3,7 +3,7 @@
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
 #
-# Copyright (C) 2015, Chef Software Inc.
+# Copyright (C) 2015-2019, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -69,9 +69,8 @@ module Kitchen
         opts = runner_options(instance.transport, state, instance.platform.name, instance.suite.name)
         logger.debug "Options #{opts.inspect}"
 
-        # add attributes
-        opts[:attrs] = config[:attrs]
-        opts[:attributes] = Hashie.stringify_keys config[:attributes] unless config[:attributes].nil?
+        # add inputs
+        setup_inputs(opts, config)
 
         # setup logger
         ::Inspec::Log.init(STDERR)
@@ -95,10 +94,36 @@ module Kitchen
         exit_code = runner.run
         # 101 is a success as well (exit with no fails but has skipped controls)
         return if exit_code == 0 || exit_code == 101
-        raise ActionFailed, "Inspec Runner returns #{exit_code}"
+        raise ActionFailed, "InSpec Runner returns #{exit_code}"
       end
 
       private
+
+      def setup_inputs(opts, config)
+        inspec_version = Gem::Version.new(::Inspec::VERSION)
+
+        # Handle input files
+        if config[:attrs]
+          logger.warn("kitchen-inspec: please use 'input-files' instead of 'attrs'")
+          config[:input_files] = config[:attrs]
+        end
+        if config[:input_files]
+          # Note that inspec expects the singular inflection, input_file
+          files_key = inspec_version >= Gem::Version.new("3.10") ? :input_file : :attrs
+          opts[files_key] = config[:input_files]
+        end
+
+        # Handle YAML => Hash inputs
+        if config[:attributes]
+          logger.warn("kitchen-inspec: please use 'inputs' instead of 'attributes'")
+          config[:inputs] = config[:attributes]
+        end
+        if config[:inputs]
+          # Version here is dependent on https://github.com/inspec/inspec/issues/3856
+          inputs_key = inspec_version >= Gem::Version.new("4.10") ? :inputs : :attributes
+          opts[inputs_key] = Hashie.stringify_keys config[:inputs]
+        end
+      end
 
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
@@ -142,7 +167,7 @@ module Kitchen
         base = File.join(base, "inspec") if legacy_mode
 
         # only return the directory if it exists
-        Pathname.new(base).exist? ? [{ :path => base }] : []
+        Pathname.new(base).exist? ? [{ path: base }] : []
       end
 
       # Takes config[:inspec_tests] and modifies any value with a key of :path by adding the full path
@@ -159,7 +184,7 @@ module Kitchen
             # leave it alone so it can default to resolving to the Supermarket.
             unless test_item.keys == [:name]
               type_keys = [:path, :url, :git, :compliance, :supermarket]
-              git_keys = [:branch, :tag, :ref]
+              git_keys = [:branch, :tag, :ref, :relative_path]
               supermarket_keys = [:supermarket_url]
               test_item.delete_if { |k, v| !(type_keys + git_keys + supermarket_keys).include?(k) }
             end
@@ -202,13 +227,11 @@ module Kitchen
           runner_options["format"] = config[:format] unless config[:format].nil?
           runner_options["output"] = config[:output] % { platform: platform, suite: suite } unless config[:output].nil?
           runner_options["profiles_path"] = config[:profiles_path] unless config[:profiles_path].nil?
-          runner_options["reporter"] = config[:reporter] unless config[:reporter].nil?
+          runner_options["reporter"] = config[:reporter].map { |s| s % { platform: platform, suite: suite } } unless config[:reporter].nil?
           runner_options[:controls] = config[:controls]
 
           # check to make sure we have a valid version for caching
           if config[:backend_cache]
-            backend_cache_msg = "backend_cache requires InSpec version >= 1.47.0"
-            logger.warn backend_cache_msg if Gem::Version.new(::Inspec::VERSION) < Gem::Version.new("1.47.0")
             runner_options[:backend_cache] = config[:backend_cache]
           else
             # default to false until we default to true in inspec
@@ -247,8 +270,11 @@ module Kitchen
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
           "compression" => kitchen[:compression],
           "compression_level" => kitchen[:compression_level],
-          "proxy_command" => config[:proxy_command],
         }
+        opts["proxy_command"] = config[:proxy_command] if config[:proxy_command]
+        opts["bastion_host"] = kitchen[:ssh_gateway] if kitchen[:ssh_gateway]
+        opts["bastion_user"] = kitchen[:ssh_gateway_username] if kitchen[:ssh_gateway_username]
+        opts["bastion_port"] = kitchen[:ssh_gateway_port] if kitchen[:ssh_gateway_port]
         opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
         opts["password"] = kitchen[:password] unless kitchen[:password].nil?
         opts
@@ -294,6 +320,32 @@ module Kitchen
           "connection_retries" => kitchen[:connection_retries],
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
+        }
+        logger.debug "Connect to Container: #{opts['host']}"
+        opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_exec(config_data)
+        opts = {
+          "backend" => "local",
+          "logger" => logger,
+        }
+        opts
+      end
+
+      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
+      #
+      # @return [Hash] a configuration hash of string-based keys
+      # @api private
+      def runner_options_for_dockercli(config_data)
+        opts = {
+          "backend" => "docker",
+          "logger" => logger,
+          "host" => config_data[:container_id],
         }
         logger.debug "Connect to Container: #{opts['host']}"
         opts
