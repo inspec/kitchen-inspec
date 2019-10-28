@@ -24,6 +24,7 @@ require "kitchen/verifier/base"
 
 require "uri"
 require "pathname"
+require "hashie"
 
 module Kitchen
   module Verifier
