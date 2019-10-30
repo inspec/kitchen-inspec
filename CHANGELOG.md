@@ -1,25 +1,22 @@
 # Change Log
 
-<!-- latest_release 1.3.1 -->
-## [v1.3.1](https://github.com/inspec/kitchen-inspec/tree/v1.3.1) (2019-10-28)
-
-#### Merged Pull Requests
-- Add missing require causing lib to break when using inputs [#243](https://github.com/inspec/kitchen-inspec/pull/243) ([walterdolce](https://github.com/walterdolce))
 <!-- latest_release -->
-<!-- release_rollup since=1.2.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Add missing require causing lib to break when using inputs [#243](https://github.com/inspec/kitchen-inspec/pull/243) ([walterdolce](https://github.com/walterdolce)) <!-- 1.3.1 -->
-- Add relative path support for the GIT fetcher [#239](https://github.com/inspec/kitchen-inspec/pull/239) ([bdwyertech](https://github.com/bdwyertech)) <!-- 1.3.0 -->
+<!-- latest_release -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
+## [v1.3.1](https://github.com/inspec/kitchen-inspec/tree/v1.3.1) (2019-10-30)
+
+#### Merged Pull Requests
+- Add relative path support for the GIT fetcher [#239](https://github.com/inspec/kitchen-inspec/pull/239) ([bdwyertech](https://github.com/bdwyertech))
+- Add missing require causing lib to break when using inputs [#243](https://github.com/inspec/kitchen-inspec/pull/243) ([walterdolce](https://github.com/walterdolce))
+<!-- latest_stable_release -->
+
 ## [v1.2.0](https://github.com/inspec/kitchen-inspec/tree/v1.2.0) (2019-08-15)
 
 #### Merged Pull Requests
 - Update README / CODEOWNERS for ORP [#230](https://github.com/inspec/kitchen-inspec/pull/230) ([miah](https://github.com/miah))
 - Rename attributes options to input options [#229](https://github.com/inspec/kitchen-inspec/pull/229) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_stable_release -->
 
 ## [v1.1.0](https://github.com/inspec/kitchen-inspec/tree/v1.1.0) (2019-03-18)
 
