@@ -268,7 +268,7 @@ You can also define your inputs in external files. Adapt your `.kitchen.yml` to 
 
 ### Use inspec plugins
 
-By default, the verified does not load Inspec plugins like additional inputs. You can activate loading the same plugins as on normal Inspec invocations:
+By default, the verifier does not load Inspec plugins such as additional input plugins. You can activate loading the same plugins as on normal Inspec invocations:
 
 ```yaml
     verifier:
