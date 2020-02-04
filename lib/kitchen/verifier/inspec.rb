@@ -26,6 +26,8 @@ require "uri"
 require "pathname"
 require "hashie"
 
+require "inspec/plugin/v2"
+
 module Kitchen
   module Verifier
     # InSpec verifier for Kitchen.
@@ -36,6 +38,7 @@ module Kitchen
       plugin_version Kitchen::Verifier::INSPEC_VERSION
 
       default_config :inspec_tests, []
+      default_config :load_plugins, false
 
       # A lifecycle method that should be invoked when the object is about
       # ready to be used. A reference to an Instance is required as
@@ -79,6 +82,13 @@ module Kitchen
 
         # initialize runner
         runner = ::Inspec::Runner.new(opts)
+
+        # load plugins
+        if config[:load_plugins]
+          v2_loader = ::Inspec::Plugin::V2::Loader.new
+          v2_loader.load_all
+          v2_loader.exit_on_load_error
+        end
 
         # add each profile to runner
         tests = collect_tests
