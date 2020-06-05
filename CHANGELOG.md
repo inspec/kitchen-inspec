@@ -1,25 +1,22 @@
 # Change Log
 
-<!-- latest_release 2.0.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+<!-- release_rollup -->
+<!-- release_rollup -->
+<!-- latest_stable_release -->
 ## [v2.0.0](https://github.com/inspec/kitchen-inspec/tree/v2.0.0) (2020-06-05)
 
 #### Merged Pull Requests
+- Add setting to load Inspec plugins for additional functionality [#247](https://github.com/inspec/kitchen-inspec/pull/247) ([tecracer-theinen](https://github.com/tecracer-theinen))
 - Require InSpec 2.2.64+ to support plugin v2 [#254](https://github.com/inspec/kitchen-inspec/pull/254) ([tas50](https://github.com/tas50))
-<!-- latest_release -->
-<!-- release_rollup since=1.3.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Require InSpec 2.2.64+ to support plugin v2 [#254](https://github.com/inspec/kitchen-inspec/pull/254) ([tas50](https://github.com/tas50)) <!-- 2.0.0 -->
-- Add setting to load Inspec plugins for additional functionality [#247](https://github.com/inspec/kitchen-inspec/pull/247) ([tecracer-theinen](https://github.com/tecracer-theinen)) <!-- 1.3.2 -->
-<!-- release_rollup -->
 <!-- latest_stable_release -->
+
 ## [v1.3.1](https://github.com/inspec/kitchen-inspec/tree/v1.3.1) (2019-10-30)
 
 #### Merged Pull Requests
 - Add relative path support for the GIT fetcher [#239](https://github.com/inspec/kitchen-inspec/pull/239) ([bdwyertech](https://github.com/bdwyertech))
 - Add missing require causing lib to break when using inputs [#243](https://github.com/inspec/kitchen-inspec/pull/243) ([walterdolce](https://github.com/walterdolce))
-<!-- latest_stable_release -->
 
 ## [v1.2.0](https://github.com/inspec/kitchen-inspec/tree/v1.2.0) (2019-08-15)
 
