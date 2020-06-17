@@ -345,19 +345,8 @@ module Kitchen
         opts
       end
 
-      # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
-      #
-      # @return [Hash] a configuration hash of string-based keys
-      # @api private
-      def runner_options_for_docker(config_data)
-        opts = {
-          "backend" => "docker",
-          "logger" => logger,
-          "host" => config_data[:container_id],
-        }
-        logger.debug "Connect to Container: #{opts['host']}"
-        opts
-      end
+      # Add alias for docker transport from kitchen-docker gem
+      alias_method :runner_options_for_docker, :runner_options_for_dockercli
     end
   end
 end
