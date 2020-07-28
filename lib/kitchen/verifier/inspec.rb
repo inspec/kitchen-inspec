@@ -158,7 +158,7 @@ module Kitchen
       #
       # we support the base directories
       # - test/integration
-      # - test/integration/inspec (prefered if used with other test environments)
+      # - test/integration/inspec (preferred if used with other test environments)
       #
       # we do not filter for specific directories, this is core of inspec
       #
