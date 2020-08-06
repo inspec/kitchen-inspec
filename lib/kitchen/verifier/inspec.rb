@@ -291,7 +291,7 @@ module Kitchen
       # @api private
       def runner_options_for_winrm(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-        opts = {
+        {
           "backend" => "winrm",
           "logger" => logger,
           "ssl" => URI(kitchen[:endpoint]).scheme == "https",
@@ -304,7 +304,7 @@ module Kitchen
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
         }
-        opts
+        
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
@@ -335,11 +335,11 @@ module Kitchen
       # @return [Hash] a configuration hash of string-based keys
       # @api private
       def runner_options_for_exec(config_data)
-        opts = {
+        {
           "backend" => "local",
           "logger" => logger,
         }
-        opts
+        
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
