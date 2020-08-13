@@ -94,7 +94,7 @@ module Kitchen
         tests = collect_tests
         profile_ctx = nil
         tests.each do |target|
-          profile_ctx = runner.add_target(target, opts)
+          profile_ctx = runner.add_target(target)
         end
 
         profile_ctx ||= []
