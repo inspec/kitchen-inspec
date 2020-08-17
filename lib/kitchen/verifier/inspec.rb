@@ -88,6 +88,8 @@ module Kitchen
           v2_loader = ::Inspec::Plugin::V2::Loader.new
           v2_loader.load_all
           v2_loader.exit_on_load_error
+
+          ::Inspec::InputRegistry.instance.cache_inputs = !!config[:cache_inputs] if config[:cache_inputs]
         end
 
         # add each profile to runner

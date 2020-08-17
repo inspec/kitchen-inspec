@@ -275,6 +275,13 @@ By default, the verifier does not load Inspec plugins such as additional input p
       load_plugins: true
 ```
 
+When using plugins, please be aware that input values get cached. If you want to re-evaluate these values for every suite, you can deactivate the cache:
+
+```yaml
+    verifier:
+      cache_inputs: false
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
