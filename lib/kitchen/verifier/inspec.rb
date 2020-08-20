@@ -19,11 +19,11 @@
 
 require "kitchen/transport/ssh"
 require "kitchen/transport/winrm"
-require "kitchen/verifier/inspec_version"
+require_relative "inspec_version"
 require "kitchen/verifier/base"
 
-require "uri"
-require "pathname"
+require "uri" unless defined?(URI)
+require "pathname" unless defined?(Pathname)
 require "hashie"
 
 require "inspec/plugin/v2"
