@@ -37,6 +37,11 @@ module Kitchen
       kitchen_verifier_api_version 1
       plugin_version Kitchen::Verifier::INSPEC_VERSION
 
+      # Chef InSpec is based on RSpec, which is not thread safe
+      # (https://github.com/rspec/rspec-core/issues/1254)
+      # Tell test kitchen not to multithread the verify step
+      no_parallel_for :verify
+
       default_config :inspec_tests, []
       default_config :load_plugins, false
 
@@ -304,7 +309,6 @@ module Kitchen
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
         }
-        
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
@@ -339,7 +343,6 @@ module Kitchen
           "backend" => "local",
           "logger" => logger,
         }
-        
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
