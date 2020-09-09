@@ -18,6 +18,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 2.3.0"
   spec.add_dependency "inspec", ">= 2.2.64", "< 5.0" # 2.2.64 is required for plugin v2 support
-  spec.add_dependency "test-kitchen", ">= 1.6", "< 3"
+  spec.add_dependency "test-kitchen", ">= 2.7", "< 3" # 2.7 introduced no_parallel_for for verifiers
   spec.add_dependency "hashie", "~> 3.4"
 end
