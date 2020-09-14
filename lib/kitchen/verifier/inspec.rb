@@ -85,9 +85,6 @@ module Kitchen
         ::Inspec::Log.init(STDERR)
         ::Inspec::Log.level = Kitchen::Util.from_logger_level(logger.level)
 
-        # initialize runner
-        runner = ::Inspec::Runner.new(opts)
-
         # load plugins
         if config[:load_plugins]
           v2_loader = ::Inspec::Plugin::V2::Loader.new
@@ -98,6 +95,9 @@ module Kitchen
             ::Inspec::InputRegistry.instance.cache_inputs = !!config[:cache_inputs]
           end
         end
+
+        # initialize runner
+        runner = ::Inspec::Runner.new(opts)
 
         # add each profile to runner
         tests = collect_tests
