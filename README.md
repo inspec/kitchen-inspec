@@ -268,14 +268,14 @@ You can also define your inputs in external files. Adapt your `.kitchen.yml` to 
 
 ### Use inspec plugins
 
-By default, the verifier does not load Inspec plugins such as additional input plugins. You can activate loading the same plugins as on normal Inspec invocations:
+By default, the verifier loads Inspec plugins such as additional Reporter or Input plugins. This adds a small delay as the system scans for plugins. If you know you are not using special Reporters or Inputs, you can disable plugin loading:
 
 ```yaml
     verifier:
-      load_plugins: true
+      load_plugins: false
 ```
 
-When using plugins, please be aware that input values get cached. If you want to re-evaluate these values for every suite, you can deactivate the cache:
+When using Input plugins, please be aware that input values get cached between suites. If you want to re-evaluate these values for every suite, you can deactivate the cache:
 
 ```yaml
     verifier:
