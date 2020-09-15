@@ -1,15 +1,16 @@
 # Change Log
 
-<!-- latest_release 2.2.0 -->
-## [v2.2.0](https://github.com/inspec/kitchen-inspec/tree/v2.2.0) (2020-09-09)
+<!-- latest_release 2.2.1 -->
+## [v2.2.1](https://github.com/inspec/kitchen-inspec/tree/v2.2.1) (2020-09-15)
 
 #### Merged Pull Requests
-- Declare kitchen-inspec to be run serially [#259](https://github.com/inspec/kitchen-inspec/pull/259) ([clintoncwolfe](https://github.com/clintoncwolfe))
+- Load plugins earlier; load plugins by default [#261](https://github.com/inspec/kitchen-inspec/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 <!-- release_rollup since=2.0.0 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Load plugins earlier; load plugins by default [#261](https://github.com/inspec/kitchen-inspec/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.1 -->
 - Declare kitchen-inspec to be run serially [#259](https://github.com/inspec/kitchen-inspec/pull/259) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.0 -->
 - Add ability to disable input caching in InSpec [#258](https://github.com/inspec/kitchen-inspec/pull/258) ([tecracer-theinen](https://github.com/tecracer-theinen)) <!-- 2.1.0 -->
 - Resolve RuboCop Style/RedundantAssignment [#256](https://github.com/inspec/kitchen-inspec/pull/256) ([tas50](https://github.com/tas50)) <!-- 2.0.2 -->
