@@ -44,6 +44,7 @@ module Kitchen
 
       default_config :inspec_tests, []
       default_config :load_plugins, true
+      default_config :backend_cache, true
 
       # A lifecycle method that should be invoked when the object is about
       # ready to be used. A reference to an Instance is required as
