@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 2.2.2 -->
+## [v2.2.2](https://github.com/inspec/kitchen-inspec/tree/v2.2.2) (2020-12-11)
+
+#### Merged Pull Requests
+- Fix hashi pin to be &lt; 5 [#268](https://github.com/inspec/kitchen-inspec/pull/268) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=2.2.1 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Fix hashi pin to be &lt; 5 [#268](https://github.com/inspec/kitchen-inspec/pull/268) ([tas50](https://github.com/tas50)) <!-- 2.2.2 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v2.2.1](https://github.com/inspec/kitchen-inspec/tree/v2.2.1) (2020-09-15)
