@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 2.2.3 -->
+## [v2.2.3](https://github.com/inspec/kitchen-inspec/tree/v2.2.3) (2020-12-11)
+
+#### Merged Pull Requests
+- Update rake requirement from ~&gt; 12.0 to ~&gt; 13.0 [#263](https://github.com/inspec/kitchen-inspec/pull/263) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=2.2.2 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update rake requirement from ~&gt; 12.0 to ~&gt; 13.0 [#263](https://github.com/inspec/kitchen-inspec/pull/263) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.2.3 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v2.2.2](https://github.com/inspec/kitchen-inspec/tree/v2.2.2) (2020-12-11)
