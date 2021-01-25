@@ -1,15 +1,16 @@
 # Change Log
 
-<!-- latest_release 2.2.3 -->
-## [v2.2.3](https://github.com/inspec/kitchen-inspec/tree/v2.2.3) (2020-12-11)
+<!-- latest_release 2.2.4 -->
+## [v2.2.4](https://github.com/inspec/kitchen-inspec/tree/v2.2.4) (2021-01-25)
 
 #### Merged Pull Requests
-- Update rake requirement from ~&gt; 12.0 to ~&gt; 13.0 [#263](https://github.com/inspec/kitchen-inspec/pull/263) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- allow for hashie 4.x [#267](https://github.com/inspec/kitchen-inspec/pull/267) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 <!-- release_rollup since=2.2.2 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- allow for hashie 4.x [#267](https://github.com/inspec/kitchen-inspec/pull/267) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.4 -->
 - Update rake requirement from ~&gt; 12.0 to ~&gt; 13.0 [#263](https://github.com/inspec/kitchen-inspec/pull/263) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.2.3 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
