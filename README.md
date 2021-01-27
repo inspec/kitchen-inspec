@@ -282,7 +282,12 @@ When using Input plugins, please be aware that input values get cached between s
       cache_inputs: false
 ```
 
- Default for backend cache is enabled
+ Backend cache is enabled by default,if you want to disable backend cache you can do:
+
+ ```yaml
+     verifier:
+       backend_cache: false
+ ```
 
 ## Development
 
