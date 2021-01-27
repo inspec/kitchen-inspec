@@ -282,7 +282,9 @@ When using Input plugins, please be aware that input values get cached between s
       cache_inputs: false
 ```
 
- Backend cache is enabled by default,if you want to disable backend cache you can do:
+ ### Chef InSpec Backend Cache
+
+ Chef InSpec uses a cache when executing commands and accessing files on the remote target. The cache is enabled by default. To disable the cache:
 
  ```yaml
      verifier:
