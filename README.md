@@ -275,6 +275,14 @@ By default, the verifier loads Inspec plugins such as additional Reporter or Inp
       load_plugins: false
 ```
 
+Some Inspec plugins allow further configuration. You can supply these settings as well with InSpec 4.26 or newer:
+
+```yaml
+    verifier:
+      plugin_config:
+        example_setting: "Example value"
+```
+
 When using Input plugins, please be aware that input values get cached between suites. If you want to re-evaluate these values for every suite, you can deactivate the cache:
 
 ```yaml
