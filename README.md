@@ -280,7 +280,8 @@ Some Inspec plugins allow further configuration. You can supply these settings a
 ```yaml
     verifier:
       plugin_config:
-        example_setting: "Example value"
+        example_plugin_name:
+          example_setting: "Example value"
 ```
 
 When using Input plugins, please be aware that input values get cached between suites. If you want to re-evaluate these values for every suite, you can deactivate the cache:
