@@ -1,25 +1,23 @@
 # Change Log
 
-<!-- latest_release 2.2.5 -->
-## [v2.2.5](https://github.com/inspec/kitchen-inspec/tree/v2.2.5) (2021-01-25)
-
-#### Merged Pull Requests
-- Fix call with deprecated options hash [#257](https://github.com/inspec/kitchen-inspec/pull/257) ([tecracer-theinen](https://github.com/tecracer-theinen))
 <!-- latest_release -->
-<!-- release_rollup since=2.2.2 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Fix call with deprecated options hash [#257](https://github.com/inspec/kitchen-inspec/pull/257) ([tecracer-theinen](https://github.com/tecracer-theinen)) <!-- 2.2.5 -->
-- allow for hashie 4.x [#267](https://github.com/inspec/kitchen-inspec/pull/267) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.4 -->
-- Update rake requirement from ~&gt; 12.0 to ~&gt; 13.0 [#263](https://github.com/inspec/kitchen-inspec/pull/263) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.2.3 -->
+<!-- latest_release -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
+## [v2.3.0](https://github.com/inspec/kitchen-inspec/tree/v2.3.0) (2021-01-28)
+
+#### Merged Pull Requests
+- Update rake requirement from ~&gt; 12.0 to ~&gt; 13.0 [#263](https://github.com/inspec/kitchen-inspec/pull/263) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- allow for hashie 4.x [#267](https://github.com/inspec/kitchen-inspec/pull/267) ([nikhil2611](https://github.com/nikhil2611))
+- Fix call with deprecated options hash [#257](https://github.com/inspec/kitchen-inspec/pull/257) ([tecracer-theinen](https://github.com/tecracer-theinen))
+- enabling default backend cache [#264](https://github.com/inspec/kitchen-inspec/pull/264) ([i5pranay93](https://github.com/i5pranay93))
+<!-- latest_stable_release -->
+
 ## [v2.2.2](https://github.com/inspec/kitchen-inspec/tree/v2.2.2) (2020-12-11)
 
 #### Merged Pull Requests
 - Fix hashi pin to be &lt; 5 [#268](https://github.com/inspec/kitchen-inspec/pull/268) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v2.2.1](https://github.com/inspec/kitchen-inspec/tree/v2.2.1) (2020-09-15)
 

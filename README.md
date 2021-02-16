@@ -291,6 +291,15 @@ When using Input plugins, please be aware that input values get cached between s
       cache_inputs: false
 ```
 
+ ### Chef InSpec Backend Cache
+
+ Chef InSpec uses a cache when executing commands and accessing files on the remote target. The cache is enabled by default. To disable the cache:
+
+ ```yaml
+     verifier:
+       backend_cache: false
+ ```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
