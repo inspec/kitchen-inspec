@@ -44,6 +44,7 @@ module Kitchen
 
       default_config :inspec_tests, []
       default_config :load_plugins, true
+      default_config :plugin_config, {}
       default_config :backend_cache, true
 
       # A lifecycle method that should be invoked when the object is about
@@ -82,23 +83,17 @@ module Kitchen
         # add inputs
         setup_inputs(opts, config)
 
-        # setup logger
+        # setup Inspec
         ::Inspec::Log.init(STDERR)
         ::Inspec::Log.level = Kitchen::Util.from_logger_level(logger.level)
+        inspec_config = ::Inspec::Config.new(opts)
 
-        # load plugins
-        if config[:load_plugins]
-          v2_loader = ::Inspec::Plugin::V2::Loader.new
-          v2_loader.load_all
-          v2_loader.exit_on_load_error
-
-          if ::Inspec::InputRegistry.instance.respond_to?(:cache_inputs=) && config[:cache_inputs]
-            ::Inspec::InputRegistry.instance.cache_inputs = !!config[:cache_inputs]
-          end
-        end
+        # handle plugins
+        load_plugins
+        setup_plugin_config(inspec_config)
 
         # initialize runner
-        runner = ::Inspec::Runner.new(opts)
+        runner = ::Inspec::Runner.new(inspec_config)
 
         # add each profile to runner
         tests = collect_tests
@@ -143,6 +138,32 @@ module Kitchen
           # Version here is dependent on https://github.com/inspec/inspec/issues/3856
           inputs_key = inspec_version >= Gem::Version.new("4.10") ? :inputs : :attributes
           opts[inputs_key] = Hashie.stringify_keys config[:inputs]
+        end
+      end
+
+      def load_plugins
+        return unless config[:load_plugins]
+
+        v2_loader = ::Inspec::Plugin::V2::Loader.new
+        v2_loader.load_all
+        v2_loader.exit_on_load_error
+
+        # Suppress input caching or all suites will get identical inputs, not different ones
+        if ::Inspec::InputRegistry.instance.respond_to?(:cache_inputs=) && config[:cache_inputs]
+          ::Inspec::InputRegistry.instance.cache_inputs = !!config[:cache_inputs]
+        end
+      end
+
+      def setup_plugin_config(inspec_config)
+        return unless config[:load_plugins]
+
+        unless inspec_config.respond_to?(:merge_plugin_config)
+          logger.warn("kitchen-inspec: skipping `plugin_config` which requires InSpec version 4.26.2 or higher. Your version: #{::Inspec::VERSION}")
+          return
+        end
+
+        config[:plugin_config].each do |plugin_name, plugin_config|
+          inspec_config.merge_plugin_config(plugin_name, plugin_config)
         end
       end
 
