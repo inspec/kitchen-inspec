@@ -1,18 +1,16 @@
 # Change Log
 
-<!-- latest_release 2.4.0 -->
+<!-- latest_release -->
+<!-- latest_release -->
+<!-- release_rollup -->
+<!-- release_rollup -->
+<!-- latest_stable_release -->
 ## [v2.4.0](https://github.com/inspec/kitchen-inspec/tree/v2.4.0) (2021-02-16)
 
 #### Merged Pull Requests
 - Add option to set Inspec plugin configuration [#270](https://github.com/inspec/kitchen-inspec/pull/270) ([tecracer-theinen](https://github.com/tecracer-theinen))
-<!-- latest_release -->
-<!-- release_rollup since=2.3.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Add option to set Inspec plugin configuration [#270](https://github.com/inspec/kitchen-inspec/pull/270) ([tecracer-theinen](https://github.com/tecracer-theinen)) <!-- 2.4.0 -->
-<!-- release_rollup -->
 <!-- latest_stable_release -->
+
 ## [v2.3.0](https://github.com/inspec/kitchen-inspec/tree/v2.3.0) (2021-01-28)
 
 #### Merged Pull Requests
@@ -20,7 +18,6 @@
 - allow for hashie 4.x [#267](https://github.com/inspec/kitchen-inspec/pull/267) ([nikhil2611](https://github.com/nikhil2611))
 - Fix call with deprecated options hash [#257](https://github.com/inspec/kitchen-inspec/pull/257) ([tecracer-theinen](https://github.com/tecracer-theinen))
 - enabling default backend cache [#264](https://github.com/inspec/kitchen-inspec/pull/264) ([i5pranay93](https://github.com/i5pranay93))
-<!-- latest_stable_release -->
 
 ## [v2.2.2](https://github.com/inspec/kitchen-inspec/tree/v2.2.2) (2020-12-11)
 
