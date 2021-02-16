@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 2.4.0 -->
+## [v2.4.0](https://github.com/inspec/kitchen-inspec/tree/v2.4.0) (2021-02-16)
+
+#### Merged Pull Requests
+- Add option to set Inspec plugin configuration [#270](https://github.com/inspec/kitchen-inspec/pull/270) ([tecracer-theinen](https://github.com/tecracer-theinen))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=2.3.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Add option to set Inspec plugin configuration [#270](https://github.com/inspec/kitchen-inspec/pull/270) ([tecracer-theinen](https://github.com/tecracer-theinen)) <!-- 2.4.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v2.3.0](https://github.com/inspec/kitchen-inspec/tree/v2.3.0) (2021-01-28)
