@@ -86,10 +86,10 @@ module Kitchen
         # setup Inspec
         ::Inspec::Log.init(STDERR)
         ::Inspec::Log.level = Kitchen::Util.from_logger_level(logger.level)
+        load_plugins # Must load plugins prior to config validation
         inspec_config = ::Inspec::Config.new(opts)
 
         # handle plugins
-        load_plugins
         setup_plugin_config(inspec_config)
 
         # initialize runner
