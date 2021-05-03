@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 2.4.2 -->
+## [v2.4.2](https://github.com/inspec/kitchen-inspec/tree/v2.4.2) (2021-05-03)
+
+#### Merged Pull Requests
+- Upgrade to GitHub-native Dependabot [#281](https://github.com/inspec/kitchen-inspec/pull/281) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=2.4.1 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Upgrade to GitHub-native Dependabot [#281](https://github.com/inspec/kitchen-inspec/pull/281) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 2.4.2 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v2.4.1](https://github.com/inspec/kitchen-inspec/tree/v2.4.1) (2021-02-24)
