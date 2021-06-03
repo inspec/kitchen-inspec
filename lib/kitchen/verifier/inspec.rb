@@ -313,6 +313,7 @@ module Kitchen
         opts["bastion_port"] = kitchen[:ssh_gateway_port] if kitchen[:ssh_gateway_port]
         opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
         opts["password"] = kitchen[:password] unless kitchen[:password].nil?
+        opts["forward_agent"] = config[:forward_agent] || kitchen[:forward_agent] if config[:forward_agent] || kitchen[:forward_agent]
         opts
       end
 
@@ -322,7 +323,7 @@ module Kitchen
       # @api private
       def runner_options_for_winrm(config_data)
         kitchen = instance.transport.send(:connection_options, config_data).dup
-        {
+        opts = {
           "backend" => "winrm",
           "logger" => logger,
           "ssl" => URI(kitchen[:endpoint]).scheme == "https",
@@ -335,6 +336,9 @@ module Kitchen
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
         }
+
+        opts["forward_agent"] = config_data[:forward_agent] || kitchen[:forward_agent] if config_data[:forward_agent] || kitchen[:forward_agent]
+        opts
       end
 
       # Returns a configuration Hash that can be passed to a `Inspec::Runner`.
