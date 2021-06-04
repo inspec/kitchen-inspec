@@ -582,7 +582,6 @@ describe Kitchen::Verifier::Inspec do
         connection_retries: "thousand",
         connection_retry_sleep: "sleepy",
         max_wait_until_ready: 42,
-        forward_agent: true,
       }
     end
 
@@ -612,8 +611,7 @@ describe Kitchen::Verifier::Inspec do
             "connection_retries" => "thousand",
             "connection_retry_sleep" => "sleepy",
             "max_wait_until_ready" => 42,
-            "color" => true,
-            "forward_agent" => true
+            "color" => true
           )
         )
         .and_return(runner)
