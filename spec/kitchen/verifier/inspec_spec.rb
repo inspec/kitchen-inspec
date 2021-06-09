@@ -331,6 +331,7 @@ describe Kitchen::Verifier::Inspec do
         max_wait_until_ready: 42,
         compression: "maxyo",
         compression_level: "pico",
+        forward_agent: true,
       }
     end
 
@@ -351,6 +352,7 @@ describe Kitchen::Verifier::Inspec do
       config[:sudo] = "jellybeans"
       config[:sudo_command] = "allyourbase"
       config[:proxy_command] = "gateway"
+      config[:forward_agent] = true
 
       expect(Inspec::Runner).to receive(:new)
         .with(
@@ -371,7 +373,8 @@ describe Kitchen::Verifier::Inspec do
             "compression" => "maxyo",
             "compression_level" => "pico",
             "key_files" => ["/backstage/pass"],
-            "proxy_command" => "gateway"
+            "proxy_command" => "gateway",
+            "forward_agent" => true
           )
         )
         .and_return(runner)
