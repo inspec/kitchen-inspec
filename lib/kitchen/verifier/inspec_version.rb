@@ -20,6 +20,6 @@
 module Kitchen
   module Verifier
     # Version string for InSpec Kitchen verifier
-    INSPEC_VERSION = "2.4.3".freeze
+    INSPEC_VERSION = "2.5.0".freeze
   end
 end

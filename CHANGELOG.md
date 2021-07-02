@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 2.5.0 -->
+## [v2.5.0](https://github.com/inspec/kitchen-inspec/tree/v2.5.0) (2021-07-02)
+
+#### Merged Pull Requests
+- Support Test Kitchen 3.0 [#284](https://github.com/inspec/kitchen-inspec/pull/284) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=2.4.3 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Support Test Kitchen 3.0 [#284](https://github.com/inspec/kitchen-inspec/pull/284) ([tas50](https://github.com/tas50)) <!-- 2.5.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v2.4.3](https://github.com/inspec/kitchen-inspec/tree/v2.4.3) (2021-06-09)
