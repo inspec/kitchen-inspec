@@ -1,8 +1,8 @@
 # Kitchen::InSpec - A Test Kitchen Verifier for InSpec
 
-* **Project State: Active**
-* **Issues Response SLA: 3 business days**
-* **Pull Request Response SLA: 3 business days**
+- **Project State: Active**
+- **Issues Response SLA: 3 business days**
+- **Pull Request Response SLA: 3 business days**
 
 For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
 
@@ -27,18 +27,18 @@ gem 'kitchen-inspec'
 And then execute:
 
 ```shell
-$ bundle
+bundle
 ```
 
 Or install it yourself as:
 
 ```shell
-$ gem install kitchen-inspec
+gem install kitchen-inspec
 ```
 
 ## Usage
 
-In your .kitchen.yml include
+In your kitchen.yml include
 
 ```yaml
 verifier:
@@ -67,7 +67,7 @@ verifier:
 
 By default `kitchen-inspec` expects test to be in `test/integration/%suite%` directory structure (we use Chef as provisioner here):
 
-```
+```text
 .
 ├── Berksfile
 ├── Gemfile
@@ -86,7 +86,7 @@ By default `kitchen-inspec` expects test to be in `test/integration/%suite%` dir
 
 A complete profile is used here, including a custom InSpec resource named `gordon_config`:
 
-```
+```text
 .
 ├── Berksfile
 ├── Gemfile
@@ -109,7 +109,7 @@ A complete profile is used here, including a custom InSpec resource named `gordo
 
 If you need support with other testing frameworks, we recommend to place the tests in `test/integration/%suite%/inspec`:
 
-```
+```text
 .
 ├── Berksfile
 ├── Gemfile
@@ -181,7 +181,7 @@ suites:
 
 ### Use remote InSpec profiles
 
-In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/inspec/inspec/blob/master/docs/profiles.md). Those can be easily added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `.kitchen.yml`
+In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/inspec/inspec/blob/master/docs/profiles.md). Those can be easily added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `kitchen.yml`
 
 ```yaml
 suites:
@@ -199,7 +199,7 @@ suites:
 - Chef Supermarket `name: hardening/ssh-hardening` # defaults to supermarket (list all available profiles with `inspec supermarket profiles`)
 - Chef Compliance `name: ssh` `compliance: base/ssh`
 
-The following example illustrates the usage in a `.kitchen.yml`
+The following example illustrates the usage in a `kitchen.yml`
 
 ```yaml
 suites:
@@ -241,11 +241,9 @@ suites:
           compliance: base/ssh
 ```
 
-### Use inputs with your inspec profiles
+### Use inputs with your InSpec profiles
 
-Note: InSpec Inputs were formerly known as InSpec Attributes. As they are not related to Chef Attributes, they have been renamed to reduce confusion.
-
-To run a profile with inputs defined inline, you can adapt your `.kitchen.yml`:
+To run a profile with inputs defined inline, you can adapt your `kitchen.yml`:
 
 ```yaml
     verifier:
@@ -256,7 +254,7 @@ To run a profile with inputs defined inline, you can adapt your `.kitchen.yml`:
         password: secret
 ```
 
-You can also define your inputs in external files. Adapt your `.kitchen.yml` to point to those files:
+You can also define your inputs in external files. Adapt your `kitchen.yml` to point to those files:
 
 ```yaml
     verifier:
@@ -264,6 +262,20 @@ You can also define your inputs in external files. Adapt your `.kitchen.yml` to 
         - path: test/integration/attributes
       input_files:
         - test/integration/profile-attribute.yml
+```
+
+## Use waivers with your InSpec profiles
+
+You can define your waivers in external files:
+
+```yaml
+    verifier:
+      inspec_tests:
+        - path: test/integration/attributes
+      input_files:
+        - test/integration/profile-attribute.yml
+      waivers:
+        - test/integration/control-waiver-01.yml
 ```
 
 ### Use inspec plugins
@@ -291,7 +303,7 @@ When using Input plugins, please be aware that input values get cached between s
       cache_inputs: false
 ```
 
- ### Chef InSpec Backend Cache
+### Chef InSpec Backend Cache
 
  Chef InSpec uses a cache when executing commands and accessing files on the remote target. The cache is enabled by default. To disable the cache:
 
