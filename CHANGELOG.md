@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 2.5.1 -->
+## [v2.5.1](https://github.com/inspec/kitchen-inspec/tree/v2.5.1) (2022-02-04)
+
+#### Merged Pull Requests
+- Update README with Waivers usage [#286](https://github.com/inspec/kitchen-inspec/pull/286) ([damacus](https://github.com/damacus))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=2.5.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Update README with Waivers usage [#286](https://github.com/inspec/kitchen-inspec/pull/286) ([damacus](https://github.com/damacus)) <!-- 2.5.1 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v2.5.0](https://github.com/inspec/kitchen-inspec/tree/v2.5.0) (2021-07-02)
