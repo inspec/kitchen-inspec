@@ -1,24 +1,21 @@
 # Change Log
 
-<!-- latest_release 2.5.2 -->
+<!-- latest_release -->
+<!-- latest_release -->
+<!-- release_rollup -->
+<!-- release_rollup -->
+<!-- latest_stable_release -->
 ## [v2.5.2](https://github.com/inspec/kitchen-inspec/tree/v2.5.2) (2022-02-17)
 
 #### Merged Pull Requests
+- Update README with Waivers usage [#286](https://github.com/inspec/kitchen-inspec/pull/286) ([damacus](https://github.com/damacus))
 - CFINSPEC-61 Allow inspec 5 [#288](https://github.com/inspec/kitchen-inspec/pull/288) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_release -->
-<!-- release_rollup since=2.5.0 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- CFINSPEC-61 Allow inspec 5 [#288](https://github.com/inspec/kitchen-inspec/pull/288) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.5.2 -->
-- Update README with Waivers usage [#286](https://github.com/inspec/kitchen-inspec/pull/286) ([damacus](https://github.com/damacus)) <!-- 2.5.1 -->
-<!-- release_rollup -->
 <!-- latest_stable_release -->
+
 ## [v2.5.0](https://github.com/inspec/kitchen-inspec/tree/v2.5.0) (2021-07-02)
 
 #### Merged Pull Requests
 - Support Test Kitchen 3.0 [#284](https://github.com/inspec/kitchen-inspec/pull/284) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v2.4.3](https://github.com/inspec/kitchen-inspec/tree/v2.4.3) (2021-06-09)
 
