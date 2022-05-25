@@ -1,0 +1,3 @@
+failing-test:
+  justification: "expected to fail"
+  run: false
