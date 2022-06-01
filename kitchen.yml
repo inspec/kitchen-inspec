@@ -74,7 +74,7 @@ suites:
       inspec_tests:
         - test/integration/with_waivers
       waiver_files:
-        - test/integration/with_waivers.yml
+        - test/integration/waivers.yml
   # before you are able to use the compliance plugin, you need to run
   # insecure is only required if you use self-signed certificates
   # $ inspec compliance login https://compliance.test --user admin --insecure --token ''
