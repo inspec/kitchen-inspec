@@ -80,8 +80,9 @@ module Kitchen
         opts = runner_options(instance.transport, state, instance.platform.name, instance.suite.name)
         logger.debug "Options #{opts.inspect}"
 
-        # add inputs
+        # add inputs and waivers
         setup_inputs(opts, config)
+        setup_waivers(opts, config)
 
         # setup Inspec
         ::Inspec::Log.init(STDERR)
@@ -114,6 +115,11 @@ module Kitchen
       end
 
       private
+
+      def setup_waivers(opts, config)
+        # InSpec expects the singular inflection
+        opts[:waiver_file] = config[:waiver_files] || []
+      end
 
       def setup_inputs(opts, config)
         inspec_version = Gem::Version.new(::Inspec::VERSION)

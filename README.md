@@ -266,7 +266,7 @@ You can also define your inputs in external files. Adapt your `kitchen.yml` to p
 
 ## Use waivers with your InSpec profiles
 
-You can define your waivers in external files:
+You can define your [waivers](https://docs.chef.io/inspec/waivers/) in external files:
 
 ```yaml
     verifier:
@@ -274,7 +274,7 @@ You can define your waivers in external files:
         - path: test/integration/attributes
       input_files:
         - test/integration/profile-attribute.yml
-      waivers:
+      waiver_files:
         - test/integration/control-waiver-01.yml
 ```
 
