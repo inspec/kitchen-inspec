@@ -1,23 +1,20 @@
 # Change Log
 
-<!-- latest_release 2.6.2 -->
+<!-- latest_release -->
+<!-- latest_release -->
+<!-- release_rollup -->
+<!-- release_rollup -->
+<!-- latest_stable_release -->
 ## [v2.6.2](https://github.com/inspec/kitchen-inspec/tree/v2.6.2) (2023-06-06)
 
 #### Merged Pull Requests
 - Use InSpec 5 for Now [#293](https://github.com/inspec/kitchen-inspec/pull/293) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_release -->
-<!-- release_rollup since=2.6.1 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Use InSpec 5 for Now [#293](https://github.com/inspec/kitchen-inspec/pull/293) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.6.2 -->
-<!-- release_rollup -->
 <!-- latest_stable_release -->
+
 ## [v2.6.1](https://github.com/inspec/kitchen-inspec/tree/v2.6.1) (2022-06-13)
 
 #### Merged Pull Requests
 - Allow InSpec 6 [#292](https://github.com/inspec/kitchen-inspec/pull/292) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_stable_release -->
 
 ## [v2.6.0](https://github.com/inspec/kitchen-inspec/tree/v2.6.0) (2022-06-01)
 
