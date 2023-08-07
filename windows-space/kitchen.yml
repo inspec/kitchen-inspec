@@ -1,0 +1,30 @@
+---
+driver:
+  name: ec2
+  region: us-east-2
+  instance_type: t2.medium
+  ami_name: ami-009352deadba800e3
+  associate_public_ip: true
+  security_group_ids: ["sg-05ff3ada60ad5d188"]
+
+transport:
+  name: winrm
+  elevated: true
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: windows-instance
+    driver:
+      communicator: winrm
+      winrm_username: 'Administrator'
+
+suites:
+  - name: hello
+    run_list:
+    attributes:
+
+verifier:
+  name: inspec
+  sudo: true
