@@ -25,3 +25,5 @@ end
 group :tools do
   gem "pry", "~> 0.10"
 end
+
+gem "kitchen-ec2"
