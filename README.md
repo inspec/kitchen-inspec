@@ -312,6 +312,40 @@ When using Input plugins, please be aware that input values get cached between s
        backend_cache: false
  ```
 
+### Configure Chef License Key and Licensing Service URL for Inspec version 6 or higher
+
+To configure Chef License Key for Chef InSpec, modify your `kitchen.yml` in the following way:
+
+```yaml
+    verifier:
+      chef_license_key: LICENSE_KEY_VALUE
+```
+
+Additionally, If you are using InSpec with Local Licensing Service, you can configure `chef_license_server` by providing the Licensing Service URL.
+
+
+```yaml
+    verifier:
+      chef_license_key: LICENSE_KEY_VALUE
+      chef_license_server: https://test-local-licensing-service-url
+```
+
+Or
+
+For avoiding a single point of failure, it is possible to set up multiple local licensing services. To configure them for InSpec, modify your `kitchen.yml` as follows:
+
+```yaml
+    verifier:
+      chef_license_key: LICENSE_KEY_VALUE
+      chef_license_server:
+        - https://test-local-licensing-service-url-1
+        - https://test-local-licensing-service-url-2
+        - https://test-local-licensing-service-url-3
+```
+
+<!-- TODO Insert Link to right document -->
+See the [Chef License documentation](/license/) for more information about Chef licensing.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
