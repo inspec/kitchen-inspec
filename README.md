@@ -321,6 +321,10 @@ To configure Chef License Key for Chef InSpec, modify your `kitchen.yml` in the 
       chef_license_key: LICENSE_KEY_VALUE
 ```
 
+Or
+
+It could also be configured by setting environment variable `CHEF_LICENSE_KEY` with the license key string.
+
 Additionally, If you are using InSpec with Local Licensing Service, you can configure `chef_license_server` by providing the Licensing Service URL.
 
 
