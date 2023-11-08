@@ -4,15 +4,15 @@
 - **Issues Response SLA: 3 business days**
 - **Pull Request Response SLA: 3 business days**
 
-For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
+For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/main/repo-management/repo-states.md).
 
-[![Build Status Master](https://travis-ci.org/inspec/kitchen-inspec.svg?branch=master)](https://travis-ci.org/inspec/kitchen-inspec) [![Gem Version](https://badge.fury.io/rb/kitchen-inspec.svg)](https://badge.fury.io/rb/kitchen-inspec)
+[![Build Status Main](https://travis-ci.org/inspec/kitchen-inspec.svg?branch=main)](https://travis-ci.org/inspec/kitchen-inspec) [![Gem Version](https://badge.fury.io/rb/kitchen-inspec.svg)](https://badge.fury.io/rb/kitchen-inspec)
 
 This is the kitchen driver for [InSpec](https://github.com/chef/inspec). To see the project in action, we have the following test-kitchen examples available:
 
-- [Chef and InSpec](https://github.com/inspec/inspec/tree/master/examples/kitchen-chef)
-- [Puppet and InSpec](https://github.com/inspec/inspec/tree/master/examples/kitchen-puppet)
-- [Ansible and InSpec](https://github.com/inspec/inspec/tree/master/examples/kitchen-ansible)
+- [Chef and InSpec](https://github.com/inspec/inspec/tree/main/examples/kitchen-chef)
+- [Puppet and InSpec](https://github.com/inspec/inspec/tree/main/examples/kitchen-puppet)
+- [Ansible and InSpec](https://github.com/inspec/inspec/tree/main/examples/kitchen-ansible)
 
 ## Installation
 
@@ -181,7 +181,7 @@ suites:
 
 ### Use remote InSpec profiles
 
-In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/inspec/inspec/blob/master/docs/profiles.md). Those can be easily added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `kitchen.yml`
+In case you want to reuse tests across multiple cookbooks, they should become an extra artifact independent of a Chef cookbook, called [InSpec profiles](https://github.com/inspec/inspec/blob/main/docs/profiles.md). Those can be easily added to existing local tests as demonstrated in previous sections. To include remote profiles, adapt the `verifier` attributes in `kitchen.yml`
 
 ```yaml
 suites:
