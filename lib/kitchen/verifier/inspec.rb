@@ -121,9 +121,8 @@ module Kitchen
       def setup_chef_license_config(opts, config)
         # Pass chef_license_key to inspec if it is set
         # Pass chef_license_server to inspec if it is set
-        chef_license_key = config[:chef_license_key] || ENV["CHEF_LICENSE_KEY"]
-        opts[:chef_license_key] = chef_license_key if chef_license_key
-        opts[:chef_license_server] = config[:chef_license_server] if config[:chef_license_server]
+        opts[:chef_license_key] = config[:chef_license_key] || ENV["CHEF_LICENSE_KEY"]
+        opts[:chef_license_server] = config[:chef_license_server] || ENV["CHEF_LICENSE_SERVER"]
       end
 
       def setup_waivers(opts, config)

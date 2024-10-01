@@ -347,6 +347,8 @@ For avoiding a single point of failure, it is possible to set up multiple local 
         - https://test-local-licensing-service-url-3
 ```
 
+It could also be configured by setting environment variable `CHEF_LICENSE_SERVER` with the Licensing Service URL(s).
+
 <!-- TODO Insert Link to right document -->
 See the [Chef License documentation](/license/) for more information about Chef licensing.
 
