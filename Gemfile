@@ -2,7 +2,7 @@
 source "https://rubygems.org"
 gemspec
 
-gem "chef-test-kitchen-enterprise", git: "https://github.com/chef/chef-test-kitchen-enterprise", branch: "rebranding_change"
+gem "chef-test-kitchen-enterprise", git: "https://github.com/chef/chef-test-kitchen-enterprise", branch: "main"
 
 group :guard do
   gem "guard-rspec",    require: nil
