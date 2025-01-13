@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 3.0.0 -->
+## [v3.0.0](https://github.com/inspec/kitchen-inspec/tree/v3.0.0) (2025-01-13)
+
+#### Merged Pull Requests
+- CHEF-12879 Kitchen integration with InSpec 6  [#299](https://github.com/inspec/kitchen-inspec/pull/299) ([Nik08](https://github.com/Nik08))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=2.6.2 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- CHEF-12879 Kitchen integration with InSpec 6  [#299](https://github.com/inspec/kitchen-inspec/pull/299) ([Nik08](https://github.com/Nik08)) <!-- 3.0.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v2.6.2](https://github.com/inspec/kitchen-inspec/tree/v2.6.2) (2023-06-06)
