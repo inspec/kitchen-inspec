@@ -83,6 +83,8 @@ module Kitchen
         # add inputs and waivers
         setup_inputs(opts, config)
         setup_waivers(opts, config)
+        # Configure Chef License Key and URL through kitchen
+        setup_chef_license_config(opts, config)
 
         # setup Inspec
         ::Inspec::Log.init(STDERR)
@@ -115,6 +117,13 @@ module Kitchen
       end
 
       private
+
+      def setup_chef_license_config(opts, config)
+        # Pass chef_license_key to inspec if it is set
+        # Pass chef_license_server to inspec if it is set
+        opts[:chef_license_key] = config[:chef_license_key] || ENV["CHEF_LICENSE_KEY"]
+        opts[:chef_license_server] = config[:chef_license_server] || ENV["CHEF_LICENSE_SERVER"]
+      end
 
       def setup_waivers(opts, config)
         # InSpec expects the singular inflection
