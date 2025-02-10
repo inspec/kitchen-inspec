@@ -326,8 +326,8 @@ module Kitchen
         opts["bastion_host"] = kitchen[:ssh_gateway] if kitchen[:ssh_gateway]
         opts["bastion_user"] = kitchen[:ssh_gateway_username] if kitchen[:ssh_gateway_username]
         opts["bastion_port"] = kitchen[:ssh_gateway_port] if kitchen[:ssh_gateway_port]
-        opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
-        opts["password"] = kitchen[:password] unless kitchen[:password].nil?
+        opts["key_files"] = config[:key_files] || kitchen[:keys] if config[:key_files] || kitchen[:keys]
+        opts["password"] = config[:password] || kitchen[:password] if config[:password] || kitchen[:password]
         opts["forward_agent"] = config[:forward_agent] || kitchen[:forward_agent] if config[:forward_agent] || kitchen[:forward_agent]
         opts
       end
