@@ -312,7 +312,7 @@ module Kitchen
           "sudo_options" => config[:sudo_options],
           "host" => config[:host] || kitchen[:hostname],
           "port" => config[:port] || kitchen[:port],
-          "user" => kitchen[:username],
+          "user" => config[:user] || kitchen[:username],
           "keepalive" => kitchen[:keepalive],
           "keepalive_interval" => kitchen[:keepalive_interval],
           "connection_timeout" => kitchen[:timeout],
@@ -326,8 +326,8 @@ module Kitchen
         opts["bastion_host"] = kitchen[:ssh_gateway] if kitchen[:ssh_gateway]
         opts["bastion_user"] = kitchen[:ssh_gateway_username] if kitchen[:ssh_gateway_username]
         opts["bastion_port"] = kitchen[:ssh_gateway_port] if kitchen[:ssh_gateway_port]
-        opts["key_files"] = kitchen[:keys] unless kitchen[:keys].nil?
-        opts["password"] = kitchen[:password] unless kitchen[:password].nil?
+        opts["key_files"] = config[:key_files] || kitchen[:keys] if config[:key_files] || kitchen[:keys]
+        opts["password"] = config[:password] || kitchen[:password] if config[:password] || kitchen[:password]
         opts["forward_agent"] = config[:forward_agent] || kitchen[:forward_agent] if config[:forward_agent] || kitchen[:forward_agent]
         opts
       end
@@ -345,8 +345,8 @@ module Kitchen
           "self_signed" => kitchen[:no_ssl_peer_verification],
           "host" => config[:host] || URI(kitchen[:endpoint]).hostname,
           "port" => config[:port] || URI(kitchen[:endpoint]).port,
-          "user" => kitchen[:user],
-          "password" => kitchen[:password] || kitchen[:pass],
+          "user" => config[:user] || kitchen[:user],
+          "password" => config[:password] || kitchen[:password] || kitchen[:pass],
           "connection_retries" => kitchen[:connection_retries],
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
