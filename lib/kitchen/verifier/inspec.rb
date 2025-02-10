@@ -346,7 +346,7 @@ module Kitchen
           "host" => config[:host] || URI(kitchen[:endpoint]).hostname,
           "port" => config[:port] || URI(kitchen[:endpoint]).port,
           "user" => config[:user] || kitchen[:user],
-          "password" => kitchen[:password] || kitchen[:pass],
+          "password" => config[:password] || kitchen[:password] || kitchen[:pass],
           "connection_retries" => kitchen[:connection_retries],
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
