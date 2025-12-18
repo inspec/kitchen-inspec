@@ -8,7 +8,7 @@ group :guard do
 end
 
 group :test do
-  gem "minitest", "~> 5.5"
+  gem "minitest", "~> 6.0"
   gem "rake", "~> 13.0"
   gem "chefstyle", "0.12.0"
   gem "concurrent-ruby", "~> 1.0"
