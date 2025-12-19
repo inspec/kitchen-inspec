@@ -16,7 +16,7 @@ verifier:
 platforms:
 - name: ubuntu
   driver:
-    image: ubuntu:14.04
+    image: ubuntu:24.04
 
 suites:
   - name: default
