@@ -33,4 +33,4 @@ jobs:
           bundle add kitchen-dokken
           bundle install
       - name: Verify Dokken
-        run: bundle exec kitchen verify ${{ matrix.os }}
+        run: bundle exec kitchen verify default-${{ matrix.os }}
