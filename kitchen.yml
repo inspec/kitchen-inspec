@@ -18,8 +18,6 @@ platforms:
 
 suites:
   - name: default
-    run_list:
-      - recipe[os_prepare]
   - name: profile
     run_list:
       - recipe[os_prepare]

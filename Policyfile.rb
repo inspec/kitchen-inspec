@@ -10,8 +10,7 @@ name "kitchen-inspec"
 default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list "os_prepare::default"
+run_list "test::default"
 
 # Specify a custom source for a single cookbook:
-cookbook "os_prepare", path: "./test/cookbooks/os_prepare"
-cookbook "ssh-hardening", git: "https://github.com/dev-sec/chef-ssh-hardening.git"
+cookbook "test", path: "./test/cookbooks/test"
