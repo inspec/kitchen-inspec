@@ -1,6 +1,0 @@
-source "https://supermarket.chef.io"
-
-cookbook "apt"
-cookbook "yum"
-cookbook "os_prepare", path: "./test/cookbooks/os_prepare"
-cookbook "ssh-hardening", git: "https://github.com/dev-sec/chef-ssh-hardening.git"

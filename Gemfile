@@ -17,7 +17,7 @@ group :test do
 end
 
 group :integration do
-  gem "berkshelf", ">= 4.3.5"
+  gem "chef-cli"
   gem "kitchen-dokken"
 end
 
