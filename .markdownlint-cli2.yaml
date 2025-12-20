@@ -1,0 +1,5 @@
+---
+config:
+  line-length: false  # MD013
+ignores:
+  - .github/copilot-instructions.md

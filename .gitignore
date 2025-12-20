@@ -8,5 +8,6 @@
 /spec/reports/
 /tmp/
 Berksfile.lock
+Policyfile.lock.json
 .kitchen
 *.gem

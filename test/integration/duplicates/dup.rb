@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # This is an InSpec test, that will be successful the first run. If it is
 # executed the second time, the test will fail
 path = "/tmp/file"

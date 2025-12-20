@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 source "https://rubygems.org"
 gemspec
 
@@ -8,13 +7,13 @@ group :guard do
 end
 
 group :test do
-  gem "minitest", "~> 5.5"
-  gem "rake", "~> 13.0"
-  gem "chefstyle", "0.12.0"
-  gem "concurrent-ruby", "~> 1.0"
+  gem "minitest", ">= 5.5", "< 7.0"
+  gem "rake", ">= 13.0", "< 14.0"
+  gem "cookstyle", ">= 8.0", "< 9.0"
+  gem "concurrent-ruby", ">= 1.0", "< 2.0"
   gem "rspec"
-  gem "simplecov", "~> 0.12"
-  gem "countloc", "~> 0.4"
+  gem "simplecov", ">= 0.12", "< 1.0"
+  gem "countloc", ">= 0.4", "< 1.0"
 end
 
 group :integration do
@@ -23,5 +22,5 @@ group :integration do
 end
 
 group :tools do
-  gem "pry", "~> 0.10"
+  gem "pry", ">= 0.10", "< 1.0"
 end
