@@ -18,6 +18,9 @@ platforms:
 
 suites:
   - name: default
+    verifier:
+      inspec_tests:
+        - test/integration/default
   - name: profile
     run_list:
       - recipe[os_prepare]
