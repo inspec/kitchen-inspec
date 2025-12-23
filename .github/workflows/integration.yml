@@ -30,7 +30,6 @@ jobs:
       - name: Setup Machine
         run: |
           bundle config set --local with 'integration'
-          bundle add kitchen-dokken
           bundle install
       - name: Verify Dokken
         run: bundle exec kitchen verify default-${{ matrix.os }}

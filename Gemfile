@@ -18,6 +18,7 @@ end
 
 group :integration do
   gem "chef-cli"
+  gem "inspec", ">= 5.0", "< 6.6.0" # Inspec 6.6.0+ requires license key to run
   gem "kitchen-dokken"
 end
 
