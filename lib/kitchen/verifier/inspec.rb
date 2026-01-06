@@ -185,17 +185,8 @@ module Kitchen
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
         require "inspec"
-        # TODO: this should be easier. I would expect to load a single class here
-        # load supermarket plugin, this is part of the inspec gem
-        require "bundles/inspec-supermarket/api"
-        require "bundles/inspec-supermarket/target"
-
-        # load the compliance plugin
-        require "bundles/inspec-compliance/configuration"
-        require "bundles/inspec-compliance/support"
-        require "bundles/inspec-compliance/http"
-        require "bundles/inspec-compliance/api"
-        require "bundles/inspec-compliance/target"
+        # Plugins (supermarket, compliance, etc.) are loaded automatically
+        # via the Inspec::Plugin::V2::Loader system in the load_plugins method
       end
 
       # Returns an Array of test suite filenames for the related suite currently
