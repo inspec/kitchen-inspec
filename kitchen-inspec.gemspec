@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 2.3.0"
   spec.add_dependency "inspec-core", ">= 2.2.64", "< 8.0" # 2.2.64 is required for plugin v2 support & InSpec 6 included
+  spec.add_dependency "train"
   spec.add_dependency "hashie", ">= 3.4", "< 6.0"
   if ENV["CHEF_TEST_KITCHEN_ENTERPRISE"]
     spec.add_dependency "chef-test-kitchen-enterprise", ">= 1.1.4", "< 3"
