@@ -18,8 +18,7 @@ end
 
 group :integration do
   gem "chef-cli"
-  # gem "inspec-core", ">= 5.0", "< 6.6.0" # Inspec 6.6.0+ requires license key to run, this limits it to pre license key for CI and testing purposes
-
+  gem "inspec-core", ">= 5.0", "< 6.6.0" # Inspec 6.6.0+ requires license key to run, this limits it to pre license key for CI and testing purposes
   gem "kitchen-dokken"
 end
 
