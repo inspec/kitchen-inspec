@@ -1,4 +1,3 @@
-# encoding: utf-8
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
@@ -443,10 +442,10 @@ describe Kitchen::Verifier::Inspec do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
       expect(verifier).to receive(:runner_options).with(
-          transport,
-          {},
-          "default",
-          "germany"
+        transport,
+        {},
+        "default",
+        "germany"
       ).and_return({})
       verifier.call({})
     end
@@ -458,9 +457,9 @@ describe Kitchen::Verifier::Inspec do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
       expect(runner).to receive(:add_target).with({ path: File.join(
-          config[:test_base_path],
-          "germany"
-        ) }, hash_including(
+        config[:test_base_path],
+        "germany"
+      ) }, hash_including(
           "output" => "/tmp/inspec_results.xml"
         ))
 
@@ -474,9 +473,9 @@ describe Kitchen::Verifier::Inspec do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
 
       expect(runner).to receive(:add_target).with({ path: File.join(
-          config[:test_base_path],
-          "germany"
-        ) }, hash_including(
+        config[:test_base_path],
+        "germany"
+      ) }, hash_including(
           "output" => "/tmp/default_germany.xml"
         ))
 
@@ -487,9 +486,9 @@ describe Kitchen::Verifier::Inspec do
       ensure_suite_directory("germany")
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_target).with({ path: File.join(
-          config[:test_base_path],
-          "germany"
-        ) }, anything)
+        config[:test_base_path],
+        "germany"
+      ) }, anything)
 
       verifier.call({})
     end
@@ -498,9 +497,9 @@ describe Kitchen::Verifier::Inspec do
       create_legacy_test_directories
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_target).with({ path: File.join(
-          config[:test_base_path],
-          "germany", "inspec"
-        ) }, anything)
+        config[:test_base_path],
+        "germany", "inspec"
+      ) }, anything)
 
       verifier.call({})
     end
@@ -511,7 +510,8 @@ describe Kitchen::Verifier::Inspec do
         File.join(
           config[:test_base_path],
           "nobody"
-        ), anything)
+        ), anything
+      )
 
       verifier.call({})
     end
@@ -568,7 +568,8 @@ describe Kitchen::Verifier::Inspec do
       allow(Inspec::Runner).to receive(:new).and_return(runner)
       expect(runner).to receive(:add_target).with({ path: File.join(config[:test_base_path], "local") }, anything)
       expect(runner).to receive(:add_target).with(
-        { url: "https://github.com/nathenharvey/tmp_compliance_profile" }, anything)
+        { url: "https://github.com/nathenharvey/tmp_compliance_profile" }, anything
+      )
       verifier.call({})
     end
   end

@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
-
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
-require "chefstyle"
+require "cookstyle"
 require "rubocop/rake_task"
 
 # Specs
@@ -11,15 +9,21 @@ RSpec::Core::RakeTask.new(:spec)
 desc "Run all test suites"
 task test: [:spec]
 
-# Rubocop
-desc "Run Rubocop lint checks"
-task :rubocop do
-  RuboCop::RakeTask.new
-end
+desc "Check Linting and code style."
+task :style do
+  require "rubocop/rake_task"
+  require "cookstyle/chefstyle"
 
-# lint the project
-desc "Run robocop linter"
-task lint: [:rubocop]
+  if RbConfig::CONFIG["host_os"] =~ /mswin|mingw|cygwin/
+    # Windows-specific command, rubocop erroneously reports the CRLF in each file which is removed when your PR is uploaeded to GitHub.
+    # This is a workaround to ignore the CRLF from the files before running cookstyle.
+    sh "cookstyle --chefstyle -c .rubocop.yml --except Layout/EndOfLine"
+  else
+    sh "cookstyle --chefstyle -c .rubocop.yml"
+  end
+rescue LoadError
+  puts "Rubocop or Cookstyle gems are not installed. bundle install first to make sure all dependencies are installed."
+end
 
 desc "Display LOC stats"
 task :stats do
@@ -30,9 +34,9 @@ task :stats do
 end
 
 desc "Run all quality tasks"
-task quality: [:lint, :stats]
+task quality: %i{lint stats}
 
-task default: [:test, :quality]
+task default: %i{test quality}
 
 # Automatically generate a changelog for this project. Only loaded if
 # the necessary gem is installed.
@@ -67,6 +71,7 @@ end
 # @param [Type] msg the message to display if the command is missing
 def require_command(x, msg = nil)
   return if system("command -v #{x} || exit 1")
+
   msg ||= "Please install it first!"
   puts "\033[31;1mCan't find command #{x.inspect}. #{msg}\033[0m"
   exit 1
@@ -79,6 +84,7 @@ end
 def require_env(x, msg = nil)
   exists = `env | grep "^#{x}="`
   return unless exists.empty?
+
   puts "\033[31;1mCan't find environment variable #{x.inspect}. #{msg}\033[0m"
   exit 1
 end
@@ -115,6 +121,7 @@ desc "Bump the version of this gem"
 task :bump_version, [:version] do |_, args|
   v = args[:version] || ENV["to"]
   raise "You must specify a target version!  rake release[1.2.3]" if v.empty?
+
   check_update_requirements
   kitchen_inspec_version(v)
   Rake::Task["changelog"].invoke
