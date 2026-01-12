@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 3.1.0 -->
+## [v3.1.0](https://github.com/inspec/kitchen-inspec/tree/v3.1.0) (2026-01-12)
+
+#### Merged Pull Requests
+- Modernize kitchen-inspec [#315](https://github.com/inspec/kitchen-inspec/pull/315) ([Stromweld](https://github.com/Stromweld))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Modernize kitchen-inspec [#315](https://github.com/inspec/kitchen-inspec/pull/315) ([Stromweld](https://github.com/Stromweld)) <!-- 3.1.0 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v3.0.0](https://github.com/inspec/kitchen-inspec/tree/v3.0.0) (2025-03-27)
