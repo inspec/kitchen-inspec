@@ -1,7 +1,7 @@
 name: profile
 title: InSpec Example Profile
 maintainer: Chef Software, Inc.
-copyright: Chef Software, Inc.
+copyright: Copyright (c) 2015-2025 Progress Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.
 copyright_email: support@chef.io
 license: Apache 2 license
 summary: Demonstrates the use of InSpec Compliance Profile
