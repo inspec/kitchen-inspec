@@ -1,0 +1,35 @@
+---
+"on":
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: integration-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dokken:
+    env:
+      KITCHEN_LOCAL_YAML: kitchen.dokken.yml
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - 3.4
+        os:
+          - ubuntu
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Setup Machine
+        run: |
+          bundle config set --local with 'integration'
+          bundle install
+      - name: Verify Dokken
+        run: bundle exec kitchen verify default-${{ matrix.os }}

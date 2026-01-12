@@ -1,27 +1,26 @@
 ---
 driver:
-  name: dokken
-
-transport:
-  name: dokken
+  name: vagrant
+  linked_clone: false
 
 provisioner:
-  name: dokken
-  chef_license: accept
+  name: chef_infra
+  product_name: chef
+  deprecations_as_errors: true
+  chef_license: accept-no-persist
 
 verifier:
   name: inspec
-  sudo: true
 
 platforms:
-- name: ubuntu
-  driver:
-    image: ubuntu:14.04
+  - name: almalinux-9
+  - name: ubuntu-24.04
 
 suites:
   - name: default
-    run_list:
-      - recipe[os_prepare]
+    verifier:
+      inspec_tests:
+        - test/integration/default
   - name: profile
     run_list:
       - recipe[os_prepare]

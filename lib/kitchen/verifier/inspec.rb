@@ -1,4 +1,3 @@
-# encoding: utf-8
 #
 # Author:: Fletcher Nichol (<fnichol@chef.io>)
 # Author:: Christoph Hartmann (<chartmann@chef.io>)
@@ -22,8 +21,8 @@ require "kitchen/transport/winrm"
 require "kitchen/verifier/inspec_version"
 require "kitchen/verifier/base"
 
-require "uri"
-require "pathname"
+require "uri" unless defined?(URI)
+require "pathname" unless defined?(Pathname)
 require "hashie"
 
 require "inspec/plugin/v2"
@@ -113,6 +112,7 @@ module Kitchen
         exit_code = runner.run
         # 101 is a success as well (exit with no fails but has skipped controls)
         return if exit_code == 0 || exit_code == 101
+
         raise ActionFailed, "InSpec Runner returns #{exit_code}"
       end
 
@@ -185,17 +185,8 @@ module Kitchen
       # (see Base#load_needed_dependencies!)
       def load_needed_dependencies!
         require "inspec"
-        # TODO: this should be easier. I would expect to load a single class here
-        # load supermarket plugin, this is part of the inspec gem
-        require "bundles/inspec-supermarket/api"
-        require "bundles/inspec-supermarket/target"
-
-        # load the compliance plugin
-        require "bundles/inspec-compliance/configuration"
-        require "bundles/inspec-compliance/support"
-        require "bundles/inspec-compliance/http"
-        require "bundles/inspec-compliance/api"
-        require "bundles/inspec-compliance/target"
+        # Plugins (supermarket, compliance, etc.) are loaded automatically
+        # via the Inspec::Plugin::V2::Loader system in the load_plugins method
       end
 
       # Returns an Array of test suite filenames for the related suite currently
@@ -240,8 +231,8 @@ module Kitchen
             # foiled by extra stuff. However, if the only entry is a "name" key, then
             # leave it alone so it can default to resolving to the Supermarket.
             unless test_item.keys == [:name]
-              type_keys = [:path, :url, :git, :compliance, :supermarket]
-              git_keys = [:branch, :tag, :ref, :relative_path]
+              type_keys = %i{path url git compliance supermarket}
+              git_keys = %i{branch tag ref relative_path}
               supermarket_keys = [:supermarket_url]
               test_item.delete_if { |k, v| !(type_keys + git_keys + supermarket_keys).include?(k) }
             end
@@ -280,7 +271,7 @@ module Kitchen
           raise Kitchen::UserError, "Verifier #{name} does not support the #{transport.name} Transport"
         end.tap do |runner_options|
           # default color to true to match InSpec behavior
-          runner_options["color"] = (config[:color].nil? ? true : config[:color])
+          runner_options["color"] = (config[:color].nil? || config[:color])
           runner_options["format"] = config[:format] unless config[:format].nil?
           runner_options["output"] = config[:output] % { platform: platform, suite: suite } unless config[:output].nil?
           runner_options["profiles_path"] = config[:profiles_path] unless config[:profiles_path].nil?
@@ -372,7 +363,7 @@ module Kitchen
           "connection_retry_sleep" => kitchen[:connection_retry_sleep],
           "max_wait_until_ready" => kitchen[:max_wait_until_ready],
         }
-        logger.debug "Connect to Container: #{opts['host']}"
+        logger.debug "Connect to Container: #{opts["host"]}"
         opts
       end
 
@@ -397,7 +388,7 @@ module Kitchen
           "logger" => logger,
           "host" => config_data[:container_id],
         }
-        logger.debug "Connect to Container: #{opts['host']}"
+        logger.debug "Connect to Container: #{opts["host"]}"
         opts
       end
     end

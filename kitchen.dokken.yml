@@ -1,0 +1,22 @@
+---
+driver:
+  name: dokken
+  privileged: true
+  chef_image: chef/chef
+  chef_version: stable
+
+provisioner:
+  name: dokken
+  deprecations_as_errors: true
+  chef_license: accept-no-persist
+
+transport:
+  name: dokken
+
+platforms:
+  - name: ubuntu-24.04
+    driver:
+      image: dokken/ubuntu-24.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update

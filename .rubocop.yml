@@ -1,0 +1,7 @@
+---
+AllCops:
+  Include:
+    - "**/*.rb"
+  Exclude:
+    - "vendor/**/*"
+    - "spec/**/*"

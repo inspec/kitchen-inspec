@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
-
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
-require "chefstyle"
+require "cookstyle"
 require "rubocop/rake_task"
 
 # Specs
@@ -17,9 +15,15 @@ task :rubocop do
   RuboCop::RakeTask.new
 end
 
-# lint the project
-desc "Run robocop linter"
-task lint: [:rubocop]
+begin
+  require "cookstyle/chefstyle"
+  require "rubocop/rake_task"
+  RuboCop::RakeTask.new(:lint) do |task|
+    task.options += ["--chefstyle", "--display-cop-names", "--no-color"]
+  end
+rescue LoadError
+  puts "cookstyle/chefstyle is not available. (sudo) gem install cookstyle to do style checking."
+end
 
 desc "Display LOC stats"
 task :stats do
