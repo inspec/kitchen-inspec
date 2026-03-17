@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [ main, sanjain/CHEF-32248/blackduck_integration, release/** ]
   push:
-    branches: [ main, sanjain/CHEF-32248/blackduck_integration, release/** ]
+    branches: [ main, sanjain/CHEF-32248/blackduck_integration,  release/** ]
 
   workflow_dispatch:
 
@@ -118,7 +118,7 @@ jobs:
       # requires these secrets: POLARIS_SERVER_URL, POLARIS_ACCESS_TOKEN
       perform-blackduck-polaris: false
       polaris-application-name: "Chef-Agents"  # one of these: Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Other, Chef-Non-Product
-      polaris-project-name: ${{ github.event.repository.name }}   # arch-sample-cli
+      polaris-project-name: 'chef-kitchen-inspec'   # arch-sample-cli
       polaris-working-directory: '.' # Working directory for the scan, defaults to . but usually lang-dependent like ./src
       polaris-coverity-build-command: 'go build -o bin/chef-cli.exe' # Coverity build command, typically done in build stage by language or here as param 1-liner like "mvn clean install"
       polaris-coverity-clean-command: 'go clean' # Coverity clean command, typically done before build stage by language or here as param 1-liner like "mvn clean"
@@ -134,7 +134,7 @@ jobs:
 
       # perform SonarQube scan, with or without unit test coverage data
       # requires secrets SONAR_TOKEN and SONAR_HOST_URL (progress.sonar.com)
-      perform-sonarqube-scan: true
+      perform-sonarqube-scan: false
       # perform-sonar-build: true
       # build-profile: 'default'
       # report-unit-test-coverage: true
@@ -142,8 +142,7 @@ jobs:
 
       # report to central developer dashboard
       report-to-atlassian-dashboard: false
-      quality-product-name: 'Chef-Agents'   # product name for quality reporting, like Chef360, Courier, Inspec
-      # quality-product-name: ${{ github.event.repository.name }}   # like 'Chef-360' - the product name for quality reporting, like Chef360, Courier, Inspec
+      quality-product-name: 'chef-kitchen-inspec'   # product name for quality reporting, like Chef360, Courier, Inspec
       # quality-sonar-app-name: 'YourSonarAppName'
       # quality-testing-type: 'Integration' like Unit, Integration, e2e, api, Performance, Security
       # quality-service-name: 'YourServiceOrRepoName'
@@ -171,8 +170,8 @@ jobs:
       # perform Blackduck software composition analysis (SCA) for 3rd party CVEs, licensing, and operational risk
       perform-blackduck-sca-scan: true # combined with generate sbom & generate github-sbom, also needs version above
       blackduck-project-group-name: 'Chef-Agents' # typically one of (Chef), Chef-Agents, Chef-Automate, Chef-Chef360, Chef-Habitat, Chef-Infrastructure-Server, Chef-Shared-Services, Chef-Non-Product'
-      blackduck-project-name: ${{ github.event.repository.name }} # BlackDuck project name, typically the repository name
-      blackduck-force-low-accuracy-mode: false # if true, forces BlackDuck Detect to run in low accuracy mode which can reduce scan time for large projects at the cost of potentially missing some vulnerabilities; see https://synopsys.atlassian.net/wiki/spaces/INTDOCS/pages/1138617921/Black+Duck+Detect+Accuracy+Levels for details
+      blackduck-project-name: 'chef-kitchen-inspec' # BlackDuck project name, typically the repository name
+      run-bundle-install: true
 
       # udf1: 'default' # user defined flag 1
       # udf2: 'default' # user defined flag 2
