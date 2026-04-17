@@ -1,8 +1,16 @@
 # Change Log
 
+<!-- latest_release 3.1.1 -->
+## [v3.1.1](https://github.com/inspec/kitchen-inspec/tree/v3.1.1) (2026-04-17)
+
+#### Merged Pull Requests
+- CHEF-27138 - Remove SLA text from README.md [#309](https://github.com/inspec/kitchen-inspec/pull/309) ([Saburesh07](https://github.com/Saburesh07))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=3.1.0 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- CHEF-27138 - Remove SLA text from README.md [#309](https://github.com/inspec/kitchen-inspec/pull/309) ([Saburesh07](https://github.com/Saburesh07)) <!-- 3.1.1 -->
 <!-- release_rollup -->
 <!-- latest_stable_release -->
 ## [v3.1.0](https://github.com/inspec/kitchen-inspec/tree/v3.1.0) (2026-01-12)
