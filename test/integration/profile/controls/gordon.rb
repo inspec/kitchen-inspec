@@ -1,4 +1,4 @@
-# copyright: 2015, Chef Software, Inc.
+# copyright: Copyright (c) 2015-2025 Progress Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.
 # license: All rights reserved
 
 title "Gordon Config Checks"

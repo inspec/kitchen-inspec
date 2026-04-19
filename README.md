@@ -360,3 +360,8 @@ Bug reports and pull requests are welcome on GitHub at <https://github.com/inspe
 Apache 2.0 (see [LICENSE])
 
 [license]: https://github.com/inspec/kitchen-inspec/blob/master/LICENSE
+
+
+# Copyright
+
+See [COPYRIGHT.md](./COPYRIGHT.md).
